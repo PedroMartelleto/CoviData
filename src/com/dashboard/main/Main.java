@@ -6,7 +6,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+// TODO: CDMenuBar
+
+// TODO: Vaccines page
+	// TODO: Overwrite ChoiceBox css
+	// TODO: Enable/disable percentages ChoiceBox
+
+// TODO: É possível pegar o cronograma usando APIs?
+
+// TODO: Multiple scenes https://www.youtube.com/watch?v=XCgcQTQCfJQ
+
+public class Main extends Application {	
 	@Override
     public void start(Stage primaryStage) throws Exception{
 		Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
@@ -15,8 +25,9 @@ public class Main extends Application {
 		primaryStage.show();
     }
 
-
     public static void main(String[] args) {
+		System.setProperty("prism.lcdtext", "false"); // Font anti-aliasing
+		
     	launch(args);
     }
 }
