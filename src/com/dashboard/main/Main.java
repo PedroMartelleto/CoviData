@@ -14,8 +14,6 @@ import javafx.stage.Stage;
 
 // TODO: É possível pegar o cronograma usando APIs?
 
-// TODO: Multiple scenes https://www.youtube.com/watch?v=XCgcQTQCfJQ
-
 public class Main extends Application {	
 	@Override
     public void start(Stage primaryStage) throws Exception{
@@ -26,8 +24,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-		System.setProperty("prism.lcdtext", "false"); // Font anti-aliasing
+    	System.setProperty("prism.lcdtext", "false"); // Font anti-aliasing
 		
-    	launch(args);
+		launch(args);
     }
 }

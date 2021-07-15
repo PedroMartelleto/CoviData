@@ -8,7 +8,7 @@ import java.util.Base64;
  
 public class Requests {
 
-	public static String Vaccination () {
+	public static String vaccination() {
 		String content = "";
     	try {
             // Getting the API data
@@ -35,6 +35,6 @@ public class Requests {
 	
 	
     public static void main(String args[]) { 
-    	System.out.println(Vaccination());
+    	System.out.println(vaccination());
     }
 }

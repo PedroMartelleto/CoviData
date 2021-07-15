@@ -3,16 +3,22 @@ package com.dashboard.components.menuBar;
 import com.dashboard.utils.FXMLUtils;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
 
-// TODO: Descobrir como fazer isso funcionar https://blog.zelinf.net/posts/java/2017-12-19-javafx-custom-component.html
-public class CDMenuBar extends HBox {
-	
-    public CDMenuBar() {
-        FXMLUtils.loadFXML(this);
-    }
+public class CDMenuBar extends VBox {
+
+    @FXML
+    private TextArea editableText;
+    @FXML
+    private TextArea upperText;
 
     @FXML
     private void initialize() {
+    	upperText.textProperty().bind(editableText.textProperty());
+    }
+	
+    public CDMenuBar() {
+        FXMLUtils.loadFXML(this);
     }
 }
