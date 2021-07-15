@@ -9,11 +9,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import com.dashboard.components.menuBar.DashboardMenuBar?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:controller="com.dashboard.components.scenes.vaccinations.VaccinationsScene" type="AnchorPane"
+		 maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <DashboardMenuBar></DashboardMenuBar>
             <HBox prefHeight="567.0" prefWidth="940.0" VBox.vgrow="ALWAYS">
                <children>
                   <VBox prefHeight="451.0" prefWidth="461.0" HBox.hgrow="ALWAYS">
@@ -135,4 +138,4 @@
          </children>
       </VBox>
    </children>
-</AnchorPane>
+</fx:root>
