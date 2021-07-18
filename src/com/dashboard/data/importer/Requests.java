@@ -1,32 +1,23 @@
 package com.dashboard.data.importer;
 
-import java.net.URL;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import org.json.JSONObject;
-import javax.xml.*;
+import java.io.IOException;
 
-import java.util.Base64;
+import org.kohsuke.github.GHContent;
+import org.kohsuke.github.GHRepository;
+import org.kohsuke.github.GitHub;
+import org.kohsuke.github.GitHubBuilder;
 
 public class Requests {
-
 	public static String vaccination() {
-		String content = "";
-    	try {
-            // Getting the API data
-    		URL url = new URL("https://api.github.com/repos/owid/covid-19-data/contents/public/data/vaccinations/country_data/Brazil.csv");
-            String response = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8")).readLine();
-            JSONObject json = new JSONObject(response);
-
-    	} catch (Exception ioe) {
-            System.out.println(ioe.getMessage());
-    	}
-    	
-    	return content;
+		try {
+			GitHub github = new GitHubBuilder().withOAuthToken("INSERT_TOKEN_HERE").build();
+			GHRepository repo = github.getUser("CSSEGISandData").getRepository("COVID-19");
+			GHContent content = repo.getFileContent("csse_covid_19_data/csse_covid_19_daily_reports/01-01-2021.csv");
+			System.out.println(content.getContent()); // TODO: This is deprecated, use another method instead
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
 	}
-	
-	
-    public static void main(String args[]) { 
-    	System.out.println(vaccination());
-    }
 }
