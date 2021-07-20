@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root type="HBox" maxHeight="-Infinity" maxWidth="Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0"
+	xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="com.dashboard.components.menuBar.DashboardMenuBar"
+	>
+	<children>
+		<Button fx:id="vaccinationsButton" mnemonicParsing="false" styleClass="DashboardMenuBar" text="Vacinação" />
+		<Button fx:id="infectedButton" mnemonicParsing="false" styleClass="DashboardMenuBar" text="Infectados" />
+		<Button fx:id="hospitalsButton" mnemonicParsing="false" styleClass="DashboardMenuBar" text="Lotação de hospitais" />
+		<Button fx:id="newsButton" mnemonicParsing="false" styleClass="DashboardMenuBar" text="Reportagens" />
+	</children>
+</fx:root>
