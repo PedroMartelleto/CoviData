@@ -16,8 +16,6 @@ import javafx.stage.Stage;
 
 // TODO: Undecorated window
 
-// TODO: É possível pegar o cronograma usando APIs?
-
 public class Main extends Application {	
 	@Override
     public void start(Stage primaryStage) throws Exception {

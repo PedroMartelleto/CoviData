@@ -1,8 +1,9 @@
 package com.dashboard.data.importer;
+
 import java.util.ArrayList;
 
 import com.dashboard.data.interfaces.ChartsInterface;
-import com.dashboard.data.interfaces.Coordinate;
+import com.sothawo.mapjfx.Coordinate;
 
 import javafx.util.Pair;
 

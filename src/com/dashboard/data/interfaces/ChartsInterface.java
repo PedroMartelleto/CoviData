@@ -1,9 +1,10 @@
 package com.dashboard.data.interfaces;
 
 import java.util.ArrayList;
-import javafx.util.Pair;
 
 import com.sothawo.mapjfx.Coordinate;
+
+import javafx.util.Pair;
 
 public interface ChartsInterface {
 	
