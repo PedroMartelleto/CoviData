@@ -1,0 +1,10 @@
+/tmpdata
+*.iml
+.idea
+.eclipse
+target
+
+.DS_Store
+
+/dependency-reduced-pom.xml
+!.sdkmanrc
