@@ -12,6 +12,12 @@ public class TimeSeriesDataProvider {
 		dummyData.add(new XYChart.Data<String, Number>("02/01", 20));
 		dummyData.add(new XYChart.Data<String, Number>("03/01", 100));
 	}
+
+	public static void vaccinations(XYChart<String, Number> chart) {
+		chart.setAnimated(true);
+		provideLabels(chart, "Vacinas aplicadas, acumuladas por dia", "Data", "Vacinas aplicadas");
+		provideSeries(chart, "Vacinas aplicadas", dummyData);
+	}
 	
 	private static void provideLabels(XYChart<String, Number> destChart, String title, String xLabel, String yLabel) {
 		destChart.getXAxis().setLabel(xLabel);
@@ -27,9 +33,4 @@ public class TimeSeriesDataProvider {
 		destChart.getData().add(series);
 	}
 
-	public static void vaccinations(XYChart<String, Number> chart) {
-		chart.setAnimated(true);
-		provideLabels(chart, "Vacinas aplicadas, acumuladas por dia", "Data", "Vacinas aplicadas");
-		provideSeries(chart, "Vacinas aplicadas", dummyData);
-	}
 }
