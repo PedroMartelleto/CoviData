@@ -10,6 +10,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
+
 // TODO: Vaccines page
 	// TODO: Overwrite ChoiceBox css
 	// TODO: Enable/disable percentages ChoiceBox
@@ -28,8 +32,9 @@ public class Main extends Application {
 		primaryStage.show();
     }
 
-    public static void main(String[] args) {   	
-    	System.out.print(Requests.vaccination());
+    public static void main(String[] args) {
+
+    	
 		launch(args);
     }
 }

@@ -6,13 +6,15 @@ import com.dashboard.data.model.MapChartDataModel;
 public interface ChartsInterface {
 	
 	// Casos totais por estado
+	// Rambo
 	public MapChartDataModel GetCasesMapChart();
 
 	// Mortes totais por estado
+	// Rambo
 	public MapChartDataModel GetDeathsMapChart();
 	
 	// Vacinação por data no país
-	public LineChartDataModel GetVaccinationsLineChart();
+	public LineChartDataModel GetVaccinationsLineChart();	
 	
 	// Casos diários no País
 	public LineChartDataModel GetDailyTotalCasesLineChart();
