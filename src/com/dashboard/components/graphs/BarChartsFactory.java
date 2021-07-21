@@ -5,8 +5,8 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
-public class CovidBarCharts {
-	private static BarChart<String, Number> getBarChart(String title, String xLabel, String yLabel){
+public class BarChartsFactory {
+	private static BarChart<String, Number> barChart(String title, String xLabel, String yLabel) {
 		CategoryAxis xAxis = new CategoryAxis();
 		NumberAxis yAxis = new NumberAxis();
 		
@@ -21,9 +21,9 @@ public class CovidBarCharts {
 	}
 	
 	
-	public static BarChart<String, Number> getNewCasesPerDate(String city){
-		BarChart<String, Number> barChart = getBarChart("Casos novos de COVID-19 por data de"
-			+	"notificação", "Data de Notificação", "Casos Novos");
+	public static BarChart<String, Number> casesPerDay(String city) {
+		BarChart<String, Number> barChart = barChart("Casos novos de COVID-19 por data de"
+			+	"notifica��o", "Data de Notifica��o", "Casos novos");
 		
 		XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
 		
@@ -38,8 +38,8 @@ public class CovidBarCharts {
 		return barChart;
 	}
 	
-	public static BarChart<String, Number> getNewDeathsPerDate(String city){
-		BarChart<String, Number> barChart = getBarChart("Óbitos de COVID-19 por data de notificação", "Data de Notificação", "Óbitos");
+	public static BarChart<String, Number> deathsPerDay(String city) {
+		BarChart<String, Number> barChart = barChart("Óbitos de COVID-19 por data de notificação", "Data de Notificação", "Óbitos");
 		
 		XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
 		

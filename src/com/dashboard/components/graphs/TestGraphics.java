@@ -23,7 +23,7 @@ public class TestGraphics extends Application{
 		MapChart m = new MapChart(mapa);
 		
 		
-		BarChart<String, Number> l = CovidBarCharts.getNewCasesPerDate("Birigui");
+		BarChart<String, Number> l = BarChartsFactory.casesPerDay("Birigui");
 		//LineChart<String, Number> l2 = CovidLineCharts.getLineChartNumberString("Teste 2", "X", "Y");
 		
 		StackPane root = new StackPane();
