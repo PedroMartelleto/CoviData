@@ -1,5 +1,21 @@
-/home/gabriel-vr/Área de Trabalho/USP/materias/poo/TrabalhoFinal/Covidash/src/com/dashboard/components/graphs/MapChart.java
-/home/gabriel-vr/Área de Trabalho/USP/materias/poo/TrabalhoFinal/Covidash/src/com/dashboard/components/graphs/CovidLineCharts.java
-/home/gabriel-vr/Área de Trabalho/USP/materias/poo/TrabalhoFinal/Covidash/src/com/dashboard/components/graphs/MapController.java
-/home/gabriel-vr/Área de Trabalho/USP/materias/poo/TrabalhoFinal/Covidash/src/com/dashboard/components/graphs/TestGraphics.java
-/home/gabriel-vr/Área de Trabalho/USP/materias/poo/TrabalhoFinal/Covidash/src/com/dashboard/components/graphs/CovidBarCharts.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\components\graphs\TimeSeriesDataProvider.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\components\scenes\newsReports\NewsReportsScene.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\components\graphs\MapController.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\main\Main.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\utils\CSSUtils.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\components\graphs\AreaChartsFactory.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\components\scenes\infected\InfectedScene.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\components\scenes\vaccinations\VaccinationsScene.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\utils\FXMLUtils.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\components\scenes\hospitals\HospitalsScene.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\data\interfaces\ChartsInterface.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\components\menuBar\DashboardMenuBar.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\components\graphs\MapChart.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\components\graphs\BarChartsFactory.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\data\model\LineChartDataModel.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\components\graphs\TestGraphics.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\components\graphs\CovidLineCharts.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\components\scenes\vaccineSchedule\VaccineScheduleScene.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\data\importer\ChartsImporter.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\data\model\MapChartDataModel.java
+C:\Users\Pedro\Projects\CovidDashboard\src\com\dashboard\data\importer\Requests.java

@@ -1,6 +1,9 @@
 package com.dashboard.components.graphs;
 
-import javafx.scene.chart.*;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 
 public class CovidLineCharts {
 	

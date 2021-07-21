@@ -1,16 +1,15 @@
 package com.dashboard.components.graphs;
 
-import com.sothawo.mapjfx.*;
-
-import javafx.fxml.FXMLLoader;
-import javafx.scene.*;
-
 import java.io.InputStream;
-
-import java.lang.Class;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import com.sothawo.mapjfx.Coordinate;
+import com.sothawo.mapjfx.MapCircle;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 
 public class MapChart {
 	

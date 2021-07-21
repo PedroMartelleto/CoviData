@@ -1,16 +1,15 @@
 package com.dashboard.components.graphs;
 
-import javafx.application.*;
-import javafx.scene.*;
-import javafx.scene.chart.*;
-import javafx.stage.Stage;
-import javafx.scene.layout.StackPane;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
-import com.sothawo.mapjfx.*;
+import com.sothawo.mapjfx.Coordinate;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 public class TestGraphics extends Application{
 	public static void main(String[] args) {
@@ -24,7 +23,7 @@ public class TestGraphics extends Application{
 		MapChart m = new MapChart(mapa);
 		
 		
-		BarChart<String, Number> l = CovidBarCharts.getNewCasesPerDate("Birigui");
+		BarChart<String, Number> l = BarChartsFactory.casesPerDay("Birigui");
 		//LineChart<String, Number> l2 = CovidLineCharts.getLineChartNumberString("Teste 2", "X", "Y");
 		
 		StackPane root = new StackPane();

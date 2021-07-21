@@ -14,8 +14,8 @@ public class CSSUtils {
 	 */
 	public static void addStylesheetsToParent(Parent parent) {
 		for (String stylesheet : globalStylesheets) {
-			parent.getStylesheets().add("com/styles/" + stylesheet + ".css");
+			parent.getStylesheets().add("com/dashboard/styles/" + stylesheet + ".css");
 		}
-		parent.getStylesheets().add("com/styles/" + parent.getClass().getSimpleName() + ".css");
+		parent.getStylesheets().add("com/dashboard/styles/" + parent.getClass().getSimpleName() + ".css");
 	}
 }

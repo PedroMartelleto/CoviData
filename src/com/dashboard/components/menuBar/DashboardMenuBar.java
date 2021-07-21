@@ -4,6 +4,7 @@ import com.dashboard.components.scenes.hospitals.HospitalsScene;
 import com.dashboard.components.scenes.infected.InfectedScene;
 import com.dashboard.components.scenes.newsReports.NewsReportsScene;
 import com.dashboard.components.scenes.vaccinations.VaccinationsScene;
+import com.dashboard.components.scenes.vaccineSchedule.VaccineScheduleScene;
 import com.dashboard.utils.CSSUtils;
 import com.dashboard.utils.FXMLUtils;
 
@@ -32,6 +33,9 @@ public class DashboardMenuBar extends HBox {
     @FXML
     private Button newsButton;
     
+    @FXML
+    private Button vaccineScheduleButton;
+    
     /**
      * Called during initialization.
      */
@@ -51,6 +55,10 @@ public class DashboardMenuBar extends HBox {
     	
     	newsButton.setOnMouseClicked(event -> {
     		setWindowScene(new NewsReportsScene());
+    	});
+    	
+    	vaccineScheduleButton.setOnMouseClicked(event -> {
+    		setWindowScene(new VaccineScheduleScene());
     	});
     }
 	

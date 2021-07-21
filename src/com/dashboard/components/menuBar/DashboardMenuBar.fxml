@@ -17,5 +17,6 @@
 		<Button fx:id="infectedButton" mnemonicParsing="false" styleClass="DashboardMenuBar" text="Infectados" />
 		<Button fx:id="hospitalsButton" mnemonicParsing="false" styleClass="DashboardMenuBar" text="Lotação de hospitais" />
 		<Button fx:id="newsButton" mnemonicParsing="false" styleClass="DashboardMenuBar" text="Reportagens" />
+		<Button fx:id="vaccineScheduleButton" mnemonicParsing="false" styleClass="DashboardMenuBar" text="Cronograma de vacinação" />
 	</children>
 </fx:root>

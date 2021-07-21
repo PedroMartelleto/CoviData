@@ -29,7 +29,7 @@
                               <Insets bottom="32.0" left="32.0" right="32.0" top="48.0" />
                            </VBox.margin>
                         </Label>
-                        <AreaChart prefHeight="435.0" prefWidth="608.0" VBox.vgrow="ALWAYS">
+                        <AreaChart animated="true" fx:id="vaccinationsChart" prefHeight="435.0" prefWidth="608.0" VBox.vgrow="ALWAYS">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
