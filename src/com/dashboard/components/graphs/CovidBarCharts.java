@@ -1,6 +1,9 @@
 package com.dashboard.components.graphs;
 
-import javafx.scene.chart.*;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 
 public class CovidBarCharts {
 	private static BarChart<String, Number> getBarChart(String title, String xLabel, String yLabel){

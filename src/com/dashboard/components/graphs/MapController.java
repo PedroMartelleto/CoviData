@@ -1,20 +1,14 @@
 package com.dashboard.components.graphs;
 
-import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Map;
 
 import com.sothawo.mapjfx.Configuration;
-import com.sothawo.mapjfx.MapView;
-import com.sothawo.mapjfx.Marker;
-import com.sothawo.mapjfx.Marker.Provided;
-import com.sothawo.mapjfx.Projection;
 import com.sothawo.mapjfx.Coordinate;
 import com.sothawo.mapjfx.MapCircle;
-import com.sothawo.mapjfx.MapLabel;
+import com.sothawo.mapjfx.MapView;
+import com.sothawo.mapjfx.Projection;
 
 import javafx.fxml.FXML;
-import javafx.scene.paint.Color;
 
 public class MapController {
 	
