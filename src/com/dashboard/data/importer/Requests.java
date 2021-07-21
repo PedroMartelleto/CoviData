@@ -1,6 +1,7 @@
 package com.dashboard.data.importer;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.kohsuke.github.GHContent;
 import org.kohsuke.github.GHRepository;
@@ -12,8 +13,11 @@ public class Requests {
 		try {
 			GitHub github = new GitHubBuilder().withOAuthToken("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").build();
 			GHRepository repo = github.getUser("CSSEGISandData").getRepository("COVID-19");
-			GHContent content = repo.getFileContent("csse_covid_19_data/csse_covid_19_daily_reports/01-01-2021.csv");
-			return new String(content.read().readAllBytes());
+			repo.getDirectoryContent("csse_covid_19_data/csse_covid_19_daily_reports");
+			List<GHContent> content = repo.getDirectoryContent("csse_covid_19_data/csse_covid_19_daily_reports");
+			content.
+			content.
+			return new String();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -1,16 +1,16 @@
 package com.dashboard.data.model;
 
-import java.util.ArrayList;
-import javafx.util.Pair;
+import java.util.TreeMap;
+import java.util.Map;
 
 public class LineChartDataModel {
-	private ArrayList< Pair<Integer, Integer> > dots = new ArrayList< Pair<Integer, Integer> >();
+	private Map<String, Integer> dots = new TreeMap<String, Integer>();
 	
-	public final void AddDot(int X, int Y) {
-		this.dots.add(new Pair<>(X, Y));
+	public final void AddDot(String X, int Y) {
+		this.dots.put(X, Y);
 	}
 	
-	public final ArrayList< Pair<Integer, Integer> > GetDots() {
+	public final Map <String, Integer> GetDots() {
 		return this.dots;
 	}
 }

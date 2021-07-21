@@ -1,16 +1,28 @@
 package com.dashboard.data.interfaces;
 
-import java.util.ArrayList;
-
-import com.sothawo.mapjfx.Coordinate;
-
-import javafx.util.Pair;
+import com.dashboard.data.model.LineChartDataModel;
+import com.dashboard.data.model.MapChartDataModel;
 
 public interface ChartsInterface {
 	
-	public ArrayList< Pair<Coordinate, Integer> > GetCasesMapChart();
-	public ArrayList< Pair<Coordinate, Integer> > GetDeathsMapChart();
+	// Casos totais por estado
+	public MapChartDataModel GetCasesMapChart();
+
+	// Mortes totais por estado
+	public MapChartDataModel GetDeathsMapChart();
 	
-	public ArrayList< Pair<Integer, Integer> > GetCasesLineChart();
-	public ArrayList< Pair<Integer, Integer> > GetDeathsLineChart();
+	// Vacinação por data no país
+	public LineChartDataModel GetVaccinationsLineChart();
+	
+	// Casos diários no País
+	public LineChartDataModel GetDailyTotalCasesLineChart();
+
+	// Casos diários nos estados
+	public LineChartDataModel[] GetDailyStateCasesLineChart();
+	
+	// Casos diários no País
+	public LineChartDataModel GetDailyTotalDeathsLineChart();
+
+	// Casos diários nos estados
+	public LineChartDataModel[] GetDailyStateDeathsLineChart();
 }

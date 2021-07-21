@@ -1,34 +1,53 @@
 package com.dashboard.data.importer;
 
-import java.util.ArrayList;
+import java.util.Map;
 
 import com.dashboard.data.interfaces.ChartsInterface;
+import com.dashboard.data.model.LineChartDataModel;
+import com.dashboard.data.model.MapChartDataModel;
 import com.sothawo.mapjfx.Coordinate;
 
-import javafx.util.Pair;
 
 public class ChartsImporter implements ChartsInterface {
 
 	@Override
-	public ArrayList<Pair<Coordinate, Integer>> GetCasesMapChart() {
+	public LineChartDataModel GetVaccinationsLineChart() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Pair<Coordinate, Integer>> GetDeathsMapChart() {
+	public LineChartDataModel GetDailyTotalCasesLineChart() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Pair<Integer, Integer>> GetCasesLineChart() {
+	public LineChartDataModel[] GetDailyStateCasesLineChart() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Pair<Integer, Integer>> GetDeathsLineChart() {
+	public LineChartDataModel GetDailyTotalDeathsLineChart() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public LineChartDataModel[] GetDailyStateDeathsLineChart() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MapChartDataModel GetCasesMapChart() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MapChartDataModel GetDeathsMapChart() {
 		// TODO Auto-generated method stub
 		return null;
 	}
