@@ -1,3 +1,4 @@
+com\dashboard\components\scenes\vaccineSchedule\VaccineScheduleScene.class
 com\dashboard\components\scenes\vaccinations\VaccinationsScene.class
 com\dashboard\components\menuBar\DashboardMenuBar.class
 com\dashboard\data\importer\ChartsImporter.class
