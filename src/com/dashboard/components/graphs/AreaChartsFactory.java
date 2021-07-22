@@ -20,8 +20,8 @@ public class AreaChartsFactory {
 	}
 
 	public static AreaChart<String, Number> vaccinationsPerDay(String city) {
-		AreaChart<String, Number> chart = areaChart("Número acumulado de vacinas por dia", "Data",
-				"Nº de vacinadas dadas");
+		AreaChart<String, Number> chart = areaChart("Numero acumulado de vacinas por dia", "Data",
+				"N de vacinadas dadas");
 
 		XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
 

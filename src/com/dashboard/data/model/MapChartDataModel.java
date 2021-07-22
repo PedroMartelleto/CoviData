@@ -5,13 +5,13 @@ import javafx.util.Pair;
 import com.sothawo.mapjfx.Coordinate;
 
 public class MapChartDataModel {
-	private ArrayList< Pair<Coordinate, Integer> > pins = new ArrayList< Pair<Coordinate, Integer> >();
+	private ArrayList< Pair<Coordinate, Pair<String, Integer>> > pins = new ArrayList< Pair<Coordinate, Pair<String, Integer>> >();
 	
-	public final void AddPin(double lat, double lon, int size) {
-		this.pins.add(new Pair<>(new Coordinate(lat, lon), size));
+	public final void AddPin(double lat, double lon, int size, String state) {
+		this.pins.add(new Pair<>(new Coordinate(lat, lon), new Pair<>(state, size)));
 	}
 	
-	public final ArrayList< Pair<Coordinate, Integer> > GetDots() {
+	public final ArrayList< Pair<Coordinate, Pair<String, Integer>> > GetDots() {
 		return this.pins;
 	}
 }

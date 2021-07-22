@@ -23,7 +23,7 @@ public class BarChartsFactory {
 	
 	public static BarChart<String, Number> casesPerDay(String city) {
 		BarChart<String, Number> barChart = barChart("Casos novos de COVID-19 por data de"
-			+	"notificação", "Data de Notificação", "Casos novos");
+			+	"notificacao", "Data de Notificacao", "Casos novos");
 		
 		XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
 		

@@ -13,18 +13,18 @@ public interface ChartsInterface {
 	// Rambo
 	public MapChartDataModel GetDeathsMapChart();
 	
-	// Vacinação por data no país
+	// Vacinacao por data no pais
 	public LineChartDataModel GetVaccinationsLineChart();	
 	
-	// Casos diários no País
+	// Casos diarios no Pais
 	public LineChartDataModel GetDailyTotalCasesLineChart();
 
-	// Casos diários nos estados
+	// Casos diarios nos estados
 	public LineChartDataModel[] GetDailyStateCasesLineChart();
 	
-	// Casos diários no País
+	// Casos diarios no Pais
 	public LineChartDataModel GetDailyTotalDeathsLineChart();
 
-	// Casos diários nos estados
+	// Casos diarios nos estados
 	public LineChartDataModel[] GetDailyStateDeathsLineChart();
 }

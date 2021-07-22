@@ -3,6 +3,8 @@ package com.dashboard.components.graphs;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.dashboard.data.importer.ChartsImporter;
+import com.dashboard.data.model.MapChartDataModel;
 import com.sothawo.mapjfx.Coordinate;
 
 import javafx.application.Application;
@@ -18,9 +20,10 @@ public class TestGraphics extends Application{
 	
 	@Override
 	public void start(Stage window) throws Exception {
-		Map<Coordinate, Integer> mapa = new HashMap<Coordinate, Integer>();
-		mapa.put(new Coordinate(-21.98761654615617, -48.783849369628065), 500000);
-		MapChart m = new MapChart(mapa);
+		
+		ChartsImporter importer = new ChartsImporter();
+		MapChartDataModel mapData =  importer.GetDeathsMapChart();
+		MapChart m = new MapChart(mapData.GetDots());
 		
 		
 		BarChart<String, Number> l = BarChartsFactory.casesPerDay("Birigui");

@@ -3,22 +3,30 @@ package com.dashboard.components.graphs;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+//import java.util.Map;
 
+import com.dashboard.data.common.PopulationByState;
 import com.sothawo.mapjfx.Coordinate;
 import com.sothawo.mapjfx.MapCircle;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.util.Pair;
 
 public class MapChart {
 	
 	private List<MapCircle> circles;
 	
-	public MapChart(Map<Coordinate, Integer> dados) {
+	public MapChart(ArrayList<Pair<Coordinate, Pair<String, Integer>>> dados) {
 		this.circles = new ArrayList<MapCircle>();
-		for(Map.Entry<Coordinate, Integer> entry : dados.entrySet()) {
-			MapCircle circle = new MapCircle(entry.getKey(), entry.getValue()).setVisible(true);
+		for(Pair<Coordinate, Pair<String, Integer>> entry : dados) {
+			Coordinate coordinate = entry.getKey();
+			String state = entry.getValue().getKey();
+			int value = entry.getValue().getValue();
+			System.out.println(state + ": " + value);
+			
+			double valueOfCircle = value*((double)1500000/PopulationByState.getPopulation(state));
+			MapCircle circle = new MapCircle(coordinate, valueOfCircle).setVisible(true);
 			this.circles.add(circle);
 		}
 	}
@@ -35,7 +43,7 @@ public class MapChart {
 			
 			MapController controller = fxmlLoader.getController();
 			
-			controller.initMap(this.circles);
+			controller.initMap();
 			
 			return node;
 			
