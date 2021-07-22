@@ -1,6 +1,6 @@
 package com.dashboard.components.animations;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
@@ -19,27 +19,35 @@ public class LabelAnimator extends AnimationTimer {
 	private class AnimationData {
 		public DisplayNumber current;
 		public DisplayNumber target;
-		public final Label label;
 		public float velocity = 0.0f;
 		public float animSpeed;
+		public boolean isPlaying = true;
 		
-		public AnimationData(DisplayNumber target, Label label, float animSpeed) {
+		public AnimationData(DisplayNumber target, float animSpeed) {
 			current = DisplayNumber.derivedFrom(target, 0);
-			this.label = label;
 			this.target = target;
 			this.animSpeed = animSpeed;
 		}
 	}
 	
-	private ArrayList<AnimationData> labelsAnimData = new ArrayList<>();
+	private HashMap<Label, AnimationData> labelsAnimDataMap = new HashMap<>();
 	private long previousTime = 0;
 	
-	public void addLabel(Label label, DisplayNumber target, float animSpeed) {
-		labelsAnimData.add(new AnimationData(target, label, animSpeed));
+	public void addLabel(Label label, int digitsCount, String suffix, float animSpeed) {
+		labelsAnimDataMap.put(label, new AnimationData(new DisplayNumber(0, digitsCount, suffix), animSpeed));
+	}
+	
+	public void setLabelTarget(Label label, DisplayNumber target) {
+		AnimationData anim = labelsAnimDataMap.get(label);
+		anim.isPlaying = true;
+		anim.current = DisplayNumber.derivedFrom(target, anim.current.getValue());
+		anim.target = target;
+		anim.velocity = 0.0f;
+		labelsAnimDataMap.put(label, anim);
 	}
 	
 	/**
-	 * Smooth damps from start (0) to target.
+	 * Smooth damps all labels from start to target.
 	 */
 	@Override
 	public void handle(long now) {
@@ -48,7 +56,14 @@ public class LabelAnimator extends AnimationTimer {
 			return;
 		}
 		
-		for (AnimationData anim : labelsAnimData) {
+		for (HashMap.Entry<Label, AnimationData> entry : labelsAnimDataMap.entrySet()) {
+			// For each label and animation currently being played...
+			Label label = entry.getKey();
+			AnimationData anim = entry.getValue();
+			
+			if (!anim.isPlaying) continue;
+			
+			// Performs a smooth damp
 			final float smoothTime = 0.0001f;
 			float deltaTime = (float)(now - previousTime) * (float)1e-6 * anim.animSpeed;
 						
@@ -78,8 +93,13 @@ public class LabelAnimator extends AnimationTimer {
 	            anim.velocity = (output - originalTo) / deltaTime;
 	        }
 	        
+	        // Signal that we are done if we have reach the goal
+	        if (anim.target.getValue() == output) {
+	        	anim.isPlaying = false;
+	        }
+	        
 	        anim.current.setValue(output);
-	        anim.label.setText(anim.current.toString());
+	        label.setText(anim.current.toString());
 		}
 		
         previousTime = now;
