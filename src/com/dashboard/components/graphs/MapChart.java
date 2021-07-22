@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 //import java.util.Map;
 
-import com.dashboard.data.common.PopulationByState;
+import com.dashboard.data.common.BrazilStates;
 import com.sothawo.mapjfx.Coordinate;
 import com.sothawo.mapjfx.MapCircle;
 
@@ -25,7 +25,7 @@ public class MapChart {
 			int value = entry.getValue().getValue();
 			System.out.println(state + ": " + value);
 			
-			double valueOfCircle = value*((double)1500000/PopulationByState.getPopulation(state));
+			double valueOfCircle = value*((double)1500000/BrazilStates.getPopulationOfState(state));
 			MapCircle circle = new MapCircle(coordinate, valueOfCircle).setVisible(true);
 			this.circles.add(circle);
 		}

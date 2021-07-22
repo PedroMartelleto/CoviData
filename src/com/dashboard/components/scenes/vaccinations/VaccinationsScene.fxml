@@ -46,17 +46,17 @@
                      <children>
                         <VBox alignment="BOTTOM_RIGHT" prefHeight="95.0" prefWidth="213.0">
                            <children>
-                              <ChoiceBox prefWidth="150.0">
+                              <ChoiceBox fx:id="displayModeChoiceBox" prefWidth="150.0">
                                  <VBox.margin>
                                     <Insets bottom="12.0" />
                                  </VBox.margin>
                               </ChoiceBox>
-                              <ChoiceBox prefWidth="150.0" />
+                              <ChoiceBox fx:id="stateChoiceBox" prefWidth="150.0" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label text="18%" textAlignment="CENTER" textFill="#252626">
+                              <Label fx:id="twoDosesLabel" text="18%" textAlignment="CENTER" textFill="#252626">
                                  <font>
                                     <Font name="Lucida Bright Regular" size="80.0" />
                                  </font>
@@ -69,7 +69,7 @@
                                     <Font name="Lucida Bright Regular" size="15.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" text="31%" textFill="#252626">
+                              <Label fx:id="oneDoseLabel" alignment="CENTER" text="31%" textFill="#252626">
                                  <font>
                                     <Font name="Lucida Bright Regular" size="56.0" />
                                  </font>
@@ -85,7 +85,7 @@
                                     <Insets top="8.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label alignment="CENTER" text="4.1 meses" textFill="#252626">
+                              <Label fx:id="monthsLeftLabel" alignment="CENTER" text="4.1 meses" textFill="#252626">
                                  <font>
                                     <Font name="Lucida Bright Regular" size="34.0" />
                                  </font>
@@ -93,7 +93,7 @@
                                     <Insets top="28.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label text="até 70% com uma dose*" textAlignment="RIGHT" textFill="#252626">
+                              <Label text="até 70% com duas doses*" textAlignment="RIGHT" textFill="#252626">
                                  <font>
                                     <Font name="Lucida Bright Regular" size="15.0" />
                                  </font>
@@ -101,7 +101,7 @@
                                     <Insets top="8.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label alignment="CENTER" text="4%" textFill="#252626">
+                              <Label fx:id="vaccinatedLast7Days" alignment="CENTER" text="4%" textFill="#252626">
                                  <font>
                                     <Font name="Lucida Bright Regular" size="40.0" />
                                  </font>

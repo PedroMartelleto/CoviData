@@ -2,7 +2,7 @@ package com.dashboard.components.graphs;
 
 import java.util.List;
 
-import com.dashboard.data.common.PopulationByState;
+import com.dashboard.data.common.BrazilStates;
 import com.dashboard.data.importer.ChartsImporter;
 import com.dashboard.data.model.MapChartDataModel;
 import com.sothawo.mapjfx.Coordinate;
@@ -11,8 +11,6 @@ import com.sothawo.mapjfx.MapView;
 
 import javafx.scene.paint.Color;
 import javafx.util.Pair;
-
-
 
 public class MapDataProvider {
 	private static MapChartDataModel data;
@@ -47,7 +45,7 @@ public class MapDataProvider {
 		double circleSize = 0;
 		Color c = Color.WHITE;
 		if(type == 1) { //map of cases
-			circleSize = value*((double)1500000/PopulationByState.getPopulation(state));
+			circleSize = value*((double)1500000/BrazilStates.getPopulationOfState(state));
 			
 			if(value > 1500000) {
 				c = Color.RED;
@@ -66,7 +64,7 @@ public class MapDataProvider {
 			}
 		}
 		else if (type == 2) { //map of deaths
-			circleSize = value*((double)150000000/PopulationByState.getPopulation(state));
+			circleSize = value*((double)150000000/BrazilStates.getPopulationOfState(state));
 			if(value > 60000) {
 				c = Color.RED;
 			}
