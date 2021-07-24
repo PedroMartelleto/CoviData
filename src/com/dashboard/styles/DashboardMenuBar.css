@@ -3,13 +3,11 @@
 	-fx-padding: 20 15 20 15;
 	-fx-font-size: 16;
 	-fx-font-family: "Reem Kufi Bold";
-	-fx-cursor: hand;
 	-fx-text-fill: black;
 	-fx-text-align: center;
 }
 
-.DashboardMenuBarSelected {
-	-fx-cursor: default;
+.DashboardMenuBar:selected {
 	-fx-text-fill: "#e84b5a";
 }
 
