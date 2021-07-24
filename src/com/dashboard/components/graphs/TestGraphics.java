@@ -1,6 +1,5 @@
 package com.dashboard.components.graphs;
 
-import com.dashboard.data.common.BrazilData;
 import com.dashboard.data.importer.ChartsImporter;
 import com.dashboard.data.model.MapChartDataModel;
 

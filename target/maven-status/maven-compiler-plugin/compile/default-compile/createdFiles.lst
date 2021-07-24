@@ -16,6 +16,7 @@ com\dashboard\main\Main.class
 com\dashboard\components\scenes\newsReports\NewsReportsScene.class
 com\dashboard\components\graphs\MapDataProvider.class
 com\dashboard\components\scenes\infected\InfectedScene.class
+com\dashboard\components\scenes\vaccineSchedule\VaccineScheduleTableRow.class
 com\dashboard\components\graphs\AreaChartsFactory.class
 com\dashboard\components\animations\LabelAnimator.class
 com\dashboard\components\animations\LabelAnimator$AnimationData.class

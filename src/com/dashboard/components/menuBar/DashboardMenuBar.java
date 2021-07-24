@@ -26,9 +26,6 @@ public class DashboardMenuBar extends HBox {
 	private Button infectedButton;
 
 	@FXML
-	private Button newsButton;
-
-	@FXML
 	private Button vaccineScheduleButton;
 
 	private String viewSelected;
@@ -46,9 +43,6 @@ public class DashboardMenuBar extends HBox {
 				break;
 			case "infected":
 				infectedButton.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
-				break;
-			case "news":
-				newsButton.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
 				break;
 			case "vaccineSchedule":
 				vaccineScheduleButton.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, true);
@@ -70,10 +64,6 @@ public class DashboardMenuBar extends HBox {
 
 		infectedButton.setOnMouseClicked(event -> {
 			setWindowScene(Scenes.getInfected(), infectedButton);
-		});
-
-		newsButton.setOnMouseClicked(event -> {
-			setWindowScene(Scenes.getNewsReport(), newsButton);
 		});
 
 		vaccineScheduleButton.setOnMouseClicked(event -> {
