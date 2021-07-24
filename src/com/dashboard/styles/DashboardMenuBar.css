@@ -1,3 +1,13 @@
-.CDMenuBarItem {
-	-fx-background-color: red;	
+.DashboardMenuBar {
+	-fx-background-color: transparent;
+	-fx-padding: 20px;
+	-fx-font-size: 15px;
+	-fx-font-family: "Lucida Bright Regular";
+	-fx-cursor: hand;
+	-fx-text-fill: black;
+	-fx-text-align: center;
+}
+
+.DashboardMenuBar:hover {
+	-fx-text-fill: "blue";
 }

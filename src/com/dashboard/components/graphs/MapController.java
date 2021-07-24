@@ -3,7 +3,7 @@ package com.dashboard.components.graphs;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dashboard.data.common.BrazilStates;
+import com.dashboard.data.common.BrazilData;
 import com.sothawo.mapjfx.Configuration;
 import com.sothawo.mapjfx.Coordinate;
 import com.sothawo.mapjfx.MapCircle;

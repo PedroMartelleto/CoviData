@@ -10,18 +10,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<!-- <?import com.dashboard.components.menuBar.DashboardMenuBar?> -->
+<?import com.dashboard.components.menuBar.DashboardMenuBar?>
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0" prefWidth="940.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dashboard.components.scenes.vaccinations.VaccinationsScene">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <!-- <DashboardMenuBar></DashboardMenuBar> -->
+            <DashboardMenuBar></DashboardMenuBar>
             <HBox prefHeight="567.0" prefWidth="940.0" VBox.vgrow="ALWAYS">
                <children>
                   <VBox prefHeight="451.0" prefWidth="461.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="Vacinação" textFill="#3f4043">
+                        <Label fx:id="titleVaccination" text="Vacinação" textFill="#3f4043">
                            <font>
                               <Font name="Lucida Bright Regular" size="28.0" />
                            </font>

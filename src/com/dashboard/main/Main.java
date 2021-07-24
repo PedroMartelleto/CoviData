@@ -1,7 +1,6 @@
 package com.dashboard.main;
 
 import com.dashboard.components.scenes.vaccinations.VaccinationsScene;
-import com.dashboard.data.importer.Requests;
 import com.dashboard.utils.CSSUtils;
 
 import fr.brouillard.oss.cssfx.CSSFX;
@@ -9,10 +8,6 @@ import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.time.temporal.ChronoUnit;
 
 // TODO: Vaccines page
 	// TODO: Overwrite ChoiceBox css

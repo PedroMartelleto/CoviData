@@ -1,6 +1,5 @@
 package com.dashboard.components.menuBar;
 
-import com.dashboard.components.scenes.hospitals.HospitalsScene;
 import com.dashboard.components.scenes.infected.InfectedScene;
 import com.dashboard.components.scenes.newsReports.NewsReportsScene;
 import com.dashboard.components.scenes.vaccinations.VaccinationsScene;
@@ -28,9 +27,6 @@ public class DashboardMenuBar extends HBox {
     private Button infectedButton;
 
     @FXML
-    private Button hospitalsButton;
-    
-    @FXML
     private Button newsButton;
     
     @FXML
@@ -47,10 +43,6 @@ public class DashboardMenuBar extends HBox {
     	
     	infectedButton.setOnMouseClicked(event -> {
     		setWindowScene(new InfectedScene());
-    	});
-    	
-    	hospitalsButton.setOnMouseClicked(event -> {
-    		setWindowScene(new HospitalsScene());
     	});
     	
     	newsButton.setOnMouseClicked(event -> {

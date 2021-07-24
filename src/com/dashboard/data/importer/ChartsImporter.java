@@ -1,65 +1,60 @@
 package com.dashboard.data.importer;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import com.dashboard.data.interfaces.ChartsInterface;
 import com.dashboard.data.model.LineChartDataModel;
 import com.dashboard.data.model.MapChartDataModel;
 import com.dashboard.data.parser.CsvParser;
-import com.sothawo.mapjfx.Coordinate;
-
 
 public class ChartsImporter implements ChartsInterface {
 
 	@Override
-	public LineChartDataModel GetVaccinationsLineChart() {
+	public LineChartDataModel getVaccinationsLineChart(String stateName) {
 		LineChartDataModel data = new LineChartDataModel();
 		
 		String csvNotParsed = Requests.getTotalVaccinated();
 		
 		List<String[]> csvParsed= CsvParser.getAllContent(csvNotParsed);
 		
-		for(String[] line: csvParsed) {
-			if(line[0].equals("Brazil")) {
+		for (String[] line: csvParsed) {
+			if (line[0].equals("Brazil")) {
 				String day = line[1];
 				int value = line[5].length() > 0 ? Integer.valueOf(line[4]) : 0;
 				
-				data.AddDot(day, value);
+				data.addPoint(day, value);
 			}
 		}
-		
 		
 		return data;
 	}
 
 	@Override
-	public LineChartDataModel GetDailyTotalCasesLineChart() {
+	public LineChartDataModel getDailyTotalCasesLineChart(String stateName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public LineChartDataModel[] GetDailyStateCasesLineChart() {
+	public LineChartDataModel[] getDailyStateCasesLineChart(String stateName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public LineChartDataModel GetDailyTotalDeathsLineChart() {
+	public LineChartDataModel getDailyTotalDeathsLineChart(String stateName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public LineChartDataModel[] GetDailyStateDeathsLineChart() {
+	public LineChartDataModel[] getDailyStateDeathsLineChart(String stateName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public MapChartDataModel GetCasesMapChart() {
+	public MapChartDataModel getCasesMapChart() {
 		MapChartDataModel data = new MapChartDataModel();
 		String csvNotParsed = Requests.getLastDailyReport();
 		
@@ -74,7 +69,7 @@ public class ChartsImporter implements ChartsInterface {
 	}
 
 	@Override
-	public MapChartDataModel GetDeathsMapChart() {
+	public MapChartDataModel getDeathsMapChart() {
 		MapChartDataModel data = new MapChartDataModel();
 		String csvNotParsed = Requests.getLastDailyReport();
 		
@@ -82,7 +77,7 @@ public class ChartsImporter implements ChartsInterface {
 		
 		for(String[] line: csvParse) {
 			if(line[3].equals("Brazil")) {
-				data.AddPin(Double.valueOf(line[5]),Double.valueOf(line[6]),Integer.valueOf(line[8]), line[2]);
+				data.AddPin(Double.valueOf(line[5]), Double.valueOf(line[6]), Integer.valueOf(line[8]), line[2]);
 			}
 		}
 		return data;
