@@ -88,25 +88,6 @@
 			<artifactId>javafx-fxml</artifactId>
 			<version>${javafx.version}</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/fr.brouillard.oss/cssfx -->
-		<dependency>
-			<groupId>fr.brouillard.oss</groupId>
-			<artifactId>cssfx</artifactId>
-			<version>11.4.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/net.raumzeitfalle.fx/scenic-view -->
-		<dependency>
-			<groupId>net.raumzeitfalle.fx</groupId>
-			<artifactId>scenic-view</artifactId>
-			<version>11.0.2</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.kordamp.ikonli/ikonli-javafx -->
-		<dependency>
-			<groupId>org.kordamp.ikonli</groupId>
-			<artifactId>ikonli-javafx</artifactId>
-			<version>12.2.0</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<sourceDirectory>src</sourceDirectory>

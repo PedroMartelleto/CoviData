@@ -3,7 +3,6 @@ package com.dashboard.main;
 import com.dashboard.components.scenes.vaccinations.VaccinationsScene;
 import com.dashboard.utils.CSSUtils;
 
-import fr.brouillard.oss.cssfx.CSSFX;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,7 +17,6 @@ import javafx.stage.Stage;
 public class Main extends Application {	
 	@Override
     public void start(Stage primaryStage) throws Exception {
-        CSSFX.start();
         Parent root = new VaccinationsScene();
 		CSSUtils.addStylesheetsToParent(root);
 		primaryStage.setTitle("COVID-19 Dashboard");

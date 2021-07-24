@@ -1,13 +1,18 @@
 .DashboardMenuBar {
 	-fx-background-color: transparent;
-	-fx-padding: 20px;
-	-fx-font-size: 15px;
-	-fx-font-family: "Lucida Bright Regular";
+	-fx-padding: 20 15 20 15;
+	-fx-font-size: 16;
+	-fx-font-family: "Reem Kufi Bold";
 	-fx-cursor: hand;
 	-fx-text-fill: black;
 	-fx-text-align: center;
 }
 
+.DashboardMenuBarSelected {
+	-fx-cursor: default;
+	-fx-text-fill: "#e84b5a";
+}
+
 .DashboardMenuBar:hover {
-	-fx-text-fill: "blue";
+	-fx-text-fill: "#e84b5a";
 }
