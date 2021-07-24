@@ -9,14 +9,27 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import com.dashboard.components.menuBar.DashboardMenuBar?>
 
-<fx:root fx:controller="com.dashboard.components.scenes.vaccineSchedule.VaccineScheduleScene" type="AnchorPane"
-		 maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
+<!-- <?import com.dashboard.components.menuBar.DashboardMenuBar?> -->
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0" prefWidth="940.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dashboard.components.scenes.vaccineSchedule.VaccineScheduleScene">   <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <DashboardMenuBar selected="vaccineSchedule"></DashboardMenuBar>
+            <!-- <DashboardMenuBar selected="vaccineSchedule" /> -->
+            <Label text="Cronograma de vacinação" textFill="#3f4043">
+               <font>
+                  <Font name="Lucida Bright Regular" size="28.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="32.0" left="32.0" right="32.0" top="48.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Atualizado 21 de julho de 2021">
+               <VBox.margin>
+                  <Insets bottom="16.0" left="36.0" />
+               </VBox.margin>
+            </Label>
+            <TableView fx:id="scheduleTable" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </VBox>
    </children>
