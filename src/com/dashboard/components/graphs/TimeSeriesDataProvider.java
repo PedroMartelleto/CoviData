@@ -13,16 +13,15 @@ public class TimeSeriesDataProvider {
 	private static LineChartDataModel[] data;
 	private static ChartsImporter importer = new ChartsImporter();
 
-	public static void vaccinations(XYChart<String, Number> chart, int stride, boolean relativeNumbers, String stateName) {
+	public static void vaccinations(XYChart<String, Number> chart, int stride, boolean relativeNumbers) {
 		data = importer.getVaccinationsLineChart();
 		chart.setAnimated(true);
 		provideLabels(chart, "Vacinação acumulada por dia", "Data", "Quantidade");
 		
-		float normFactor = relativeNumbers ? BrazilData.getPopulation(stateName) : 1;
+		float normFactor = relativeNumbers ? BrazilData.getBrazilPopulation() : 1;
 		String chartNameSuffix = relativeNumbers ? "(números relativos)" : "(números absolutos)"; 
-		provideSeries(chart, "Total de vacinas aplicadas " + chartNameSuffix, data[0].getPoints(), stride, normFactor);
-		provideSeries(chart, "Pessoas Vacinadas " + chartNameSuffix, data[1].getPoints(), stride, normFactor);
-		provideSeries(chart, "Pessoas Totalmente Vacinadas" + chartNameSuffix, data[2].getPoints(), stride, normFactor);
+		provideSeries(chart, "Pessoas Vacinadas " + chartNameSuffix, data[1].getPoints(), stride, normFactor, true);
+		provideSeries(chart, "Pessoas Totalmente Vacinadas" + chartNameSuffix, data[2].getPoints(), stride, normFactor, true);
 	}
 	
 	private static void provideLabels(XYChart<String, Number> destChart, String title, String xLabel, String yLabel) {

@@ -12,7 +12,7 @@ public class Main extends Application {
 		primaryStage.setTitle("COVID-19 Dashboard");
 		primaryStage.setScene(Scenes.getVaccinations());
 		primaryStage.setWidth(1024);
-		primaryStage.setHeight(768);
+		primaryStage.setHeight(700);
 		primaryStage.show();
     }
 

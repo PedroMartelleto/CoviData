@@ -28,6 +28,8 @@
 			styleClass="DashboardMenuBar" text="Vacinação" />
 		<Button fx:id="infectedButton" mnemonicParsing="false"
 			styleClass="DashboardMenuBar" text="Casos" />
+		<Button fx:id="newsReportsButton" mnemonicParsing="false"
+			styleClass="DashboardMenuBar" text="Notícias" />
 		<Button fx:id="vaccineScheduleButton" mnemonicParsing="false"
 			styleClass="DashboardMenuBar" text="Cronograma" />
 	</children>

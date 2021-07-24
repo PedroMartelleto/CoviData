@@ -3,7 +3,6 @@ package com.dashboard.components.scenes.vaccinations;
 import com.dashboard.components.animations.DisplayNumber;
 import com.dashboard.components.animations.LabelAnimator;
 import com.dashboard.components.graphs.TimeSeriesDataProvider;
-import com.dashboard.data.common.BrazilData;
 import com.dashboard.utils.FXMLUtils;
 
 import javafx.fxml.FXML;
@@ -18,9 +17,6 @@ import javafx.scene.layout.AnchorPane;
 public class VaccinationsScene extends AnchorPane {	
 	@FXML
 	private ChoiceBox<String> displayModeChoiceBox;
-	
-	@FXML
-	private ChoiceBox<String> stateChoiceBox;
 	
 	@FXML
 	private AreaChart<String, Number> vaccinationsChart;
@@ -48,11 +44,10 @@ public class VaccinationsScene extends AnchorPane {
 		setupChoiceBoxes();
 	}
 	
-	private void updateChartData(String statesChoiceBoxValue) {
+	private void updateChartData(boolean relative) {
 		String displayMode = displayModeChoiceBox.getSelectionModel().getSelectedItem();
-		boolean relative = displayMode == null || displayMode.equals("Números relativos");
 		vaccinationsChart.getData().clear();
-		TimeSeriesDataProvider.vaccinations(vaccinationsChart, 5, relative, statesChoiceBoxValue);
+		TimeSeriesDataProvider.vaccinations(vaccinationsChart, 5, relative);
 	}
 	
 	private void setupAnimations() {
@@ -78,14 +73,7 @@ public class VaccinationsScene extends AnchorPane {
 		}
 	}
 	
-	private void setStateTarget(String newTargetState) {
-		titleVaccination.setText("Vacinação (" + newTargetState + ")");
-		updateChartData(newTargetState);
-	}
-	
-	private void setupChoiceBoxes() {
-		stateChoiceBox.getItems().addAll(BrazilData.getStateNames());
-		
+	private void setupChoiceBoxes() {	
 		displayModeChoiceBox.getItems().add("Números relativos");
 		displayModeChoiceBox.getItems().add("Números absolutos");
 		
@@ -97,26 +85,13 @@ public class VaccinationsScene extends AnchorPane {
 				}
 				
 				setLabelsTargets(newValue.equals("Números relativos"));
-				updateChartData(stateChoiceBox.getSelectionModel().getSelectedItem());
-			}
-		);
-		
-		// State chooser event
-		stateChoiceBox.getSelectionModel().selectedItemProperty().addListener(
-			(observable, oldValue, newValue) -> {
-				if (oldValue != null && newValue != null && oldValue.equals(newValue)) {
-					return;
-				}
-				
-				setStateTarget(newValue);
+				updateChartData(newValue.equals("Números relativos"));
 			}
 		);
 		
 		// Default selection for choice boxes
-		stateChoiceBox.getSelectionModel().selectFirst();
 		displayModeChoiceBox.getSelectionModel().selectFirst();
-	
-		setStateTarget(stateChoiceBox.getSelectionModel().getSelectedItem());
+		updateChartData(true);
 	}
 	
     public VaccinationsScene() {
