@@ -14,24 +14,11 @@ import javafx.scene.Parent;
 import javafx.util.Pair;
 
 public class MapChart {
-	
-	private List<MapCircle> circles;
-	
-	public MapChart(ArrayList<Pair<Coordinate, Pair<String, Integer>>> dados) {
-		this.circles = new ArrayList<MapCircle>();
-		for(Pair<Coordinate, Pair<String, Integer>> entry : dados) {
-			Coordinate coordinate = entry.getKey();
-			String state = entry.getValue().getKey();
-			int value = entry.getValue().getValue();
-			System.out.println(state + ": " + value);
-			
-			double valueOfCircle = value*((double)1500000/BrazilData.getPopulation(state));
-			MapCircle circle = new MapCircle(coordinate, valueOfCircle).setVisible(true);
-			this.circles.add(circle);
-		}
+	public MapChart() {
+		
 	}
 	
-	public Parent getMap() {
+	public  Parent getMap() {
 		String fxmlFile = "./resource/map.fxml";
 		
 		try {

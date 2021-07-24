@@ -1,5 +1,6 @@
 package com.dashboard.components.graphs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.dashboard.data.common.BrazilData;
@@ -16,73 +17,62 @@ public class MapDataProvider {
 	private static MapChartDataModel data;
 	private static ChartsImporter importer = new ChartsImporter();
 	
-	public static void deathsByState(MapView map) {
+	public static List<MapCircle> deathsByState() {
 		data = importer.getDeathsMapChart();
 		
-		InsertData(map, data.GetDots(), 2);
+		return getCircles(data.GetDots());
 	}
 	
-	public static void casesByState(MapView map) {
-		data = importer.getDeathsMapChart();
+	public static List<MapCircle> casesByState() {
+		data = importer.getCasesMapChart();
 		
-		InsertData(map, data.GetDots(), 1);
+		return getCircles(data.GetDots());
 	}
 	
-	private static void InsertData(MapView map, List< Pair<Coordinate, Pair<String, Integer>>> data, int type) {
-		for(Pair<Coordinate, Pair<String, Integer>> entry : data) {
+	private static List<MapCircle> getCircles(List< Pair<Coordinate, Double>> data) {
+		List<MapCircle> circles = new ArrayList<MapCircle>();
+		
+		
+		for(Pair<Coordinate, Double> entry : data) {
 			Coordinate coordinate = entry.getKey();
-			String state = entry.getValue().getKey();
-			int value = entry.getValue().getValue();
+			double value = entry.getValue();
 			
-			Pair<Double, Color> circleSettings= getCircleSettings(value, state, type);
-			MapCircle circle = new MapCircle(coordinate, circleSettings.getKey())
+			Pair<Double, Color> circleSettings= getCircleSettings(value);
+			
+			circles.add(new MapCircle(coordinate, circleSettings.getKey())
+					.setFillColor(circleSettings.getValue())
 					.setColor(circleSettings.getValue())
-					.setVisible(true);
-			map.addMapCircle(circle);
+					.setVisible(true));
 		}
+		return circles;
 	}
 	
-	private static Pair<Double, Color> getCircleSettings(int value, String state, int type){
+	private static Pair<Double, Color> getCircleSettings(double value){
 		double circleSize = 0;
 		Color c = Color.WHITE;
-		if(type == 1) { //map of cases
-			circleSize = value*((double)1500000/BrazilData.getPopulation(state));
+		
+		if(value >= 0 && value <= 0.8){
+			double normalValue = (value) / 0.8 + 0.05;
+			c = new Color(0, 0, 1, 0.7);
 			
-			if(value > 1500000) {
-				c = Color.RED;
-			}
-			else if (value > 1000000) {
-				c = Color.ORANGE;
-			}
-			else if (value > 500000) {
-				c = Color.YELLOW;
-			}
-			else if(value > 250000) {
-				c = Color.GREENYELLOW;
-			}
-			else {
-				c = Color.LAWNGREEN;
-			}
-		}
-		else if (type == 2) { //map of deaths
-			circleSize = value*((double)150000000/BrazilData.getPopulation(state));
-			if(value > 60000) {
-				c = Color.RED;
-			}
-			else if (value > 40000) {
-				c = Color.ORANGE;
-			}
-			else if (value > 200000) {
-				c = Color.YELLOW;
-			}
-			else if(value > 10000) {
-				c = Color.GREENYELLOW;
-			}
-			else {
-				c = Color.LAWNGREEN;
-			}
+			circleSize = normalValue * 150000;
 		}
 		
+		else if(value > 0.8 && value <= 1.2) {
+			double normalValue = (value - 0.8) / 0.4 + 0.05;
+			c = new Color(1, 1, 0, 0.7);
+			
+			circleSize = normalValue * 150000;
+		}
+		else {
+			double normalValue = (value - 1.2) / 0.8 + 0.05;
+			c = new Color(1, 0, 0, 0.7);
+			
+			circleSize = normalValue * 150000;
+		}
+		
+		//System.out.println("Tamanho: " + circleSize + " Valor: " + value + " Estado: ");
+
 		return new Pair<Double, Color>(circleSize, c);
 	}
 	

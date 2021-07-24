@@ -6,7 +6,7 @@ import com.dashboard.data.model.MapChartDataModel;
 public interface ChartsInterface {
 	
 	// Vacinacao por data no pais
-	public LineChartDataModel getVaccinationsLineChart(String stateName);	
+	public LineChartDataModel[] getVaccinationsLineChart();	
 	
 	// Casos diarios no Pais
 	public LineChartDataModel getDailyTotalCasesLineChart(String stateName);
