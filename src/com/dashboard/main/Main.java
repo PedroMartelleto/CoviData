@@ -1,11 +1,6 @@
 package com.dashboard.main;
 
-import com.dashboard.components.scenes.vaccinations.VaccinationsScene;
-import com.dashboard.utils.CSSUtils;
-
 import javafx.application.Application;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 // TODO: Vaccines page
@@ -14,13 +9,16 @@ import javafx.stage.Stage;
 
 // TODO: Undecorated window
 
-public class Main extends Application {	
+public class Main extends Application {
+	
 	@Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = new VaccinationsScene();
-		CSSUtils.addStylesheetsToParent(root);
+		// Scenes.init();
+		
 		primaryStage.setTitle("COVID-19 Dashboard");
-		primaryStage.setScene(new Scene(root));
+		primaryStage.setScene(Scenes.getVaccinations());
+		primaryStage.setWidth(1024);
+		primaryStage.setHeight(768);
 		primaryStage.show();
     }
 

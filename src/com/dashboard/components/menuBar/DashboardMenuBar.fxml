@@ -15,7 +15,7 @@
 	xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="com.dashboard.components.menuBar.DashboardMenuBar">
 	<children>
-		<ImageView cacheHint="QUALITY" fitHeight="36.0"
+		<ImageView cacheHint="QUALITY" fitHeight="34.0"
 			fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
 			<image>
 				<Image url="com/dashboard/resources/Icon.png" />
@@ -31,6 +31,6 @@
 		<Button fx:id="newsButton" mnemonicParsing="false"
 			styleClass="DashboardMenuBar" text="Notícias" />
 		<Button fx:id="vaccineScheduleButton" mnemonicParsing="false"
-			styleClass="DashboardMenuBar" text="Cronograma de vacinação" />
+			styleClass="DashboardMenuBar" text="Cronograma" />
 	</children>
 </fx:root>

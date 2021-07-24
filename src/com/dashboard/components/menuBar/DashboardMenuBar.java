@@ -4,6 +4,7 @@ import com.dashboard.components.scenes.infected.InfectedScene;
 import com.dashboard.components.scenes.newsReports.NewsReportsScene;
 import com.dashboard.components.scenes.vaccinations.VaccinationsScene;
 import com.dashboard.components.scenes.vaccineSchedule.VaccineScheduleScene;
+import com.dashboard.main.Scenes;
 import com.dashboard.utils.CSSUtils;
 import com.dashboard.utils.FXMLUtils;
 
@@ -38,19 +39,19 @@ public class DashboardMenuBar extends HBox {
     @FXML
     private void initialize() {
     	vaccinationsButton.setOnMouseClicked(event -> {
-    		setWindowScene(new VaccinationsScene());
+    		setWindowScene(Scenes.getVaccinations());
     	});
     	
     	infectedButton.setOnMouseClicked(event -> {
-    		setWindowScene(new InfectedScene());
+    		setWindowScene(Scenes.getInfected());
     	});
     	
     	newsButton.setOnMouseClicked(event -> {
-    		setWindowScene(new NewsReportsScene());
+    		setWindowScene(Scenes.getNewsReport());
     	});
     	
     	vaccineScheduleButton.setOnMouseClicked(event -> {
-    		setWindowScene(new VaccineScheduleScene());
+    		setWindowScene(Scenes.getVaccineSchedule());
     	});
     }
 	
@@ -62,19 +63,18 @@ public class DashboardMenuBar extends HBox {
      * Sets the currently displayed scene.
      * @param parent
      */
-    private void setWindowScene(Parent parent) {
+    private void setWindowScene(Scene scene) {
     	Stage window = (Stage) getScene().getWindow();
     	
     	// Checks if we actually need to change scenes
     	String currentClassName = window.getScene().getRoot().getClass().getName();
-    	String newClassName = parent.getClass().getName();
+    	String newClassName = scene.getRoot().getClass().getName();
 
     	if (currentClassName.equals(newClassName)) {
     		// Nothing to do!
     		return;
     	}
     	
-		CSSUtils.addStylesheetsToParent(parent);
-		window.setScene(new Scene(parent));
+		window.setScene(scene);
     }
 }

@@ -7,8 +7,6 @@ A covid dashboard written in Java.
 
 [In] -> Importante ranked n
 
-* [I1] FA icons in menu bar: org.kordamp.ikonli
-
 * [I1] Evolução da doença
 	- Gráfico de mortes e casos no mesmo chart
 	- R rate : https://royalsociety.org/-/media/policy/projects/set-c/set-covid-19-R-estimates.pdf
