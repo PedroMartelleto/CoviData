@@ -10,12 +10,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<!-- <?import com.dashboard.components.menuBar.DashboardMenuBar?> -->
+<?import com.dashboard.components.menuBar.DashboardMenuBar?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0" prefWidth="940.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dashboard.components.scenes.vaccineSchedule.VaccineScheduleScene">   <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0" prefWidth="940.0" style="-fx-background-color: white;" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dashboard.components.scenes.vaccineSchedule.VaccineScheduleScene">   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="0.0">
          <children>
-            <!-- <DashboardMenuBar selected="vaccineSchedule" /> -->
+            <DashboardMenuBar selected="vaccineSchedule" />
             <Label text="Cronograma de vacinação" textFill="#3f4043">
                <font>
                   <Font name="Lucida Bright Regular" size="28.0" />
@@ -29,7 +29,10 @@
                   <Insets bottom="16.0" left="36.0" />
                </VBox.margin>
             </Label>
-            <TableView fx:id="scheduleTable" prefHeight="200.0" prefWidth="200.0" />
+            <TableView fx:id="scheduleTable" prefHeight="442.0" prefWidth="868.0" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets bottom="24.0" left="36.0" right="36.0" />
+               </VBox.margin></TableView>
          </children>
       </VBox>
    </children>
