@@ -51,7 +51,8 @@ public class TimeSeriesDataProvider {
 			for (int j = i; j < i + stride; ++j) {
 				int value = (int) data.get(j).getYValue();
 				
-				if (j > 0) {
+				// Ensures time series is ascending (when isAscending is true).
+				if (j > 0 && isAscending) {
 					int previousValue = (int) data.get(j-1).getYValue();
 					if (value <= previousValue) {
 						value = previousValue;
