@@ -20,8 +20,8 @@ public class TimeSeriesDataProvider {
 		
 		float normFactor = relativeNumbers ? BrazilData.getBrazilPopulation() : 1;
 		String chartNameSuffix = relativeNumbers ? "(números relativos)" : "(números absolutos)"; 
-		provideSeries(chart, "Pessoas Vacinadas " + chartNameSuffix, data[1].getPoints(), stride, normFactor, true);
-		provideSeries(chart, "Pessoas Totalmente Vacinadas" + chartNameSuffix, data[2].getPoints(), stride, normFactor, true);
+		provideSeries(chart, "Pessoas vacinadas " + chartNameSuffix, data[1].getPoints(), stride, normFactor, true);
+		provideSeries(chart, "Pessoas totalmente vacinadas " + chartNameSuffix, data[2].getPoints(), stride, normFactor, true);
 	}
 	
 	private static void provideLabels(XYChart<String, Number> destChart, String title, String xLabel, String yLabel) {
