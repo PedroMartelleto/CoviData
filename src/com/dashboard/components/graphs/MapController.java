@@ -3,7 +3,7 @@ package com.dashboard.components.graphs;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dashboard.data.common.BrazilStates;
+import com.dashboard.data.common.BrazilData;
 import com.sothawo.mapjfx.Configuration;
 import com.sothawo.mapjfx.Coordinate;
 import com.sothawo.mapjfx.MapCircle;
@@ -23,7 +23,8 @@ public class MapController {
 	
 	private int defaultZoom = 4;
 	
-	private List<MapCircle> circles = new ArrayList<MapCircle>();
+	private List<MapCircle> circles;
+	
 	
 	public MapController() {
 		this.center = new Coordinate(-15.723588679352947, -46.98361582418985);
@@ -34,17 +35,19 @@ public class MapController {
 		Projection projection = Projection.WEB_MERCATOR;
 		
 		// watch the MapView's initialized property to finish initialization
-        mapView.initializedProperty().addListener((observable, oldValue, newValue) -> {
+        this.mapView.initializedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 afterInit();
             }
         });
 		
-		mapView.initialize(Configuration.builder()
+		this.mapView.initialize(Configuration.builder()
 				.projection(projection)
 				.interactive(false)
 				.build()
 				);
+		
+		this.circles = MapDataProvider.casesByState();
 		
 	}
 	
@@ -53,8 +56,8 @@ public class MapController {
 		mapView.setCenter(center);
 		mapView.setZoom(defaultZoom);
 		
-		for(MapCircle circle : this.circles) {
-			mapView.addMapCircle(circle);
+		for(MapCircle circle: this.circles) {
+			this.mapView.addMapCircle(circle);
 		}
 	}
 }

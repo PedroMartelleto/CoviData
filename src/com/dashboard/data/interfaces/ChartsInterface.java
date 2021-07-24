@@ -5,26 +5,24 @@ import com.dashboard.data.model.MapChartDataModel;
 
 public interface ChartsInterface {
 	
+	// Vacinacao por data no pais
+	public LineChartDataModel[] getVaccinationsLineChart();	
+	
+	// Casos diarios no Pais
+	public LineChartDataModel getDailyTotalCasesLineChart(String stateName);
+
+	// Casos diarios nos estados
+	public LineChartDataModel[] getDailyStateCasesLineChart(String stateName);
+	
+	// Casos diarios no Pais
+	public LineChartDataModel getDailyTotalDeathsLineChart(String stateName);
+
+	// Casos diarios nos estados
+	public LineChartDataModel[] getDailyStateDeathsLineChart(String stateName);
+	
 	// Casos totais por estado
-	// Rambo
-	public MapChartDataModel GetCasesMapChart();
+	public MapChartDataModel getCasesMapChart();
 
 	// Mortes totais por estado
-	// Rambo
-	public MapChartDataModel GetDeathsMapChart();
-	
-	// Vacinacao por data no pais
-	public LineChartDataModel GetVaccinationsLineChart();	
-	
-	// Casos diarios no Pais
-	public LineChartDataModel GetDailyTotalCasesLineChart();
-
-	// Casos diarios nos estados
-	public LineChartDataModel[] GetDailyStateCasesLineChart();
-	
-	// Casos diarios no Pais
-	public LineChartDataModel GetDailyTotalDeathsLineChart();
-
-	// Casos diarios nos estados
-	public LineChartDataModel[] GetDailyStateDeathsLineChart();
+	public MapChartDataModel getDeathsMapChart();
 }

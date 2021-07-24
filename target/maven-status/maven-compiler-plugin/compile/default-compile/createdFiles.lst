@@ -1,5 +1,6 @@
+com/dashboard/main/Scenes.class
+com/dashboard/components/animations/LabelAnimator.class
 com/dashboard/components/animations/LabelAnimator$AnimationData.class
-com/dashboard/data/common/BrazilStates.class
 com/dashboard/components/animations/DisplayNumber.class
 com/dashboard/components/graphs/CovidLineCharts.class
-com/dashboard/components/animations/LabelAnimator.class
+com/dashboard/data/common/BrazilData.class

@@ -1,16 +1,17 @@
 package com.dashboard.data.model;
 
-import java.util.TreeMap;
-import java.util.Map;
+import java.util.ArrayList;
+
+import javafx.scene.chart.XYChart.Data;
 
 public class LineChartDataModel {
-	private Map<String, Integer> dots = new TreeMap<String, Integer>();
+	private ArrayList<Data<String, Number>> points = new ArrayList<Data<String, Number>>();
 	
-	public final void AddDot(String X, int Y) {
-		this.dots.put(X, Y);
+	public final void addPoint(String X, Number Y) {
+		points.add(new Data<String, Number>(X, Y));
 	}
 	
-	public final Map <String, Integer> GetDots() {
-		return this.dots;
+	public final ArrayList<Data<String, Number>> getPoints() {
+		return points;
 	}
 }

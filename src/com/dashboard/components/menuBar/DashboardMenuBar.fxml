@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root type="HBox" maxHeight="-Infinity" maxWidth="Infinity"
+<fx:root maxHeight="-Infinity" maxWidth="Infinity"
 	minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0"
-	xmlns="http://javafx.com/javafx/8"
+	type="HBox" xmlns="http://javafx.com/javafx/8"
 	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="com.dashboard.components.menuBar.DashboardMenuBar"
-	>
+	fx:controller="com.dashboard.components.menuBar.DashboardMenuBar">
 	<children>
-		<Button fx:id="vaccinationsButton" mnemonicParsing="false" styleClass="DashboardMenuBar" text="Vacinação" />
-		<Button fx:id="infectedButton" mnemonicParsing="false" styleClass="DashboardMenuBar" text="Infectados" />
-		<Button fx:id="hospitalsButton" mnemonicParsing="false" styleClass="DashboardMenuBar" text="Lotação de hospitais" />
-		<Button fx:id="newsButton" mnemonicParsing="false" styleClass="DashboardMenuBar" text="Reportagens" />
-		<Button fx:id="vaccineScheduleButton" mnemonicParsing="false" styleClass="DashboardMenuBar" text="Cronograma de vacinação" />
+		<ImageView cacheHint="QUALITY" fitHeight="34.0"
+			fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+			<image>
+				<Image url="com/dashboard/resources/Icon.png" />
+			</image>
+			<HBox.margin>
+				<Insets bottom="16.0" left="24.0" right="24.0" top="18.0" />
+			</HBox.margin>
+		</ImageView>
+		<Button fx:id="vaccinationsButton" mnemonicParsing="false"
+			styleClass="DashboardMenuBar" text="Vacinação" />
+		<Button fx:id="infectedButton" mnemonicParsing="false"
+			styleClass="DashboardMenuBar" text="Casos" />
+		<Button fx:id="newsButton" mnemonicParsing="false"
+			styleClass="DashboardMenuBar" text="Notícias" />
+		<Button fx:id="vaccineScheduleButton" mnemonicParsing="false"
+			styleClass="DashboardMenuBar" text="Cronograma" />
 	</children>
 </fx:root>
