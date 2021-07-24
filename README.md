@@ -7,6 +7,8 @@ A covid dashboard written in Java.
 
 [In] -> Importante ranked n
 
+* [I1] "Números de verdade" na página de vacinação
+
 * [I1] Evolução da doença
 	- Gráfico de mortes e casos no mesmo chart
 	- Mapas de aumento em cada estado

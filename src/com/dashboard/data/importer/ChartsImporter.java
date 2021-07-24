@@ -29,7 +29,7 @@ public class ChartsImporter implements ChartsInterface {
 		}
 		
 		String csvNotParsed = Requests.getTotalVaccinated();
-		List<String[]> csvParsed= CsvParser.getAllContent(csvNotParsed);
+		List<String[]> csvParsed = CsvParser.getAllContent(csvNotParsed);
 		
 		for (String[] line: csvParsed) {
 			if (line[0].equals("Brazil")) {

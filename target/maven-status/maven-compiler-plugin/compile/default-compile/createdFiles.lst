@@ -1,6 +1,34 @@
+<<<<<<< HEAD
 com/dashboard/main/Scenes.class
 com/dashboard/components/animations/LabelAnimator.class
 com/dashboard/components/animations/LabelAnimator$AnimationData.class
 com/dashboard/components/animations/DisplayNumber.class
 com/dashboard/components/graphs/CovidLineCharts.class
 com/dashboard/data/common/BrazilData.class
+=======
+com\dashboard\components\scenes\vaccineSchedule\VaccineScheduleScene.class
+com\dashboard\components\graphs\BarChartsFactory.class
+com\dashboard\components\scenes\vaccinations\VaccinationsScene.class
+com\dashboard\data\common\BrazilData.class
+com\dashboard\data\parser\CsvParser.class
+com\dashboard\components\menuBar\DashboardMenuBar.class
+com\dashboard\data\importer\ChartsImporter.class
+com\dashboard\data\model\LineChartDataModel.class
+com\dashboard\main\Scenes.class
+com\dashboard\components\graphs\TimeSeriesDataProvider.class
+com\dashboard\components\animations\DisplayNumber.class
+com\dashboard\data\model\MapChartDataModel.class
+com\dashboard\data\importer\Requests.class
+com\dashboard\data\interfaces\ChartsInterface.class
+com\dashboard\main\Main.class
+com\dashboard\components\scenes\newsReports\NewsReportsScene.class
+com\dashboard\components\graphs\MapDataProvider.class
+com\dashboard\components\scenes\infected\InfectedScene.class
+com\dashboard\components\scenes\vaccineSchedule\VaccineScheduleTableRow.class
+com\dashboard\components\graphs\AreaChartsFactory.class
+com\dashboard\components\animations\LabelAnimator.class
+com\dashboard\components\animations\LabelAnimator$AnimationData.class
+com\dashboard\components\graphs\CovidLineCharts.class
+com\dashboard\utils\FXMLUtils.class
+com\dashboard\utils\CSSUtils.class
+>>>>>>> 347ce366c2f38233196b6e2384a0e27ea970f2b0

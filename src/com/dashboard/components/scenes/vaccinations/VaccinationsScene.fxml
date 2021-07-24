@@ -20,7 +20,7 @@
                <children>
                   <VBox prefHeight="451.0" prefWidth="461.0" style="-fx-background-color: #ffffff;" HBox.hgrow="ALWAYS">
                      <children>
-                        <DashboardMenuBar></DashboardMenuBar>
+                        <DashboardMenuBar selected="vaccinations" />
                         <Label fx:id="titleVaccination" text="Vacinação" textFill="#3f4043">
                            <font>
                               <Font name="Lucida Bright Regular" size="28.0" />
@@ -40,25 +40,31 @@
                               <Insets bottom="16.0" left="28.0" right="28.0" />
                            </VBox.margin>
                         </AreaChart>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*Aproximaçao que assume o ritmo dos ultimos 7 dias de vacinaçao se mantera ate 70% da populaçao vacinada">
+                        <Label prefWidth="595.0" text="*Aproximação que assume o ritmo dos ultimos 7 dias de vacinação se manterá até que se alcance 70% da população vacinada.&#13;** Número de pessoas vacinadas nos últimos 7 dias (incluindo primeira e segunda dose)." textOverrun="CLIP" wrapText="true">
                            <VBox.margin>
-                              <Insets bottom="6.0" left="42.0" right="42.0" top="16.0" />
+                              <Insets left="42.0" right="16.0" />
                            </VBox.margin>
                            <font>
                               <Font name="Lucida Bright Regular" size="11.0" />
                            </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="** Número de pessoas vacinadas nos últimos 7 dias (incluindo primeira e segunda dose)">
+                        </Label>
+                        <Label textOverrun="CLIP" wrapText="true">
                            <VBox.margin>
-                              <Insets bottom="28.0" left="42.0" right="42.0" />
+                              <Insets bottom="32.0" left="42.0" right="16.0" />
                            </VBox.margin>
                            <font>
                               <Font name="Lucida Bright Regular" size="11.0" />
                            </font>
-                        </Text>
+                        </Label>
                      </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="16.0" />
+                     </padding>
                   </VBox>
-                  <VBox alignment="TOP_RIGHT" prefHeight="623.0" prefWidth="362.0" style="-fx-background-color: #f0f5f7;">
+                  <VBox alignment="TOP_RIGHT" prefHeight="623.0" prefWidth="333.0" style="-fx-background-color: #f0f5f7;">
                      <children>
                         <VBox alignment="BOTTOM_RIGHT" prefHeight="95.0" prefWidth="213.0">
                            <children>
