@@ -6,6 +6,7 @@ com\dashboard\data\parser\CsvParser.class
 com\dashboard\components\menuBar\DashboardMenuBar.class
 com\dashboard\data\importer\ChartsImporter.class
 com\dashboard\data\model\LineChartDataModel.class
+com\dashboard\main\Scenes.class
 com\dashboard\components\graphs\TimeSeriesDataProvider.class
 com\dashboard\components\animations\DisplayNumber.class
 com\dashboard\data\model\MapChartDataModel.class

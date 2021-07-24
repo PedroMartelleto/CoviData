@@ -1,17 +1,13 @@
 package com.dashboard.data.importer;
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.Date;
 
 import org.kohsuke.github.GHContent;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
 import org.kohsuke.github.GitHubBuilder;
-
-import com.opencsv.CSVReader;
 
 public class Requests {
 	Date today = new Date();

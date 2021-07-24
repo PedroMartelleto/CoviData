@@ -1,13 +1,7 @@
 package com.dashboard.main;
 
 import javafx.application.Application;
-import javafx.stage.Stage;
-
-// TODO: Vaccines page
-	// TODO: Overwrite ChoiceBox css
-	// TODO: Enable/disable percentages ChoiceBox
-
-// TODO: Undecorated window
+import javafx.stage.Stage;;
 
 public class Main extends Application {
 	
@@ -23,8 +17,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-
-    	
 		launch(args);
     }
 }

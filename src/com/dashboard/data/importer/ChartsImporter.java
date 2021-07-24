@@ -14,14 +14,12 @@ public class ChartsImporter implements ChartsInterface {
 		LineChartDataModel data = new LineChartDataModel();
 		
 		String csvNotParsed = Requests.getTotalVaccinated();
-		
 		List<String[]> csvParsed= CsvParser.getAllContent(csvNotParsed);
 		
 		for (String[] line: csvParsed) {
 			if (line[0].equals("Brazil")) {
 				String day = line[1];
 				int value = line[5].length() > 0 ? Integer.valueOf(line[4]) : 0;
-				
 				data.addPoint(day, value);
 			}
 		}
@@ -62,7 +60,7 @@ public class ChartsImporter implements ChartsInterface {
 		
 		for(String[] line: csvParse) {
 			if(line[3].equals("Brazil")) {
-				data.AddPin(Double.valueOf(line[5]),Double.valueOf(line[6]),Integer.valueOf(line[7]), line[2]);
+				data.addPin(Double.valueOf(line[5]),Double.valueOf(line[6]),Integer.valueOf(line[7]), line[2]);
 			}
 		}
 		return data;
@@ -77,7 +75,7 @@ public class ChartsImporter implements ChartsInterface {
 		
 		for(String[] line: csvParse) {
 			if(line[3].equals("Brazil")) {
-				data.AddPin(Double.valueOf(line[5]), Double.valueOf(line[6]), Integer.valueOf(line[8]), line[2]);
+				data.addPin(Double.valueOf(line[5]), Double.valueOf(line[6]), Integer.valueOf(line[8]), line[2]);
 			}
 		}
 		return data;
