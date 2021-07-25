@@ -161,7 +161,8 @@ public class DataFiles {
 		br = new BufferedReader(fr);
 		String line = br.readLine();
 		String content = "";
-		while (line.length() > 0) {
+		
+		while (line != null && line.length() > 0) {
 			content += line;
 			line = br.readLine();
 		}

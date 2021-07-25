@@ -1,6 +1,6 @@
 package com.dashboard.components.graphs;
 
-import com.dashboard.data.importer.ChartsImporter;
+import com.dashboard.data.importer.CSSEGISandOwidImporter;
 import com.dashboard.data.model.MapChartDataModel;
 
 import javafx.application.Application;

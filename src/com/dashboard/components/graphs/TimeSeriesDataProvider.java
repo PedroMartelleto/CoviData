@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dashboard.data.common.BrazilData;
-import com.dashboard.data.importer.ChartsImporter;
+import com.dashboard.data.importer.CSSEGISandOwidImporter;
 import com.dashboard.data.model.LineChartDataModel;
 
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
 
 public class TimeSeriesDataProvider {
-	private static ChartsImporter importer = new ChartsImporter();
+	private static CSSEGISandOwidImporter importer = new CSSEGISandOwidImporter();
 	
 	public static int vaccinatedLast7DaysNumber = 0;
 	public static int oneDosesNumber = 0;
@@ -27,7 +27,7 @@ public class TimeSeriesDataProvider {
 	 */
 	public static void vaccinations(XYChart<String, Number> chart, int stride, boolean relativeNumbers) {
 		LineChartDataModel[] data = importer.getVaccinationsLineChart();
-		getNumbers(data);
+		calculateVaccinationConstants(data);
 		chart.setAnimated(true);
 		provideLabels(chart, "Vacinação acumulada por dia", "Data", "Quantidade");
 		
@@ -37,7 +37,7 @@ public class TimeSeriesDataProvider {
 		provideSeries(chart, "Pessoas totalmente vacinadas " + chartNameSuffix, data[2].getPoints(), stride, normFactor, true);
 	}
 	
-	private static void getNumbers(LineChartDataModel[] data) {
+	private static void calculateVaccinationConstants(LineChartDataModel[] data) {
 		List<XYChart.Data<String, Number>> partiallyVaccinated = data[1].getPoints();
 		List<XYChart.Data<String, Number>> totallyVaccinated = data[2].getPoints();
 		
@@ -46,7 +46,6 @@ public class TimeSeriesDataProvider {
 		Number vaccinated7DaysBefore =  partiallyVaccinated.get(lengthTemp - 8).getYValue();
 		vaccinatedLast7DaysNumber = vaccinatedLastDay.intValue() - vaccinated7DaysBefore.intValue();
 		
-				
 		oneDosesNumber = vaccinatedLastDay.intValue();
 		
 		lengthTemp = totallyVaccinated.size();
@@ -54,7 +53,6 @@ public class TimeSeriesDataProvider {
 		twoDosesNumber = totallyVaccinated.get(lengthTemp - 1).getYValue().intValue();
 		
 		int speed = twoDosesNumber - totallyVaccinated.get(lengthTemp - 8).getYValue().intValue();
-		
 		float nWeeks = ((0.7f*BrazilData.getBrazilPopulation()) -  twoDosesNumber) / speed;
 		
 		monthsTo70percent = nWeeks / 4.0f;

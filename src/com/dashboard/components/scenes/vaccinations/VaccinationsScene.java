@@ -8,7 +8,7 @@ import com.dashboard.components.animations.DisplayNumber;
 import com.dashboard.components.animations.LabelAnimator;
 import com.dashboard.components.graphs.TimeSeriesDataProvider;
 import com.dashboard.data.common.BrazilData;
-import com.dashboard.data.importer.ChartsImporter;
+import com.dashboard.data.importer.CSSEGISandOwidImporter;
 import com.dashboard.data.model.LineChartDataModel;
 import com.dashboard.utils.FXMLUtils;
 
@@ -52,8 +52,6 @@ public class VaccinationsScene extends AnchorPane {
 	private int twoDosesNumber = 0;
 	private float monthsTo70percent = 0.0f;
 	
-	
-	
 	@FXML
     private void initialize() {		
 		setupAnimations();
@@ -89,9 +87,7 @@ public class VaccinationsScene extends AnchorPane {
 	private void setLabelsTargets(boolean relativeNumbers) {
 		String suffix = relativeNumbers ? "%" : " M";
 		float normFactor = relativeNumbers ? 0.01f * BrazilData.getBrazilPopulation(): (float) 1e6 ;
-		
-		System.out.println("Vacinados 7 dias: " + vaccinatedLast7DaysNumber + " Doses unicas: " + oneDosesNumber);
-		        
+				        
 		animator.setLabelTarget(vaccinatedLast7Days, new DisplayNumber(Float.valueOf(this.vaccinatedLast7DaysNumber) / normFactor, 1, suffix));
 		animator.setLabelTarget(twoDosesLabel, new DisplayNumber(Float.valueOf(this.twoDosesNumber) / normFactor, 1, suffix));
 		animator.setLabelTarget(oneDoseLabel, new DisplayNumber(Float.valueOf(this.oneDosesNumber) / normFactor, 1, suffix));

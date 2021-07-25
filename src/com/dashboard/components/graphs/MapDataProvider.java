@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dashboard.data.common.BrazilData;
-import com.dashboard.data.importer.ChartsImporter;
+import com.dashboard.data.importer.CSSEGISandOwidImporter;
 import com.dashboard.data.model.MapChartDataModel;
 import com.sothawo.mapjfx.Coordinate;
 import com.sothawo.mapjfx.MapCircle;
@@ -15,7 +15,7 @@ import javafx.util.Pair;
 
 public class MapDataProvider {
 	private static MapChartDataModel data;
-	private static ChartsImporter importer = new ChartsImporter();
+	private static CSSEGISandOwidImporter importer = new CSSEGISandOwidImporter();
 	
 	public static List<MapCircle> deathsByState() {
 		data = importer.getDeathsMapChart();
