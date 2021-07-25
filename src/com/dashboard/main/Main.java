@@ -6,9 +6,7 @@ import javafx.stage.Stage;;
 public class Main extends Application {
 	
 	@Override
-    public void start(Stage primaryStage) throws Exception {
-		// Scenes.init();
-		
+    public void start(Stage primaryStage) throws Exception {	
 		primaryStage.setTitle("COVID-19 Dashboard");
 		primaryStage.setScene(Scenes.getVaccinations());
 		primaryStage.setWidth(1024);
