@@ -8,9 +8,10 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 
 import com.dashboard.data.common.BrazilData;
-import com.dashboard.data.interfaces.ChartsInterface;
 import com.dashboard.data.model.LineChartDataModel;
 import com.dashboard.data.model.MapChartDataModel;
+import com.dashboard.data.interfaces.ChartsInterface;
+import com.dashboard.data.importer.DataFiles;
 import com.dashboard.data.parser.CsvParser;
 
 import javafx.util.Pair;
@@ -19,7 +20,9 @@ import java.text.*;
 
 public class ChartsImporter implements ChartsInterface {
 	
-
+	/**
+	 * 
+	 */
 	@Override
 	public LineChartDataModel[] getVaccinationsLineChart() {
 		LineChartDataModel[] data = new LineChartDataModel[3];
@@ -46,30 +49,77 @@ public class ChartsImporter implements ChartsInterface {
 		return data;
 	}
 
+	
+	
+	/**
+	 * Reads the data and calculates the country daily cases
+	 */
 	@Override
 	public LineChartDataModel getDailyTotalCasesLineChart(String stateName) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, List<String[]>> data = DataFiles.readAllData();
+		LineChartDataModel chart = new LineChartDataModel();
+		
+		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
+			int totalCases = 0;
+			for (String[] line : file.getValue()) {
+				totalCases += Integer.parseInt(line[4]);
+			}
+			String name = file.getKey();
+			String date = name.substring(6, 9) + "-" + name.substring(0, 1) + "-" + name.substring(3, 4);
+			
+			chart.addPoint(date, totalCases);
+		}
+		
+		return chart;
 	}
 
+	/**
+	 * Reads the data and calculates the daily cases by Brazilian's states
+	 * @return Map<state, data>
+	 */
 	@Override
-	public LineChartDataModel[] getDailyStateCasesLineChart(String stateName) {
+	public Map<String, LineChartDataModel> getDailyStateCasesLineChart(String stateName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Reads the data and calculates the country daily deaths
+	 */
 	@Override
 	public LineChartDataModel getDailyTotalDeathsLineChart(String stateName) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, List<String[]>> data = DataFiles.readAllData();
+		LineChartDataModel chart = new LineChartDataModel();
+		
+		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
+			int totalDeaths = 0;
+			for (String[] line : file.getValue()) {
+				totalDeaths += Integer.parseInt(line[5]);
+			}
+			String name = file.getKey();
+			String date = name.substring(6, 9) + "-" + name.substring(0, 1) + "-" + name.substring(3, 4);
+			
+			chart.addPoint(date, totalDeaths);
+		}
+		
+		return chart;
 	}
 
+	/**
+	 * Reads the data and calculates the daily deaths by Brazilian's states
+	 * @return Map<state, data>
+	 */
 	@Override
-	public LineChartDataModel[] getDailyStateDeathsLineChart(String stateName) {
+	public Map<String, LineChartDataModel> getDailyStateDeathsLineChart(String stateName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	
+	
+	/**
+	 * 
+	 */
 	@Override
 	public MapChartDataModel getCasesMapChart() {
 		MapChartDataModel data = new MapChartDataModel();
@@ -159,6 +209,9 @@ public class ChartsImporter implements ChartsInterface {
 		return data;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public MapChartDataModel getDeathsMapChart() {
 		MapChartDataModel data = new MapChartDataModel();
