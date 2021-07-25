@@ -1,5 +1,9 @@
 package com.dashboard.main;
 
+import java.io.IOException;
+
+import com.dashboard.data.importer.DataFiles;
+
 import javafx.application.Application;
 import javafx.stage.Stage;;
 
@@ -15,6 +19,14 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+    	// Make sure that the user has the most recent data
+    	try {    		
+    		DataFiles.writeMissedData();
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
+    	
+    	// Launches the file
 		launch(args);
     }
 }

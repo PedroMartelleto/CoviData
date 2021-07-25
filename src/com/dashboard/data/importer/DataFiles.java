@@ -29,7 +29,7 @@ public class DataFiles {
 	 * 
 	 * @return true (1) -> error, false (0) -> success
 	 */
-	public Boolean writeData(String fileName, List<String[]> data) {
+	public static Boolean writeData(String fileName, List<String[]> data) {
 		// Creates the data full path
 		File file = new File("data/" + fileName);
 		FileWriter fw;
@@ -50,11 +50,11 @@ public class DataFiles {
 		bw = new BufferedWriter(fw);
 
 		// Writes the fields in the file
-		Boolean flag = false;
+		Boolean deleteFlag = true;
 		for (String[] line : data) {
 			// We will only use the Brazil data
 			if (line[3].equals("Brazil")) {
-				flag = true;
+				deleteFlag = false;
 
 				String state = line[2];
 				String country = line[3];
@@ -81,7 +81,7 @@ public class DataFiles {
 		}
 
 		// Ensures that there isn't a file without the expected data
-		if (flag)
+		if (deleteFlag)
 			file.delete();
 
 		return false;
@@ -114,7 +114,7 @@ public class DataFiles {
 	 * 
 	 * @throws IOException if the API fails
 	 */
-	public void writeMissedData() throws IOException {
+	public static void writeMissedData() throws IOException {
 		GitHub github = new GitHubBuilder().withOAuthToken("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").build();
 		GHRepository repo = github.getUser("CSSEGISandData").getRepository("COVID-19");
 		List<GHContent> directory = repo.getDirectoryContent("csse_covid_19_data/csse_covid_19_daily_reports");
