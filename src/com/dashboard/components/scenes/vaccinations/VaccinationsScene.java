@@ -3,6 +3,7 @@ package com.dashboard.components.scenes.vaccinations;
 import com.dashboard.components.animations.DisplayNumber;
 import com.dashboard.components.animations.LabelAnimator;
 import com.dashboard.components.graphs.TimeSeriesDataProvider;
+import com.dashboard.data.common.BrazilData;
 import com.dashboard.utils.FXMLUtils;
 
 import javafx.fxml.FXML;
@@ -62,15 +63,15 @@ public class VaccinationsScene extends AnchorPane {
 	}
 	
 	private void setLabelsTargets(boolean relativeNumbers) {
-		if (relativeNumbers) {
-			animator.setLabelTarget(vaccinatedLast7Days, new DisplayNumber(3.4f, 1, "%"));
-			animator.setLabelTarget(twoDosesLabel, new DisplayNumber(20.1f, 0, "%"));
-			animator.setLabelTarget(oneDoseLabel, new DisplayNumber(33.2f, 0, "%"));
-		} else {
-			animator.setLabelTarget(vaccinatedLast7Days, new DisplayNumber(40, 0, " m"));
-			animator.setLabelTarget(twoDosesLabel, new DisplayNumber(50, 0, " m"));
-			animator.setLabelTarget(oneDoseLabel, new DisplayNumber(30, 0, " m"));
-		}
+//		float v7 = 4900000;
+//		float MILLION = (float) 1e6;
+//		
+//		String suffix = relativeNumbers ? "%" : " M";
+//		float normFactor = relativeNumbers ? (float) 1e6 : 0.01f * BrazilData.getBrazilPopulation();
+//		
+//		animator.setLabelTarget(vaccinatedLast7Days, new DisplayNumber(a / normFactor, 1, suffix));
+//		animator.setLabelTarget(twoDosesLabel, new DisplayNumber(b / normFactor, 0, suffix));
+//		animator.setLabelTarget(oneDoseLabel, new DisplayNumber(c / normFactor, 0, suffix));
 	}
 	
 	private void setupChoiceBoxes() {	

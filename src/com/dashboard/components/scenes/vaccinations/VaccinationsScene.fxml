@@ -75,7 +75,7 @@
                            <children>
                               <Label fx:id="twoDosesLabel" alignment="CENTER" prefHeight="94.0" prefWidth="317.0" text="18%" textFill="#141414" textOverrun="CLIP">
                                  <font>
-                                    <Font name="Lucida Bright Regular" size="80.0" />
+                                    <Font name="Lucida Bright Regular" size="78.0" />
                                  </font>
                                  <VBox.margin>
                                     <Insets />
@@ -88,7 +88,7 @@
                               </Label>
                               <Label fx:id="oneDoseLabel" alignment="CENTER" prefHeight="65.0" prefWidth="308.0" text="31%" textFill="#141414" textOverrun="CLIP">
                                  <font>
-                                    <Font name="Lucida Bright Regular" size="56.0" />
+                                    <Font name="Lucida Bright Regular" size="78.0" />
                                  </font>
                                  <VBox.margin>
                                     <Insets top="28.0" />
