@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -78,9 +79,33 @@ public class ChartsImporter implements ChartsInterface {
 	 * @return Map<state, data>
 	 */
 	@Override
-	public Map<String, LineChartDataModel> getDailyStateCasesLineChart(String stateName) {
-		// TODO Auto-generated method stub
-		return null;
+	public LineChartDataModel getDailyStateCasesLineChart(String stateName) {
+		Map<String, List<String[]>> data = DataFiles.readAllData();
+		LineChartDataModel chart = new LineChartDataModel();
+		
+		Map<String, List<String[]>> dataSorted= new TreeMap<>();
+		
+		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
+			String name = file.getKey();
+			String date = name.substring(6, 9) + "-" + name.substring(0, 1) + "-" + name.substring(3, 4);
+			
+			dataSorted.put(date, file.getValue());	
+		}
+		
+		int lastDay = 0;
+		for (Map.Entry<String, List<String[]>> file : dataSorted.entrySet()) {
+			int totalCasesState = 0;
+			for (String[] line : file.getValue()) {
+				if(stateName.equals(line[2]) ) {
+					totalCasesState += Integer.parseInt(line[4]) - lastDay;
+					lastDay = Integer.parseInt(line[4]);
+				}
+			}
+			chart.addPoint(file.getKey(), totalCasesState);
+		}
+		
+		return chart;
+		
 	}
 
 	/**
@@ -110,9 +135,33 @@ public class ChartsImporter implements ChartsInterface {
 	 * @return Map<state, data>
 	 */
 	@Override
-	public Map<String, LineChartDataModel> getDailyStateDeathsLineChart(String stateName) {
-		// TODO Auto-generated method stub
-		return null;
+	public LineChartDataModel getDailyStateDeathsLineChart(String stateName) {
+		Map<String, List<String[]>> data = DataFiles.readAllData();
+		LineChartDataModel chart = new LineChartDataModel();
+		
+		Map<String, List<String[]>> dataSorted= new TreeMap<>();
+		
+		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
+			String name = file.getKey();
+			String date = name.substring(6, 9) + "-" + name.substring(0, 1) + "-" + name.substring(3, 4);
+			
+			dataSorted.put(date, file.getValue());	
+		}
+		
+		int lastDay = 0;
+		for (Map.Entry<String, List<String[]>> file : dataSorted.entrySet()) {
+			int totalCasesState = 0;
+			for (String[] line : file.getValue()) {
+				if(stateName.equals(line[2]) ) {
+					totalCasesState += Integer.parseInt(line[5]) - lastDay;
+					lastDay = Integer.parseInt(line[5]);
+				}
+			}
+			chart.addPoint(file.getKey(), totalCasesState);
+		}
+		
+		return chart;
+		
 	}
 
 	

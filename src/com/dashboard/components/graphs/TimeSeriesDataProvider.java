@@ -1,6 +1,7 @@
 package com.dashboard.components.graphs;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.dashboard.data.common.BrazilData;
 import com.dashboard.data.importer.ChartsImporter;
@@ -11,6 +12,11 @@ import javafx.scene.chart.XYChart.Data;
 
 public class TimeSeriesDataProvider {
 	private static ChartsImporter importer = new ChartsImporter();
+	
+	public static int vaccinatedLast7DaysNumber = 0;
+	public static int oneDosesNumber = 0;
+	public static int twoDosesNumber = 0;
+	public static float monthsTo70percent = 0.0f;
 
 	/**
 	 * Provides data for the accumulated vaccine doses chart.
@@ -21,6 +27,7 @@ public class TimeSeriesDataProvider {
 	 */
 	public static void vaccinations(XYChart<String, Number> chart, int stride, boolean relativeNumbers) {
 		LineChartDataModel[] data = importer.getVaccinationsLineChart();
+		getNumbers(data);
 		chart.setAnimated(true);
 		provideLabels(chart, "Vacinação acumulada por dia", "Data", "Quantidade");
 		
@@ -28,6 +35,30 @@ public class TimeSeriesDataProvider {
 		String chartNameSuffix = relativeNumbers ? "(números relativos)" : "(números absolutos)"; 
 		provideSeries(chart, "Pessoas vacinadas " + chartNameSuffix, data[1].getPoints(), stride, normFactor, true);
 		provideSeries(chart, "Pessoas totalmente vacinadas " + chartNameSuffix, data[2].getPoints(), stride, normFactor, true);
+	}
+	
+	private static void getNumbers(LineChartDataModel[] data) {
+		List<XYChart.Data<String, Number>> partiallyVaccinated = data[1].getPoints();
+		List<XYChart.Data<String, Number>> totallyVaccinated = data[2].getPoints();
+		
+		int lengthTemp = partiallyVaccinated.size();
+		Number vaccinatedLastDay = partiallyVaccinated.get(lengthTemp - 1).getYValue();
+		Number vaccinated7DaysBefore =  partiallyVaccinated.get(lengthTemp - 8).getYValue();
+		vaccinatedLast7DaysNumber = vaccinatedLastDay.intValue() - vaccinated7DaysBefore.intValue();
+		
+				
+		oneDosesNumber = vaccinatedLastDay.intValue();
+		
+		lengthTemp = totallyVaccinated.size();
+		
+		twoDosesNumber = totallyVaccinated.get(lengthTemp - 1).getYValue().intValue();
+		
+		int speed = twoDosesNumber - totallyVaccinated.get(lengthTemp - 8).getYValue().intValue();
+		
+		float nWeeks = ((0.7f*BrazilData.getBrazilPopulation()) -  twoDosesNumber) / speed;
+		
+		monthsTo70percent = nWeeks / 4.0f;
+		
 	}
 	
 	/**
@@ -38,7 +69,7 @@ public class TimeSeriesDataProvider {
 	 * @param stateName The state from which to get the data.
 	 */
 	public static void cases(XYChart<String, Number> chart, int stride, String stateName) {
-		LineChartDataModel data = importer.getDailyTotalCasesLineChart(stateName);
+		LineChartDataModel data = importer.getDailyStateCasesLineChart(stateName);
 		chart.setAnimated(true);
 		provideLabels(chart, "Casos acumulados por dia", "Data", "Quantidade");
 		provideSeries(chart, "Casos acumulados por dia", data.getPoints(), stride, 1, true);
@@ -52,7 +83,7 @@ public class TimeSeriesDataProvider {
 	 * @param stateName The state from which to get the data.
 	 */
 	public static void deaths(XYChart<String, Number> chart, int stride, String stateName) {
-		LineChartDataModel data = importer.getDailyTotalDeathsLineChart(stateName);
+		LineChartDataModel data = importer.getDailyStateDeathsLineChart(stateName);
 		chart.setAnimated(true);
 		provideLabels(chart, "Mortes acumuladas por dia", "Data", "Quantidade");
 		provideSeries(chart, "Mortes acumuladas por dia", data.getPoints(), stride, 1, true);
@@ -90,7 +121,7 @@ public class TimeSeriesDataProvider {
 
 		if (data.size() <= 0) return;
 		
-		for (int i = 0; i < data.size(); i += stride) {
+		for (int i = 0; i < data.size() - 1; i += stride) {
 			// Interpolates the values by taking the mean
 			float interpolatedValue = 0.0f;
 			int total = 0;

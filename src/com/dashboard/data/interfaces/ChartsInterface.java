@@ -11,11 +11,11 @@ public interface ChartsInterface {
 	
 	public LineChartDataModel getDailyTotalCasesLineChart(String stateName);
 
-	public Map<String, LineChartDataModel> getDailyStateCasesLineChart(String stateName);
+	public LineChartDataModel getDailyStateCasesLineChart(String stateName);
 	
 	public LineChartDataModel getDailyTotalDeathsLineChart(String stateName);
 
-	public Map<String, LineChartDataModel> getDailyStateDeathsLineChart(String stateName);
+	public LineChartDataModel getDailyStateDeathsLineChart(String stateName);
 	
 	public MapChartDataModel getCasesMapChart();
 
