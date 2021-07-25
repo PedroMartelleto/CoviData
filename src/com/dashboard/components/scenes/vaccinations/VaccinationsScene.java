@@ -46,16 +46,16 @@ public class VaccinationsScene extends AnchorPane {
 	}
 	
 	private void updateChartData(boolean relative) {
-		String displayMode = displayModeChoiceBox.getSelectionModel().getSelectedItem();
 		vaccinationsChart.getData().clear();
 		TimeSeriesDataProvider.vaccinations(vaccinationsChart, 5, relative);
+		setLabelsTargets(relative);
 	}
 	
 	private void setupAnimations() {
-		animator.addLabel(vaccinatedLast7Days, 1, "%", (float)2e-7);
-		animator.addLabel(twoDosesLabel, 1, "%", (float)2e-7);
-		animator.addLabel(oneDoseLabel, 1, "%", (float)2e-7);
-		animator.addLabel(monthsLeftLabel, 1, "meses", (float)2e-7);
+		animator.addLabel(vaccinatedLast7Days, 1, "%", (float)2e-2);
+		animator.addLabel(twoDosesLabel, 1, "%", (float)2e-2);
+		animator.addLabel(oneDoseLabel, 1, "%", (float)2e-2);
+		animator.addLabel(monthsLeftLabel, 1, "meses", (float)2e-2);
 		animator.setLabelTarget(monthsLeftLabel, new DisplayNumber(4.3f, 1, " meses"));
 		animator.start();
 		
@@ -63,15 +63,14 @@ public class VaccinationsScene extends AnchorPane {
 	}
 	
 	private void setLabelsTargets(boolean relativeNumbers) {
-//		float v7 = 4900000;
-//		float MILLION = (float) 1e6;
-//		
-//		String suffix = relativeNumbers ? "%" : " M";
-//		float normFactor = relativeNumbers ? (float) 1e6 : 0.01f * BrazilData.getBrazilPopulation();
-//		
-//		animator.setLabelTarget(vaccinatedLast7Days, new DisplayNumber(a / normFactor, 1, suffix));
-//		animator.setLabelTarget(twoDosesLabel, new DisplayNumber(b / normFactor, 0, suffix));
-//		animator.setLabelTarget(oneDoseLabel, new DisplayNumber(c / normFactor, 0, suffix));
+		float v7 = 65416546;
+		
+		String suffix = relativeNumbers ? "%" : " M";
+		float normFactor = relativeNumbers ? 0.01f * BrazilData.getBrazilPopulation() : (float) 1e6;
+		
+		animator.setLabelTarget(vaccinatedLast7Days, new DisplayNumber(v7 / normFactor, 1, suffix));
+		animator.setLabelTarget(twoDosesLabel, new DisplayNumber(v7 / normFactor, 0, suffix));
+		animator.setLabelTarget(oneDoseLabel, new DisplayNumber(v7 / normFactor, 0, suffix));
 	}
 	
 	private void setupChoiceBoxes() {	

@@ -69,12 +69,12 @@ public class InfectedScene extends AnchorPane {
 		stateChoiceBox.getItems().addAll(BrazilData.getStateNames());
 		stateChoiceBox.getSelectionModel().selectFirst();
 
-		animator.addLabel(totalCasesLabel, 0, "", (float) 9e-7);
-		animator.addLabel(totalDeathsLabel, 0, "", (float) 9e-7);
+		animator.addLabel(totalCasesLabel, 0, "", (float)2e-2);
+		animator.addLabel(totalDeathsLabel, 0, "", (float)2e-2);
 		animator.start();
 
 		casesMapCircles = MapDataProvider.casesByState();
-		deathsMapCircles = MapDataProvider.casesByState();
+		deathsMapCircles = MapDataProvider.deathsByState();
 		initMap();
 		
 		onStateNameChange();
@@ -112,7 +112,7 @@ public class InfectedScene extends AnchorPane {
 	 */
 	private void addCirclesToMap(MapView map, List<MapCircle> circles) {
 		map.setCenter(BrazilData.CENTER);
-		map.setZoom(3.35);
+		map.setZoom(4.25);
 		
 		for (MapCircle circle : circles) {
 			map.addMapCircle(circle);

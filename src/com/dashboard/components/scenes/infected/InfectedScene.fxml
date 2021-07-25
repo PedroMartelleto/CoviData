@@ -14,7 +14,7 @@
 <?import com.dashboard.components.menuBar.DashboardMenuBar?>
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="915.0"
 	prefWidth="940.0" style="-fx-background-color: white;"
 	type="AnchorPane" xmlns="http://javafx.com/javafx/8"
 	xmlns:fx="http://javafx.com/fxml/1"
@@ -94,8 +94,8 @@
 								<HBox prefHeight="309.0" prefWidth="829.0"
 									VBox.vgrow="ALWAYS">
 									<children>
-										<AreaChart prefHeight="309.0" prefWidth="474.0"
-											HBox.hgrow="ALWAYS" fx:id="casesChart">
+										<AreaChart fx:id="casesChart" prefHeight="309.0"
+											prefWidth="474.0" HBox.hgrow="ALWAYS">
 											<xAxis>
 												<CategoryAxis side="BOTTOM" />
 											</xAxis>
@@ -103,8 +103,8 @@
 												<NumberAxis side="LEFT" />
 											</yAxis>
 										</AreaChart>
-										<AreaChart prefHeight="252.0" prefWidth="480.0"
-											HBox.hgrow="ALWAYS" fx:id="deathsChart">
+										<AreaChart fx:id="deathsChart" prefHeight="252.0"
+											prefWidth="480.0" HBox.hgrow="ALWAYS">
 											<xAxis>
 												<CategoryAxis side="BOTTOM" />
 											</xAxis>
@@ -117,13 +117,67 @@
 										<Insets left="32.0" right="32.0" />
 									</VBox.margin>
 								</HBox>
-								<HBox prefHeight="329.0" prefWidth="940.0"
-									VBox.vgrow="ALWAYS">
+								<VBox prefHeight="200.0" prefWidth="100.0">
 									<children>
-										<MapView fx:id="casesMapView" HBox.hgrow="ALWAYS" />
-										<MapView fx:id="deathsMapView" HBox.hgrow="ALWAYS" />
+										<Label
+											text="Azul: diminuição acentuada comparando com a media da semana passada."
+											textAlignment="RIGHT">
+											<font>
+												<Font name="Lucida Bright Regular" size="14.0" />
+											</font>
+											<VBox.margin>
+												<Insets top="16.0" />
+											</VBox.margin>
+										</Label>
+										<Label
+											text="Amarelo: estabilidade em comparaçao com a media da semana passada."
+											textAlignment="RIGHT">
+											<font>
+												<Font name="Lucida Bright Regular" size="14.0" />
+											</font>
+										</Label>
+										<Label
+											text="Vermelho: aumento acentuado quando comparado com a media da semana passada."
+											textAlignment="RIGHT">
+											<font>
+												<Font name="Lucida Bright Regular" size="14.0" />
+											</font>
+										</Label>
+										<HBox prefHeight="600.0" prefWidth="940.0"
+											VBox.vgrow="ALWAYS">
+											<children>
+												<VBox alignment="TOP_CENTER" prefHeight="700.0"
+													prefWidth="100.0" minHeight="700.0" HBox.hgrow="ALWAYS">
+													<children>
+														<Label text="Aumento de casos em cada estado">
+															<font>
+																<Font name="Lucida Bright Regular" size="20.0" />
+															</font>
+														</Label>
+														<MapView fx:id="casesMapView" VBox.vgrow="ALWAYS" />
+													</children>
+												</VBox>
+												<VBox alignment="TOP_CENTER" prefHeight="700.0"
+													prefWidth="100.0" minHeight="700.0" HBox.hgrow="ALWAYS">
+													<children>
+														<Label text="Aumento de mortes em cada estado">
+															<font>
+																<Font name="Lucida Bright Regular" size="20.0" />
+															</font>
+														</Label>
+														<MapView fx:id="deathsMapView" VBox.vgrow="ALWAYS" />
+													</children>
+												</VBox>
+											</children>
+											<VBox.margin>
+												<Insets top="18.0" />
+											</VBox.margin>
+										</HBox>
 									</children>
-								</HBox>
+									<VBox.margin>
+										<Insets left="48.0" right="48.0" />
+									</VBox.margin>
+								</VBox>
 							</children>
 							<padding>
 								<Insets left="15.0" right="15.0" top="-1.0" />

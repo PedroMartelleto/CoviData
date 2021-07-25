@@ -2,6 +2,8 @@ package com.dashboard.components.animations;
 
 import java.util.HashMap;
 
+import com.dashboard.utils.MathUtils;
+
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
 
@@ -17,16 +19,20 @@ public class LabelAnimator extends AnimationTimer {
 	 * Data needed for smooth damp.
 	 */
 	private class AnimationData {
-		public DisplayNumber current;
+		public DisplayNumber start;
 		public DisplayNumber target;
-		public float velocity = 0.0f;
+		public float time = 0.0f;
 		public float animSpeed;
 		public boolean isPlaying = true;
 		
 		public AnimationData(DisplayNumber target, float animSpeed) {
-			current = DisplayNumber.derivedFrom(target, 0);
+			start = DisplayNumber.derivedFrom(target, 0);
 			this.target = target;
 			this.animSpeed = animSpeed;
+		}
+		
+		public DisplayNumber getCurrent() {
+			return DisplayNumber.derivedFrom(target, MathUtils.lerp(start.getValue(), target.getValue(), MathUtils.smoothStep(time)));
 		}
 	}
 	
@@ -38,11 +44,11 @@ public class LabelAnimator extends AnimationTimer {
 	}
 	
 	public void setLabelTarget(Label label, DisplayNumber target) {
-		AnimationData anim = labelsAnimDataMap.get(label);
+		AnimationData oldAnim = labelsAnimDataMap.get(label);
+		AnimationData anim = new AnimationData((DisplayNumber) target.clone(), oldAnim.animSpeed);
 		anim.isPlaying = true;
-		anim.current = DisplayNumber.derivedFrom(target, anim.current.getValue());
-		anim.target = target;
-		anim.velocity = 0.0f;
+		anim.start = oldAnim.getCurrent();
+		anim.time = 0.0f;
 		labelsAnimDataMap.put(label, anim);
 	}
 	
@@ -60,46 +66,12 @@ public class LabelAnimator extends AnimationTimer {
 			// For each label and animation currently being played...
 			Label label = entry.getKey();
 			AnimationData anim = entry.getValue();
-			
+
 			if (!anim.isPlaying) continue;
 			
-			// Performs a smooth damp
-			final float smoothTime = 0.0001f;
-			float deltaTime = (float)(now - previousTime) * (float)1e-6 * anim.animSpeed;
-						
-			float output = 0f;
-	
-	        float omega = 2.0f / smoothTime;
-	        float x = omega * deltaTime;
-	        float exp = 1F / (1F + x + 0.48F * x * x + 0.235F * x * x * x);
-	
-	        // Clamps maximum speed
-	        float change = Math.min(anim.current.getValue() - anim.target.getValue(), maxSpeed * smoothTime);
-	        float originalTo = anim.target.getValue();
-	
-	        anim.target.setValue(anim.current.getValue() - change);
-	
-	        float temp = (anim.velocity + omega * change) * deltaTime;
-	        anim.velocity = (anim.velocity - omega * temp) * exp;
-	
-	        output = anim.target.getValue() + (change + temp) * exp;
-	
-	        // Prevents overshooting
-	        float origMinusCurrent = originalTo - anim.current.getValue();
-	        float outMinusOrig = output - originalTo;
-	
-	        if (origMinusCurrent * outMinusOrig > 0) {
-	            output = originalTo;
-	            anim.velocity = (output - originalTo) / deltaTime;
-	        }
-	        
-	        // Signal that we are done if we have reach the goal
-	        if (anim.target.getValue() == output) {
-	        	anim.isPlaying = false;
-	        }
-	        
-	        anim.current.setValue(output);
-	        label.setText(anim.current.toString());
+			anim.time += anim.animSpeed;
+			DisplayNumber current = anim.getCurrent();			
+	        label.setText(current.toString());
 		}
 		
         previousTime = now;
