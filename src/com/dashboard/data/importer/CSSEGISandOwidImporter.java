@@ -82,7 +82,7 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 
 		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
 			String name = file.getKey();
-			String date = name.substring(6, 9) + "-" + name.substring(0, 1) + "-" + name.substring(3, 4);
+			String date = name.substring(6, 10) + "-" + name.substring(0, 1) + "-" + name.substring(3, 4);
 			dataSorted.put(date, file.getValue());
 		}
 		
@@ -93,35 +93,12 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 			
 			for (String[] line : file.getValue()) {
 				if (allStates || stateName.equals(line[2])) {
-					try {
-						totalCasesState += Integer.parseInt(line[4]) - lastDay;
-						lastDay = Integer.parseInt(line[4]);
-					} catch (Exception e) {}
+					System.out.println(line);
+					totalCasesState += Integer.parseInt(line[4]) - lastDay;
+					lastDay = Integer.parseInt(line[4]);
 				}
 			}
 			chart.addPoint(file.getKey(), totalCasesState);
-		}
-
-		return chart;
-	}
-
-	/**
-	 * Reads the data and calculates the country daily deaths
-	 */
-	@Override
-	public LineChartDataModel getDailyTotalDeathsLineChart(String stateName) {
-		Map<String, List<String[]>> data = DataFiles.readAllData();
-		LineChartDataModel chart = new LineChartDataModel();
-
-		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
-			int totalDeaths = 0;
-			for (String[] line : file.getValue()) {
-				totalDeaths += Integer.parseInt(line[5]);
-			}
-			String name = file.getKey();
-			String date = name.substring(6, 9) + "-" + name.substring(0, 1) + "-" + name.substring(3, 4);
-
-			chart.addPoint(date, totalDeaths);
 		}
 
 		return chart;
@@ -141,7 +118,7 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 
 		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
 			String name = file.getKey();
-			String date = name.substring(6, 9) + "-" + name.substring(0, 1) + "-" + name.substring(3, 4);
+			String date = name.substring(6, 10) + "-" + name.substring(0, 1) + "-" + name.substring(3, 4);
 
 			dataSorted.put(date, file.getValue());
 		}
@@ -166,6 +143,29 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 
 	}
 
+
+	/**
+	 * Reads the data and calculates the country daily deaths
+	 */
+	@Override
+	public LineChartDataModel getDailyTotalDeathsLineChart(String stateName) {
+		Map<String, List<String[]>> data = DataFiles.readAllData();
+		LineChartDataModel chart = new LineChartDataModel();
+
+		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
+			int totalDeaths = 0;
+			for (String[] line : file.getValue()) {
+				totalDeaths += Integer.parseInt(line[5]);
+			}
+			String name = file.getKey();
+			String date = name.substring(6, 9) + "-" + name.substring(0, 1) + "-" + name.substring(3, 4);
+
+			chart.addPoint(date, totalDeaths);
+		}
+
+		return chart;
+	}
+	
 	/**
 	 * 
 	 */
@@ -181,9 +181,8 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 		}
 
 		long day = System.currentTimeMillis() - 24 * 60 * 60 * 1000;
-
+		
 		for (int i = 0; i < 15; i++) {
-
 			// leitura do csv do dia
 			String csvNotParsed = Requests.getReportByDay(day);
 
@@ -210,7 +209,7 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 			// data.addPin(Double.valueOf(line[5]), Double.valueOf(line[6]),
 			// Integer.valueOf(line[8]), line[2]);
 		}
-
+				
 		// obtenção dos dados de mortes diárias
 		for (int[] valuesByState : values.values()) {
 			for (int i = 0; i < 14; i++) {

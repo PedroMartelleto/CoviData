@@ -82,14 +82,13 @@ public class InfectedScene extends AnchorPane {
 			onStateNameChange(newValue);
 		});
 
-		casesMapCircles = MapDataProvider.casesByState();
-		deathsMapCircles = MapDataProvider.deathsByState();
 		initMap();
 
 		onStateNameChange(stateChoiceBox.getSelectionModel().getSelectedItem());
 	}
 
 	private void onStateNameChange(String state) {
+		// TODO: Get latest case count and death count by state name (3)
 		animator.setLabelTarget(totalCasesLabel, new DisplayNumber(19524865, 0, ""));
 		animator.setLabelTarget(totalDeathsLabel, new DisplayNumber(415203, 0, ""));
 
@@ -98,18 +97,22 @@ public class InfectedScene extends AnchorPane {
 	}
 
 	public void initMap() {
-		// Adds events to run after the maps have been initialized
-		casesMapView.initializedProperty().addListener((observable, oldValue, newValue) -> {
-			if (newValue)
-				addCirclesToMap(casesMapView, casesMapCircles);
-		});
-
-		deathsMapView.initializedProperty().addListener((observable, oldValue, newValue) -> {
-			if (newValue)
-				addCirclesToMap(deathsMapView, deathsMapCircles);
-		});
-
-		// Initializes the map
+		// TODO: Uncomment this after (1) [currently very slow]
+//		casesMapCircles = MapDataProvider.casesByState();
+//		deathsMapCircles = MapDataProvider.deathsByState();
+		
+//		// Adds events to run after the maps have been initialized
+//		casesMapView.initializedProperty().addListener((observable, oldValue, newValue) -> {
+//			if (newValue)
+//				addCirclesToMap(casesMapView, casesMapCircles);
+//		});
+//
+//		deathsMapView.initializedProperty().addListener((observable, oldValue, newValue) -> {
+//			if (newValue)
+//				addCirclesToMap(deathsMapView, deathsMapCircles);
+//		});
+//
+//		// Initializes the map
 //		casesMapView.initialize(Configuration.builder().projection(Projection.WEB_MERCATOR).interactive(false).build());
 //		deathsMapView
 //				.initialize(Configuration.builder().projection(Projection.WEB_MERCATOR).interactive(false).build());

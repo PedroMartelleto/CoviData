@@ -13,7 +13,7 @@ import org.kohsuke.github.GitHub;
 import org.kohsuke.github.GitHubBuilder;
 
 public class Requests {
-	private static Map<String, String > csvs = new HashMap<String, String>();
+	private static Map<String, String> csvCache = new HashMap<String, String>();
 	
 	/**
 	 * Gets the content from a GitGub API file
@@ -56,13 +56,13 @@ public class Requests {
 
 	public static String getReportByDay(long day) {
 		SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
-		
-		String formatedDate = format.format(new Date(day)); 
-		
+		String formatedDate = format.format(new Date(day));
 		String retorno = null;
 		
-		if(csvs.get(formatedDate) != null) {
-			return csvs.get(formatedDate);
+		// TODO: Read local if the file exists. If the file is downloaded, write to disk. (1)
+		
+		if (csvCache.get(formatedDate) != null) {
+			return csvCache.get(formatedDate);
 		}
 		
 		try {
@@ -76,7 +76,7 @@ public class Requests {
 			return null;
 		}
 		
-		csvs.put(formatedDate, retorno);
+		csvCache.put(formatedDate, retorno);
 	
 		return retorno;
 	}
