@@ -42,35 +42,40 @@ public class TimeSeriesDataProvider {
 	 * @param isAscending if true, enforces the time series to be ascending.
 	 */
 	private static void provideSeries(XYChart<String, Number> destChart, String name,
-			ArrayList<Data<String, Number>> data, int stride, float normFactor, boolean isAscending) {
+			ArrayList<Data<String, Number>> data, int stride, float normFactor, boolean isAscending) {		
 		XYChart.Series<String, Number> series = new XYChart.Series<>();
+		series.setName(name);
+
+		if (data.size() <= 0) return;
 		
 		for (int i = 0; i < data.size(); i += stride) {
 			// Interpolates the values by taking the mean
 			float interpolatedValue = 0.0f;
+			int total = 0;
 			
 			for (int j = i; j < i + stride; ++j) {
-				int value = (int) data.get(j).getYValue();
-				
-				// Ensures time series is ascending (when isAscending is true).
-				if (j > 0 && isAscending) {
-					int previousValue = (int) data.get(j-1).getYValue();
-					if (value <= previousValue) {
-						value = previousValue;
+				if (j < data.size()) {
+					int value = (int) data.get(j).getYValue();
+					
+					// Ensures time series is ascending (when isAscending is true).
+					if (j > 0 && isAscending) {
+						int previousValue = (int) data.get(j-1).getYValue();
+						if (value <= previousValue) {
+							value = previousValue;
+						}
 					}
+					
+					total += 1;
+					interpolatedValue += value;
 				}
-				
-				interpolatedValue += value;
 			}
 			
-			interpolatedValue /= (stride * normFactor);
+			interpolatedValue /= (total * normFactor);
 			
-			String label = data.get(i + stride/2).getXValue();
+			String label = data.get(Math.min(data.size()-1, i + stride/2)).getXValue();
 			series.getData().add(new XYChart.Data<String, Number>(label, interpolatedValue));
 		}
 		
-		series.setName(name);
 		destChart.getData().add(series);
 	}
-
 }

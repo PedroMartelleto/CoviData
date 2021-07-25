@@ -9,15 +9,122 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import com.sothawo.mapjfx.MapView?>
+
 <?import com.dashboard.components.menuBar.DashboardMenuBar?>
 
-<fx:root fx:controller="com.dashboard.components.scenes.infected.InfectedScene" type="AnchorPane"
-		 maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <DashboardMenuBar selected="infected"></DashboardMenuBar>
-         </children>
-      </VBox>
-   </children>
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0"
+	prefWidth="940.0" style="-fx-background-color: white;"
+	type="AnchorPane" xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="com.dashboard.components.scenes.infected.InfectedScene">
+	<children>
+		<VBox prefHeight="200.0" prefWidth="100.0"
+			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<children>
+				<ScrollPane fitToWidth="true" prefHeight="200.0"
+					prefWidth="200.0" VBox.vgrow="ALWAYS">
+					<content>
+						<VBox style="-fx-background-color: white;">
+							<children>
+								<DashboardMenuBar selected="infected" />
+								<Label text="Novos casos e mortes" textFill="#3f4043">
+									<font>
+										<Font name="Lucida Bright Regular" size="28.0" />
+									</font>
+									<VBox.margin>
+										<Insets bottom="32.0" left="32.0" right="32.0"
+											top="48.0" />
+									</VBox.margin>
+								</Label>
+								<HBox alignment="CENTER" prefHeight="147.0"
+									prefWidth="829.0" style="-fx-background-color: #f0f5f7;">
+									<children>
+										<VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+											<children>
+												<Label alignment="CENTER" text="19.778.896"
+													textFill="#4444d0" VBox.vgrow="ALWAYS">
+													<font>
+														<Font name="Lucida Bright Regular" size="42.0" />
+													</font>
+												</Label>
+												<Label alignment="CENTER" text="casos confirmados"
+													VBox.vgrow="ALWAYS">
+													<font>
+														<Font name="Lucida Bright Regular" size="15.0" />
+													</font>
+												</Label>
+											</children>
+											<HBox.margin>
+												<Insets />
+											</HBox.margin>
+										</VBox>
+										<VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+											<children>
+												<Label text="415.123" textFill="#fc1616">
+													<font>
+														<Font name="Lucida Bright Regular" size="42.0" />
+													</font>
+												</Label>
+												<Label alignment="CENTER" text="óbitos"
+													VBox.vgrow="ALWAYS">
+													<font>
+														<Font name="Lucida Bright Regular" size="15.0" />
+													</font>
+												</Label>
+											</children>
+											<HBox.margin>
+												<Insets />
+											</HBox.margin>
+										</VBox>
+									</children>
+									<VBox.margin>
+										<Insets bottom="16.0" left="32.0" right="32.0" />
+									</VBox.margin>
+								</HBox>
+								<HBox prefHeight="309.0" prefWidth="829.0"
+									VBox.vgrow="ALWAYS">
+									<children>
+										<AreaChart prefHeight="309.0" prefWidth="474.0"
+											HBox.hgrow="ALWAYS">
+											<xAxis>
+												<CategoryAxis side="BOTTOM" />
+											</xAxis>
+											<yAxis>
+												<NumberAxis side="LEFT" />
+											</yAxis>
+										</AreaChart>
+										<AreaChart prefHeight="252.0" prefWidth="480.0"
+											HBox.hgrow="ALWAYS">
+											<xAxis>
+												<CategoryAxis side="BOTTOM" />
+											</xAxis>
+											<yAxis>
+												<NumberAxis side="LEFT" />
+											</yAxis>
+										</AreaChart>
+									</children>
+									<VBox.margin>
+										<Insets left="32.0" right="32.0" />
+									</VBox.margin>
+								</HBox>
+								<HBox prefHeight="329.0" prefWidth="940.0"
+									VBox.vgrow="ALWAYS">
+									<children>
+										<MapView fx:id="casesMapView" HBox.hgrow="ALWAYS" />
+										<MapView fx:id="deathsMapView" HBox.hgrow="ALWAYS" />
+									</children>
+								</HBox>
+							</children>
+							<padding>
+								<Insets top="-1.0" left="15.0" right="15.0" />
+							</padding>
+						</VBox>
+					</content>
+				</ScrollPane>
+			</children>
+		</VBox>
+	</children>
 </fx:root>
