@@ -1,5 +1,8 @@
 package com.dashboard.data.importer;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,7 +95,7 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 			int totalCasesState = 0;
 			
 			for (String[] line : file.getValue()) {
-				if (allStates || stateName.equals(line[2])) {
+				if (allStates || stateName.equals(line[1])) {
 					System.out.println(line);
 					totalCasesState += Integer.parseInt(line[4]) - lastDay;
 					lastDay = Integer.parseInt(line[4]);
@@ -129,7 +132,7 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 		for (Map.Entry<String, List<String[]>> file : dataSorted.entrySet()) {
 			int totalCasesState = 0;
 			for (String[] line : file.getValue()) {
-				if (allStates || stateName.equals(line[2])) {
+				if (allStates || stateName.equals(line[1])) {
 					try {
 						totalCasesState += Integer.parseInt(line[5]) - lastDay;
 						lastDay = Integer.parseInt(line[5]);
@@ -171,6 +174,7 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 	 */
 	@Override
 	public MapChartDataModel getCasesMapChart() {
+		SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
 		MapChartDataModel data = new MapChartDataModel();
 
 		Map<String, int[]> values = new HashMap<String, int[]>();
@@ -184,28 +188,30 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 		
 		for (int i = 0; i < 15; i++) {
 			// leitura do csv do dia
-			String csvNotParsed = Requests.getReportByDay(day);
+			String fileName = format.format(new Date(day)) + ".csv";
+			String csvNotParsed = "";
+			try {
+				csvNotParsed = DataFiles.readData(fileName);
+			} catch(IOException e) {
+				continue;
+			}
+				
 
-			if (csvNotParsed != null) {
-				List<String[]> csvParsed = CsvParser.getAllContent(csvNotParsed);
+			List<String[]> csvParsed = CsvParser.getAllContent(csvNotParsed);
 
-				for (String[] line : csvParsed) {
-					if (line[3].equals("Brazil")) {
-						// System.out.println(line[2]);
+			for (String[] line : csvParsed) {
+				// grava valor do dia para estado correspondente
+				int[] valuesOfState = values.get(line[1]);
 
-						// grava valor do dia para estado correspondente
-						int[] valuesOfState = values.get(line[2]);
+				valuesOfState[i] = Integer.valueOf(line[4]);
 
-						valuesOfState[i] = Integer.valueOf(line[7]);
-
-						if (i == 0) {
-							coordinates.put(line[2],
-									new Pair<Double, Double>(Double.valueOf(line[5]), Double.valueOf(line[6])));
-						}
-					}
+				if (i == 0) {
+					coordinates.put(line[1], new Pair<Double, Double>(Double.valueOf(line[2]), Double.valueOf(line[3])));
 				}
 			}
+
 			day -= 24 * 60 * 60 * 1000;
+			
 			// data.addPin(Double.valueOf(line[5]), Double.valueOf(line[6]),
 			// Integer.valueOf(line[8]), line[2]);
 		}
@@ -256,6 +262,7 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 
 	@Override
 	public MapChartDataModel getDeathsMapChart() {
+		SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
 		MapChartDataModel data = new MapChartDataModel();
 
 		Map<String, int[]> values = new HashMap<String, int[]>();
@@ -266,36 +273,39 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 		}
 
 		long day = System.currentTimeMillis() - 24 * 60 * 60 * 1000;
-
+		
 		for (int i = 0; i < 15; i++) {
-
 			// leitura do csv do dia
-			String csvNotParsed = Requests.getReportByDay(day);
+			String fileName = format.format(new Date(day)) + ".csv";
+			System.out.print(fileName + "\n");
+			String csvNotParsed = "";
+			try {
+				csvNotParsed = DataFiles.readData(fileName);
+			} catch(IOException e) {
+				continue;
+			}
+				
 
-			if (csvNotParsed != null) {
-				List<String[]> csvParsed = CsvParser.getAllContent(csvNotParsed);
+			List<String[]> csvParsed = CsvParser.getAllContent(csvNotParsed);
 
-				for (String[] line : csvParsed) {
-					if (line[3].equals("Brazil")) {
-						// System.out.println(line[2]);
+			for (String[] line : csvParsed) {
+				// grava valor do dia para estado correspondente
+				int[] valuesOfState = values.get(line[1]);
 
-						// grava valor do dia para estado correspondente
-						int[] valuesOfState = values.get(line[2]);
+				System.out.print(line[5] + "\n\n");
+				valuesOfState[i] = Integer.valueOf(line[5]);
 
-						valuesOfState[i] = Integer.valueOf(line[8]);
-
-						if (i == 0) {
-							coordinates.put(line[2],
-									new Pair<Double, Double>(Double.valueOf(line[5]), Double.valueOf(line[6])));
-						}
-					}
+				if (i == 0) {
+					coordinates.put(line[1], new Pair<Double, Double>(Double.valueOf(line[2]), Double.valueOf(line[3])));
 				}
 			}
+
 			day -= 24 * 60 * 60 * 1000;
+			
 			// data.addPin(Double.valueOf(line[5]), Double.valueOf(line[6]),
 			// Integer.valueOf(line[8]), line[2]);
 		}
-
+				
 		// obtenção dos dados de mortes diárias
 		for (int[] valuesByState : values.values()) {
 			for (int i = 0; i < 14; i++) {

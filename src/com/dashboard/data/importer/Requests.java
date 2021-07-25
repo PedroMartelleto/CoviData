@@ -20,7 +20,7 @@ public class Requests {
 	 * 
 	 * @param gitContent The GitHub API file content
 	 * 
-	 * @return The git file content
+	 * @return The GIT file content
 	 * @throws IOException if the API send the data in a different format
 	 */
 	public static String getContent(GHContent gitContent) throws IOException {
@@ -36,7 +36,7 @@ public class Requests {
 		Map<String, String> contents = new HashMap<String, String>();
 
 		try {
-			GitHub github = new GitHubBuilder().withOAuthToken("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").build();
+			GitHub github = new GitHubBuilder().withOAuthToken("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").build();
 			GHRepository repo = github.getUser("CSSEGISandData").getRepository("COVID-19");
 			List<GHContent> gitContent = repo.getDirectoryContent("csse_covid_19_data/csse_covid_19_daily_reports");
 
@@ -53,33 +53,6 @@ public class Requests {
 
 		return contents;
 	}
-
-	public static String getReportByDay(long day) {
-		SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
-		String formatedDate = format.format(new Date(day));
-		String retorno = null;
-		
-		// TODO: Read local if the file exists. If the file is downloaded, write to disk. (1)
-		
-		if (csvCache.get(formatedDate) != null) {
-			return csvCache.get(formatedDate);
-		}
-		
-		try {
-			GitHub github = new GitHubBuilder().withOAuthToken("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").build();
-			GHRepository repo = github.getUser("CSSEGISandData").getRepository("COVID-19");
-			GHContent content = repo.getFileContent("csse_covid_19_data/csse_covid_19_daily_reports/" + formatedDate + ".csv");
-			retorno = new String(content.read().readAllBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-			
-			return null;
-		}
-		
-		csvCache.put(formatedDate, retorno);
-	
-		return retorno;
-	}
 	
 	/**
 	 * Gets the content of the vaccination API
@@ -88,7 +61,7 @@ public class Requests {
 	 */
 	public static String getTotalVaccinated() {
 		try {
-			GitHub github = new GitHubBuilder().withOAuthToken("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").build();
+			GitHub github = new GitHubBuilder().withOAuthToken("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").build();
 			GHRepository repo = github.getUser("owid").getRepository("covid-19-data");
 			GHContent content = repo.getFileContent("public/data/vaccinations/country_data/Brazil.csv");
 			return new String(content.read().readAllBytes());

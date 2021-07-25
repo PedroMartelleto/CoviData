@@ -50,12 +50,9 @@ public class DataFiles {
 		bw = new BufferedWriter(fw);
 
 		// Writes the fields in the file
-		Boolean deleteFlag = true;
 		for (String[] line : data) {
 			// We will only use the Brazil data
 			if (line[3].equals("Brazil")) {
-				deleteFlag = false;
-
 				String state = line[2];
 				String country = line[3];
 				String lat = line[5];
@@ -64,7 +61,7 @@ public class DataFiles {
 				String deaths = line[8];
 
 				try {
-					bw.write(country + "," + state + "," + lat + "," + lon + "," + cases + "," + deaths + "\n");
+					bw.write(country + "," + state + "," + lat + "," + lon + "," + cases + "," + deaths + ",\r\n");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -79,10 +76,6 @@ public class DataFiles {
 			e.printStackTrace();
 			return true;
 		}
-
-		// Ensures that there isn't a file without the expected data
-		if (deleteFlag)
-			file.delete();
 
 		return false;
 	}
@@ -115,7 +108,7 @@ public class DataFiles {
 	 * @throws IOException if the API fails
 	 */
 	public static void writeMissedData() throws IOException {
-		GitHub github = new GitHubBuilder().withOAuthToken("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").build();
+		GitHub github = new GitHubBuilder().withOAuthToken("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").build();
 		GHRepository repo = github.getUser("CSSEGISandData").getRepository("COVID-19");
 		List<GHContent> directory = repo.getDirectoryContent("csse_covid_19_data/csse_covid_19_daily_reports");
 
@@ -129,6 +122,7 @@ public class DataFiles {
 					// If not, request the missed files
 					String content = Requests.getContent(gitFile);
 					writeData(name, CsvParser.getAllContent(content));
+					System.out.print("Novo arquivo escrito: " + name + "\n");
 				}
 			}
 		}

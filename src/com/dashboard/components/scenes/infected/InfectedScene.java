@@ -97,25 +97,24 @@ public class InfectedScene extends AnchorPane {
 	}
 
 	public void initMap() {
-		// TODO: Uncomment this after (1) [currently very slow]
-//		casesMapCircles = MapDataProvider.casesByState();
-//		deathsMapCircles = MapDataProvider.deathsByState();
+		casesMapCircles = MapDataProvider.casesByState();
+		deathsMapCircles = MapDataProvider.deathsByState();
 		
-//		// Adds events to run after the maps have been initialized
-//		casesMapView.initializedProperty().addListener((observable, oldValue, newValue) -> {
-//			if (newValue)
-//				addCirclesToMap(casesMapView, casesMapCircles);
-//		});
-//
-//		deathsMapView.initializedProperty().addListener((observable, oldValue, newValue) -> {
-//			if (newValue)
-//				addCirclesToMap(deathsMapView, deathsMapCircles);
-//		});
-//
-//		// Initializes the map
-//		casesMapView.initialize(Configuration.builder().projection(Projection.WEB_MERCATOR).interactive(false).build());
-//		deathsMapView
-//				.initialize(Configuration.builder().projection(Projection.WEB_MERCATOR).interactive(false).build());
+		// Adds events to run after the maps have been initialized
+		casesMapView.initializedProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue)
+				addCirclesToMap(casesMapView, casesMapCircles);
+		});
+
+		deathsMapView.initializedProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue)
+				addCirclesToMap(deathsMapView, deathsMapCircles);
+		});
+
+		// Initializes the map
+		casesMapView.initialize(Configuration.builder().projection(Projection.WEB_MERCATOR).interactive(false).build());
+		deathsMapView
+				.initialize(Configuration.builder().projection(Projection.WEB_MERCATOR).interactive(false).build());
 	}
 
 	/**
