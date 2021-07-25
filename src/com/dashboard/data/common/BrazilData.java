@@ -5,8 +5,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sothawo.mapjfx.Coordinate;
+
 public class BrazilData {
 	public static final String ALL_STATES = "Todos os estados";
+	public static final Coordinate CENTER = new Coordinate(-15.723588679352947, -46.98361582418985);
 	
 	private static long totalPopulation = 0;	
 	private static Map<String, Long> populationsMap = new HashMap<String, Long>();

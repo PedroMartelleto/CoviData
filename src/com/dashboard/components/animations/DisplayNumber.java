@@ -33,6 +33,14 @@ public class DisplayNumber {
 	 */
 	@Override
 	public String toString() {
+		if (digitsCount == 0) {
+			String wholeNumber = (int)value + suffix;
+			for (int i = wholeNumber.length() - 3; i > 0; i -= 3) {
+				wholeNumber = wholeNumber.substring(0, i) + "." + wholeNumber.substring(i);
+			}
+			return wholeNumber;
+		}
+		
 		float factor = (float)Math.pow(10, digitsCount);		
 		float formatted = Math.round(value * factor) / factor;		
 		return formatted + suffix;

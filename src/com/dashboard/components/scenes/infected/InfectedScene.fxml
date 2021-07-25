@@ -9,8 +9,8 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import com.sothawo.mapjfx.MapView?>
 
+<?import com.sothawo.mapjfx.MapView?>
 <?import com.dashboard.components.menuBar.DashboardMenuBar?>
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity"
@@ -36,16 +36,22 @@
 									</font>
 									<VBox.margin>
 										<Insets bottom="32.0" left="32.0" right="32.0"
-											top="48.0" />
+											top="20.0" />
 									</VBox.margin>
 								</Label>
+								<ChoiceBox fx:id="stateChoiceBox" prefWidth="150.0">
+									<VBox.margin>
+										<Insets bottom="16.0" left="32.0" right="32.0"
+											top="-12.0" />
+									</VBox.margin>
+								</ChoiceBox>
 								<HBox alignment="CENTER" prefHeight="147.0"
 									prefWidth="829.0" style="-fx-background-color: #f0f5f7;">
 									<children>
 										<VBox alignment="CENTER" HBox.hgrow="ALWAYS">
 											<children>
-												<Label alignment="CENTER" text="19.778.896"
-													textFill="#4444d0" VBox.vgrow="ALWAYS">
+												<Label fx:id="totalCasesLabel" alignment="CENTER"
+													text="19.778.896" textFill="#4444d0" VBox.vgrow="ALWAYS">
 													<font>
 														<Font name="Lucida Bright Regular" size="42.0" />
 													</font>
@@ -63,7 +69,8 @@
 										</VBox>
 										<VBox alignment="CENTER" HBox.hgrow="ALWAYS">
 											<children>
-												<Label text="415.123" textFill="#fc1616">
+												<Label fx:id="totalDeathsLabel" text="415.123"
+													textFill="#fc1616">
 													<font>
 														<Font name="Lucida Bright Regular" size="42.0" />
 													</font>
@@ -88,7 +95,7 @@
 									VBox.vgrow="ALWAYS">
 									<children>
 										<AreaChart prefHeight="309.0" prefWidth="474.0"
-											HBox.hgrow="ALWAYS">
+											HBox.hgrow="ALWAYS" fx:id="casesChart">
 											<xAxis>
 												<CategoryAxis side="BOTTOM" />
 											</xAxis>
@@ -97,7 +104,7 @@
 											</yAxis>
 										</AreaChart>
 										<AreaChart prefHeight="252.0" prefWidth="480.0"
-											HBox.hgrow="ALWAYS">
+											HBox.hgrow="ALWAYS" fx:id="deathsChart">
 											<xAxis>
 												<CategoryAxis side="BOTTOM" />
 											</xAxis>
@@ -119,7 +126,7 @@
 								</HBox>
 							</children>
 							<padding>
-								<Insets top="-1.0" left="15.0" right="15.0" />
+								<Insets left="15.0" right="15.0" top="-1.0" />
 							</padding>
 						</VBox>
 					</content>
