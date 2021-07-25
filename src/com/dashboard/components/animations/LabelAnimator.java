@@ -77,7 +77,7 @@ public class LabelAnimator extends AnimationTimer {
 	        float change = Math.min(anim.current.getValue() - anim.target.getValue(), maxSpeed * smoothTime);
 	        float originalTo = anim.target.getValue();
 	
-	        anim.target.setValue(anim.current.getValue() - change);
+	        //anim.target.setValue(anim.current.getValue() - change);
 	
 	        float temp = (anim.velocity + omega * change) * deltaTime;
 	        anim.velocity = (anim.velocity - omega * temp) * exp;

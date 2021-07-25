@@ -90,6 +90,8 @@ public class VaccinationsScene extends AnchorPane {
 
 		String suffix = relativeNumbers ? "%" : " M";
 		float normFactor = relativeNumbers ? 0.01f * BrazilData.getBrazilPopulation(): (float) 1e6 ;
+		
+		System.out.println("Vacinados 7 dias: " + vaccinatedLast7DaysNumber + " Doses unicas: " + oneDosesNumber);
 		        
 		animator.setLabelTarget(vaccinatedLast7Days, new DisplayNumber(Float.valueOf(this.vaccinatedLast7DaysNumber) / normFactor, 1, suffix));
 		animator.setLabelTarget(twoDosesLabel, new DisplayNumber(Float.valueOf(this.twoDosesNumber) / normFactor, 1, suffix));

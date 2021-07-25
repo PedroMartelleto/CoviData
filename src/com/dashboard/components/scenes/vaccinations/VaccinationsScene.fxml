@@ -26,7 +26,7 @@
                               <Font name="Lucida Bright Regular" size="28.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="32.0" left="32.0" right="32.0" top="48.0" />
+                              <Insets bottom="16.0" left="32.0" right="32.0" top="16.0" />
                            </VBox.margin>
                         </Label>
                         <AreaChart fx:id="vaccinationsChart" animated="true" prefHeight="435.0" prefWidth="608.0" VBox.vgrow="ALWAYS">
@@ -66,18 +66,11 @@
                   </VBox>
                   <VBox alignment="TOP_RIGHT" prefHeight="623.0" prefWidth="333.0" style="-fx-background-color: #f0f5f7;">
                      <children>
-                        <VBox alignment="BOTTOM_RIGHT" prefHeight="95.0" prefWidth="213.0">
-                           <children>
-                              <ChoiceBox fx:id="displayModeChoiceBox" prefWidth="150.0">
-                                 <VBox.margin>
-                                    <Insets bottom="12.0" />
-                                 </VBox.margin>
-                              </ChoiceBox>
-                           </children>
+                        <ChoiceBox fx:id="displayModeChoiceBox" prefWidth="150.0">
                            <VBox.margin>
-                              <Insets bottom="16.0" />
+                              <Insets top="26.0" />
                            </VBox.margin>
-                        </VBox>
+                        </ChoiceBox>
                         <VBox alignment="CENTER" prefHeight="528.0" prefWidth="301.0" style="-fx-background-color: #f0f5f7;" VBox.vgrow="ALWAYS">
                            <children>
                               <Label fx:id="twoDosesLabel" alignment="CENTER" prefHeight="94.0" prefWidth="317.0" text="18%" textFill="#141414" textOverrun="CLIP">

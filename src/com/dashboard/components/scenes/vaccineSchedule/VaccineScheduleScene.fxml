@@ -21,7 +21,7 @@
                   <Font name="Lucida Bright Regular" size="28.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="32.0" left="32.0" right="32.0" top="48.0" />
+                  <Insets bottom="32.0" left="32.0" right="32.0" top="20.0" />
                </VBox.margin>
             </Label>
             <Label text="Atualizado 21 de julho de 2021">
