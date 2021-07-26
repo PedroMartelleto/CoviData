@@ -19,6 +19,23 @@ public class VaccineScheduleTableRow {
 	private String total;
 	private String situation;
 
+	/**
+	 * Creates a new row of the vaccine schedule data.
+	 * @param anvisaStatus
+	 * @param vaccineName
+	 * @param laboratory
+	 * @param jan21
+	 * @param fev21
+	 * @param mar21
+	 * @param abr21
+	 * @param mai21
+	 * @param jun21
+	 * @param jul21
+	 * @param ago21
+	 * @param afterAgo21
+	 * @param total
+	 * @param situation
+	 */
 	public VaccineScheduleTableRow(String anvisaStatus, String vaccineName, String laboratory, String jan21,
 			String fev21, String mar21, String abr21, String mai21, String jun21, String jul21, String ago21,
 			String afterAgo21, String total, String situation) {

@@ -11,7 +11,9 @@ import javafx.stage.Stage;;
  * The main class. Extends a JFX Application and creates a new stage with our program.
  */
 public class Main extends Application {
-	
+	/**
+	 * Starts the application.
+	 */
 	@Override
     public void start(Stage primaryStage) throws Exception {	
 		primaryStage.setTitle("COVID-19 Dashboard");
@@ -21,6 +23,10 @@ public class Main extends Application {
 		primaryStage.show();
     }
 
+	/**
+	 * The entry point.
+	 * @param args terminal-passed arguments. Ignored in this app.
+	 */
     public static void main(String[] args) {
     	// Make sure that the user has the most recent data
     	try {    		

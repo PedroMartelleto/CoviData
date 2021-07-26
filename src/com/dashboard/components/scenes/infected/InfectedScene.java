@@ -73,6 +73,9 @@ public class InfectedScene extends AnchorPane {
 	 */
 	private MapDataProvider mapDataProvider;
 	
+	/**
+	 * Creates a new instance of InfectedScene.
+	 */
 	public InfectedScene() {
 		FXMLUtils.loadFXML(this);
 	}
@@ -121,7 +124,7 @@ public class InfectedScene extends AnchorPane {
 		animator.setLabelTarget(totalDeathsLabel, new DisplayNumber(timeSeriesDataProvider.totalDeaths, 0, ""));
 	}
 
-	public void initMap() {
+	private void initMap() {
 		casesMapCircles = mapDataProvider.casesByState();
 		deathsMapCircles = mapDataProvider.deathsByState();
 		

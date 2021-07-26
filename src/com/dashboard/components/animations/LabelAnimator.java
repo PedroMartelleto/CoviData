@@ -36,6 +36,13 @@ public class LabelAnimator extends AnimationTimer {
 	private HashMap<Label, AnimationData> labelsAnimDataMap = new HashMap<>();
 	private long previousTime = 0;
 	
+	/**
+	 * Adds a label to the list of labels animated by this class.
+	 * @param label a jfx label.
+	 * @param digitsCount number of decimal digits to display.
+	 * @param suffix string appended to the end of the value.
+	 * @param animSpeed speed of the animation.
+	 */
 	public void addLabel(Label label, int digitsCount, String suffix, float animSpeed) {
 		labelsAnimDataMap.put(label, new AnimationData(new DisplayNumber(0, digitsCount, suffix), animSpeed));
 	}

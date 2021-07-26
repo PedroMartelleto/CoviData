@@ -33,6 +33,10 @@ public class DashboardMenuBar extends HBox {
 	
 	private String viewSelected;
 
+	/**
+	 * Creates a new dashboard menu bar.
+	 * @param selected name of the current scene being displayed.
+	 */
 	public DashboardMenuBar(@NamedArg("selected") String selected) {
 		super();
 		

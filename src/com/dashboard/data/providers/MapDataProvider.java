@@ -32,7 +32,7 @@ public class MapDataProvider {
 	 */
 	public List<MapCircle> deathsByState() {
 		data = importer.getDeathsMapChart();
-		return getCircles(data.getDots());
+		return getCircles(data.getPins());
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class MapDataProvider {
 	 */
 	public List<MapCircle> casesByState() {
 		data = importer.getCasesMapChart();
-		return getCircles(data.getDots());
+		return getCircles(data.getPins());
 	}
 
 	/**

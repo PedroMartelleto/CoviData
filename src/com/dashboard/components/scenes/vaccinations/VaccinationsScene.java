@@ -132,6 +132,9 @@ public class VaccinationsScene extends AnchorPane {
 		onRelativeNumbersChoiceBoxChange(true);
 	}
 	
+	/**
+	 * Creates a new instance of the vaccinations scene.
+	 */
     public VaccinationsScene() {
     	FXMLUtils.loadFXML(this);
     }

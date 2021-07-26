@@ -18,21 +18,37 @@ public class SceneManager {
 	private static Scene newsReport = null;
 	private static Scene vaccineSchedule = null;
 	
+	/**
+	 * Returns an instance of the vaccinations scene.
+	 * @return
+	 */
 	public static Scene getVaccinations() {
 		if (vaccinations == null) vaccinations = initScene(new VaccinationsScene());
 		return vaccinations;
 	}
 	
+	/**
+	 * Returns an instance of the infected scene.
+	 * @return
+	 */
 	public static Scene getInfected() {
 		if (infected == null) infected = initScene(new InfectedScene());
 		return infected;
 	}
 	
+	/**
+	 * Returns an instance of the news report scene.
+	 * @return
+	 */
 	public static Scene getNewsReport() {
 		if (newsReport == null) newsReport = initScene(new NewsReportsScene());
 		return newsReport;
 	}
 	
+	/**
+	 * Returns an instance of the vaccine schedule scene.
+	 * @return
+	 */
 	public static Scene getVaccineSchedule() {
 		if (vaccineSchedule == null) vaccineSchedule = initScene(new VaccineScheduleScene());
 		return vaccineSchedule;

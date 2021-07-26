@@ -17,16 +17,30 @@ public class DisplayNumber implements Cloneable {
 	private final int digitsCount;
 	private final String suffix;
 	
+	/**
+	 * Creates a new display number.
+	 * @param value value of the number.
+	 * @param digitsCount number of decimal digits to display.
+	 * @param suffix suffix appended to the end of the number.
+	 */
 	public DisplayNumber(float value, int digitsCount, String suffix) {
 		this.value = value;
 		this.digitsCount = digitsCount;
 		this.suffix = suffix;
 	}
 	
+	/**
+	 * Gets the value of this DisplayNumber.
+	 * @return
+	 */
 	public float getValue() {
 		return value;
 	}
 	
+	/**
+	 * Sets the value of this DisplayNumber.
+	 * @return
+	 */
 	public void setValue(float newValue) {
 		value = newValue;
 	}
@@ -49,6 +63,9 @@ public class DisplayNumber implements Cloneable {
 		return formatted + suffix;
 	}
 	
+	/**
+	 * Clones this DisplayNumber.
+	 */
 	@Override
 	public Object clone() {
 		return new DisplayNumber(value, digitsCount, suffix);

@@ -57,6 +57,9 @@ public class VaccineScheduleScene extends AnchorPane {
 		}
 	}
 
+	/**
+	 * Creates a new instance of the vaccine schedule scene.
+	 */
 	public VaccineScheduleScene() {
 		FXMLUtils.loadFXML(this);
 	}

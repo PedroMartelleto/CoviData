@@ -5,6 +5,9 @@ import java.util.List;
 
 import com.opencsv.CSVReader;
 
+/**
+ * Helper class to parse a CSV table from a string.
+ */
 public class CsvParser {
 	/**
 	 * Separates fields from a CSV string.

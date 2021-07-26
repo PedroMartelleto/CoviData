@@ -18,6 +18,9 @@ public class NewsReportsScene extends AnchorPane {
 		webView.getEngine().load("https://g1.globo.com/bemestar/coronavirus/");
     }
 
+	/**
+	 * Creates a new instance of the news report scene.
+	 */
 	public NewsReportsScene() {
 		FXMLUtils.loadFXML(this);
 	}

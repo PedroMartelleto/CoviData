@@ -11,7 +11,14 @@ import com.sothawo.mapjfx.Coordinate;
  * Hard-coded values that are (mostly) constant over time.
  */
 public class BrazilGlobals {
+	/**
+	 * String that represents the option to get data from all states (sum of each individual state).
+	 */
 	public static final String ALL_STATES = "Todos os estados";
+	
+	/**
+	 * A coordinate in approximately the center of Brazil.
+	 */
 	public static final Coordinate CENTER = new Coordinate(-15.723588679352947, -46.98361582418985);
 	
 	private static long totalPopulation = 0;	
@@ -58,17 +65,25 @@ public class BrazilGlobals {
 		sortedStateNames.add(0, ALL_STATES);
 	}
 	
+	/**
+	 * Returns the total population in Brazil.
+	 * @return
+	 */
 	public static long getBrazilPopulation() {
 		return totalPopulation;
 	}
 	
+	/**
+	 * Returns a list of state names in Brazil.
+	 * @return
+	 */
 	public static ArrayList<String> getStateNames() {
 		return sortedStateNames;
 	}
 	
 	/**
 	 * Gets the population of a state by that state's name. Also supports getting the population of the entire country.
-	 * @param state
+	 * @param state name of the state from which to get the population.
 	 * @return
 	 */
 	public static long getPopulation(String state) {

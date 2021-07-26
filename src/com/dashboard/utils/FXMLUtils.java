@@ -13,8 +13,8 @@ public class FXMLUtils {
 	 * Initializes the given class as a controller.
 	 * Assumes that its fxml is in the same folder and has the same name as the class.
 	 * 
-	 * @param <T>
-	 * @param component
+	 * @param <T> the type (inferred) of the component.
+	 * @param component the component to load.
 	 */
 	public static <T extends Parent> void loadFXML(T component) {
 	    FXMLLoader loader = new FXMLLoader();

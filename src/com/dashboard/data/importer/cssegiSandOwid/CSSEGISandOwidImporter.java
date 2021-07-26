@@ -23,11 +23,17 @@ import com.dashboard.data.parser.CsvParser;
  * github api.
  */
 public class CSSEGISandOwidImporter implements CovidDataImporter {
+	/**
+	 * Total deaths in a certain region. Updated when calling this class' functions.
+	 */
 	public static int totalDeaths = 0;
+	
+	/**
+	 * Total cases in a certain region. Updated when calling this class' functions.
+	 */
 	public static int totalCases = 0;
 
 	private static ArrayList<String> states = BrazilGlobals.getStateNames();
-	private static String ALLSTATES = states.get(0);
 
 	/**
 	 * Parses a CSSEGISandData-downloaded csv and returns relevant vaccination
@@ -72,7 +78,7 @@ public class CSSEGISandOwidImporter implements CovidDataImporter {
 		int index = states.indexOf(stateName) - 1;
 		int yesterday = 0;
 		int total = 0;
-		;
+		
 		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
 			total = 0;
 
