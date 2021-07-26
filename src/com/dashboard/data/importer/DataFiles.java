@@ -129,7 +129,6 @@ public class DataFiles {
 
 	}
 
-
 	/**
 	 * Read the file and return the data
 	 * 
@@ -157,7 +156,7 @@ public class DataFiles {
 		String content = "";
 		
 		while (line != null && line.length() > 0) {
-			content += line;
+			content += line + "\n";
 			line = br.readLine();
 		}
 
@@ -167,7 +166,7 @@ public class DataFiles {
 
 		return content;
 	}
-
+	
 	/**
 	 * Read every cases/death data file in disk
 	 * @return Map<fileName, Lines<Fields[]>>
@@ -179,8 +178,12 @@ public class DataFiles {
 		Map<String, List<String[]>> data = new HashMap<String, List<String[]>>();
 		for (String file : fileNames) {
 			try {
-				List<String[]> content = CsvParser.getAllContent(readData(file));				
-				data.put(file, content);
+				String fileData = readData(file);
+				if (!fileData.isEmpty()) {
+					List<String[]> content = CsvParser.getAllContent(fileData);
+					String date = file.substring(6, 10) + "-" + file.substring(0, 1) + "-" + file.substring(3, 4);
+					data.put(date, content);
+				}
 			} catch (IOException e) {
 				// Not expected to EVER happen
 				e.printStackTrace();

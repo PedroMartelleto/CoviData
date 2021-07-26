@@ -50,58 +50,27 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 	}
 
 	/**
-	 * Reads the CSSEGISandData and calculates the country daily cases.
-	 */
-	@Override
-	public LineChartDataModel getDailyTotalCasesLineChart(String stateName) {
-		Map<String, List<String[]>> data = DataFiles.readAllData();
-		LineChartDataModel chart = new LineChartDataModel();
-
-		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
-			int totalCases = 0;
-			for (String[] line : file.getValue()) {
-				totalCases += Integer.parseInt(line[4]);
-			}
-			String name = file.getKey();
-			String date = name.substring(6, 9) + "-" + name.substring(0, 1) + "-" + name.substring(3, 4);
-
-			chart.addPoint(date, totalCases);
-		}
-
-		return chart;
-	}
-
-	/**
 	 * Reads the data and calculates the daily cases by Brazilian's states
 	 * 
 	 * @return Map<state, data>
 	 */
 	@Override
-	public LineChartDataModel getDailyStateCasesLineChart(String stateName) {
+	public LineChartDataModel getDailyCasesLineChart(String stateName) {
 		Map<String, List<String[]>> data = DataFiles.readAllData();
 		LineChartDataModel chart = new LineChartDataModel();
 
-		Map<String, List<String[]>> dataSorted = new TreeMap<>();
-
+		// boolean allStates = stateName.equals(BrazilData.ALL_STATES);
+		int yesterday = 0;
 		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
-			String name = file.getKey();
-			String date = name.substring(6, 10) + "-" + name.substring(0, 1) + "-" + name.substring(3, 4);
-			dataSorted.put(date, file.getValue());
-		}
-		
-		boolean allStates = stateName.equals(BrazilData.ALL_STATES);
-		int lastDay = 0;
-		for (Map.Entry<String, List<String[]>> file : dataSorted.entrySet()) {
-			int totalCasesState = 0;
+			int total = 0;
 			
+			// TODO: O(n) -> O(1);
+			// estado:	receber um int que passa a linha do estado buscado
+			// todos:	última linha vai ser a soma de todos os outros
 			for (String[] line : file.getValue()) {
-				if (allStates || stateName.equals(line[1])) {
-					System.out.println(line);
-					totalCasesState += Integer.parseInt(line[4]) - lastDay;
-					lastDay = Integer.parseInt(line[4]);
-				}
+				total += Integer.parseInt(line[4]);
 			}
-			chart.addPoint(file.getKey(), totalCasesState);
+			chart.addPoint(file.getKey(), total - yesterday);
 		}
 
 		return chart;
@@ -113,62 +82,27 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 	 * @return Map<state, data>
 	 */
 	@Override
-	public LineChartDataModel getDailyStateDeathsLineChart(String stateName) {
+	public LineChartDataModel getDailyDeathsLineChart(String stateName) {
 		Map<String, List<String[]>> data = DataFiles.readAllData();
 		LineChartDataModel chart = new LineChartDataModel();
 
-		Map<String, List<String[]>> dataSorted = new TreeMap<>();
-
+		// boolean allStates = stateName.equals(BrazilData.ALL_STATES);
+		int yesterday = 0;
 		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
-			String name = file.getKey();
-			String date = name.substring(6, 10) + "-" + name.substring(0, 1) + "-" + name.substring(3, 4);
-
-			dataSorted.put(date, file.getValue());
-		}
-
-		int lastDay = 0;
-		boolean allStates = stateName.equals(BrazilData.ALL_STATES);
-		
-		for (Map.Entry<String, List<String[]>> file : dataSorted.entrySet()) {
-			int totalCasesState = 0;
+			int total = 0;
+			
+			// TODO: O(n) -> O(1);
+			// estado:	receber um int que passa a linha do estado buscado
+			// todos:	última linha vai ser a soma de todos os outros
 			for (String[] line : file.getValue()) {
-				if (allStates || stateName.equals(line[1])) {
-					try {
-						totalCasesState += Integer.parseInt(line[5]) - lastDay;
-						lastDay = Integer.parseInt(line[5]);
-					} catch (Exception e) {}
-				}
+				total += Integer.parseInt(line[5]);
 			}
-			chart.addPoint(file.getKey(), totalCasesState);
-		}
-
-		return chart;
-
-	}
-
-
-	/**
-	 * Reads the data and calculates the country daily deaths
-	 */
-	@Override
-	public LineChartDataModel getDailyTotalDeathsLineChart(String stateName) {
-		Map<String, List<String[]>> data = DataFiles.readAllData();
-		LineChartDataModel chart = new LineChartDataModel();
-
-		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
-			int totalDeaths = 0;
-			for (String[] line : file.getValue()) {
-				totalDeaths += Integer.parseInt(line[5]);
-			}
-			String name = file.getKey();
-			String date = name.substring(6, 9) + "-" + name.substring(0, 1) + "-" + name.substring(3, 4);
-
-			chart.addPoint(date, totalDeaths);
+			chart.addPoint(file.getKey(), total - yesterday);
 		}
 
 		return chart;
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -277,7 +211,6 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 		for (int i = 0; i < 15; i++) {
 			// leitura do csv do dia
 			String fileName = format.format(new Date(day)) + ".csv";
-			System.out.print(fileName + "\n");
 			String csvNotParsed = "";
 			try {
 				csvNotParsed = DataFiles.readData(fileName);
@@ -292,7 +225,6 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 				// grava valor do dia para estado correspondente
 				int[] valuesOfState = values.get(line[1]);
 
-				System.out.print(line[5] + "\n\n");
 				valuesOfState[i] = Integer.valueOf(line[5]);
 
 				if (i == 0) {
