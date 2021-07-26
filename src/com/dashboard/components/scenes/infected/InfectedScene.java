@@ -1,5 +1,6 @@
 package com.dashboard.components.scenes.infected;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.dashboard.components.animations.DisplayNumber;
@@ -60,6 +61,8 @@ public class InfectedScene extends AnchorPane {
 	 * List of circles displayed on the deaths map.
 	 */
 	private List<MapCircle> deathsMapCircles;
+	
+	
 
 	public InfectedScene() {
 		FXMLUtils.loadFXML(this);

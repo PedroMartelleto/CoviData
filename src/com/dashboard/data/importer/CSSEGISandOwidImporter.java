@@ -2,6 +2,7 @@ package com.dashboard.data.importer;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +22,8 @@ import javafx.util.Pair;
  * Reads COVID-19 data from CSSEGI and OWID.
  */
 public class CSSEGISandOwidImporter implements ChartsInterface {
+	private static ArrayList<String> states = BrazilData.getStateNames();
+	private static String ALLSTATES = states.get(0);
 	/**
 	 * Parses a CSSEGISandData-downloaded csv and returns relevant vaccination information.
 	 */
@@ -60,17 +63,25 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 		Map<String, List<String[]>> data = DataFiles.readAllData();
 		LineChartDataModel chart = new LineChartDataModel();
 
+		int index = states.indexOf(stateName) - 1;
 		// boolean allStates = stateName.equals(BrazilData.ALL_STATES);
 		int yesterday = 0;
 		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
 			int total = 0;
 			
-			// TODO: O(n) -> O(1);
-			// estado:	receber um int que passa a linha do estado buscado
-			// todos:	última linha vai ser a soma de todos os outros
-			for (String[] line : file.getValue()) {
-				total += Integer.parseInt(line[4]);
+			if(index == -1) {
+				for (String[] line : file.getValue()) {
+					total += Integer.parseInt(line[4]);
+				}
 			}
+			else {
+				if(file.getValue().size() > 1) {
+					String[] line = file.getValue().get(index);
+					total += Integer.parseInt(line[4]);
+				}
+				
+			}
+			
 			chart.addPoint(file.getKey(), total - yesterday);
 		}
 
@@ -91,6 +102,7 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 		int yesterday = 0;
 		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
 			int total = 0;
+			
 			
 			// TODO: O(n) -> O(1);
 			// estado:	receber um int que passa a linha do estado buscado
