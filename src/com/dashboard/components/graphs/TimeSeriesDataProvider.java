@@ -17,6 +17,9 @@ public class TimeSeriesDataProvider {
 	public static int oneDosesNumber = 0;
 	public static int twoDosesNumber = 0;
 	public static float monthsTo70percent = 0.0f;
+	
+	public static int n_cases = 0;
+	public static int n_deaths = 0;
 
 	/**
 	 * Provides data for the accumulated vaccine doses chart.
@@ -29,7 +32,7 @@ public class TimeSeriesDataProvider {
 		LineChartDataModel[] data = importer.getVaccinationsLineChart();
 		calculateVaccinationConstants(data);
 		chart.setAnimated(true);
-		provideLabels(chart, "Vacinação acumulada por dia", "Data", "Quantidade");
+		provideLabels(chart, "Vacinação", "Data", "Quantidade");
 		
 		float normFactor = relativeNumbers ? BrazilData.getBrazilPopulation() : 1;
 		String chartNameSuffix = relativeNumbers ? "(números relativos)" : "(números absolutos)"; 
@@ -69,8 +72,9 @@ public class TimeSeriesDataProvider {
 	public static void cases(XYChart<String, Number> chart, int stride, String stateName) {
 		LineChartDataModel data = importer.getDailyCasesLineChart(stateName);
 		chart.setAnimated(true);
-		provideLabels(chart, "Casos acumulados por dia", "Data", "Quantidade");
-		provideSeries(chart, "Casos acumulados por dia", data.getPoints(), stride, 1, true);
+		provideLabels(chart, "Casos", "Data", "Quantidade");
+		provideSeries(chart, "Casos", data.getPoints(), stride, 1, true);
+		n_cases = CSSEGISandOwidImporter.n_cases;
 	}
 	
 	/**
@@ -83,8 +87,9 @@ public class TimeSeriesDataProvider {
 	public static void deaths(XYChart<String, Number> chart, int stride, String stateName) {
 		LineChartDataModel data = importer.getDailyDeathsLineChart(stateName);
 		chart.setAnimated(true);
-		provideLabels(chart, "Mortes acumuladas por dia", "Data", "Quantidade");
-		provideSeries(chart, "Mortes acumuladas por dia", data.getPoints(), stride, 1, true);
+		provideLabels(chart, "Mortes", "Data", "Quantidade");
+		provideSeries(chart, "Mortes", data.getPoints(), stride, 1, true);
+		n_deaths = CSSEGISandOwidImporter.n_deaths;
 	}
 	
 	/**

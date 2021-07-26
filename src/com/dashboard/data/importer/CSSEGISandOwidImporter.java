@@ -22,6 +22,9 @@ import javafx.util.Pair;
  * Reads COVID-19 data from CSSEGI and OWID.
  */
 public class CSSEGISandOwidImporter implements ChartsInterface {
+	public static int n_deaths = 0;
+	public static int n_cases = 0;
+	
 	private static ArrayList<String> states = BrazilData.getStateNames();
 	private static String ALLSTATES = states.get(0);
 	/**
@@ -66,8 +69,9 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 		int index = states.indexOf(stateName) - 1;
 		// boolean allStates = stateName.equals(BrazilData.ALL_STATES);
 		int yesterday = 0;
+		int total = 0;;
 		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
-			int total = 0;
+			total = 0;
 			
 			if(index == -1) {
 				for (String[] line : file.getValue()) {
@@ -83,8 +87,11 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 			}
 			
 			chart.addPoint(file.getKey(), total - yesterday);
+			yesterday = total;
 		}
 
+		
+		n_cases = total;
 		return chart;
 	}
 
@@ -98,25 +105,30 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 		Map<String, List<String[]>> data = DataFiles.readAllData();
 		LineChartDataModel chart = new LineChartDataModel();
 
+		int index = states.indexOf(stateName) - 1;
 		// boolean allStates = stateName.equals(BrazilData.ALL_STATES);
 		int yesterday = 0;
+		int total = 0;
 		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
-			int total = 0;
-			
-			
-			// TODO: O(n) -> O(1);
-			// estado:	receber um int que passa a linha do estado buscado
-			// todos:	última linha vai ser a soma de todos os outros
-			for (String[] line : file.getValue()) {
-				total += Integer.parseInt(line[5]);
+			total = 0;
+			if(index == -1) {
+				for (String[] line : file.getValue()) {
+					total += Integer.parseInt(line[5]);
+				}
 			}
+			else {
+				if(file.getValue().size() > 1) {
+					String[] line = file.getValue().get(index);
+					total += Integer.parseInt(line[5]);
+				}
+				
+			}
+			
 			chart.addPoint(file.getKey(), total - yesterday);
-		}
-		
-		for (Data<String, Number> point : chart.points) {
-			System.out.print(point.getYValue() + " " + point.getXValue().toString() + "\n");
+			yesterday = total;
 		}
 
+		n_deaths = total;
 		return chart;
 	}
 

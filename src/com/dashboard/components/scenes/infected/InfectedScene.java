@@ -81,6 +81,8 @@ public class InfectedScene extends AnchorPane {
 			if (oldValue != null && newValue != null && oldValue.equals(newValue)) {
 				return;
 			}
+			casesChart.getData().remove(0);
+			deathsChart.getData().remove(0);
 
 			onStateNameChange(newValue);
 		});
@@ -91,12 +93,11 @@ public class InfectedScene extends AnchorPane {
 	}
 
 	private void onStateNameChange(String state) {
-		// TODO: Get latest case count and death count by state name (3)
-		animator.setLabelTarget(totalCasesLabel, new DisplayNumber(19524865, 0, ""));
-		animator.setLabelTarget(totalDeathsLabel, new DisplayNumber(415203, 0, ""));
-
 		TimeSeriesDataProvider.cases(casesChart, 5, state);
 		TimeSeriesDataProvider.deaths(deathsChart, 5, state);
+		
+		animator.setLabelTarget(totalCasesLabel, new DisplayNumber(TimeSeriesDataProvider.n_cases, 0, ""));
+		animator.setLabelTarget(totalDeathsLabel, new DisplayNumber(TimeSeriesDataProvider.n_deaths, 0, ""));
 	}
 
 	public void initMap() {
