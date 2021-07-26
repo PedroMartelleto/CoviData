@@ -133,37 +133,37 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 	}
 
 	/**
-	 * 
+	 * Get the average data between the last 2 weeks new cases
 	 */
 	@Override
 	public MapChartDataModel getCasesMapChart() {
+		// Setting default variables
 		SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
 		MapChartDataModel data = new MapChartDataModel();
 
+		// Setting structures for data control
 		Map<String, int[]> values = new HashMap<String, int[]>();
 		Map<String, Pair<Double, Double>> coordinates = new HashMap<String, Pair<Double, Double>>();
-
 		for (String name : BrazilData.getStateNames()) {
-			values.put(name, new int[15]);
+			values.put(name, new int[3]);
 		}
 
+		// Getting the total number for the last 3 weeks
 		long day = System.currentTimeMillis() - 24 * 60 * 60 * 1000;
-		
-		for (int i = 0; i < 15; i++) {
-			// leitura do csv do dia
+		for (int i = 0; i < 3; i++) {
 			String fileName = format.format(new Date(day)) + ".csv";
 			String csvNotParsed = "";
 			try {
 				csvNotParsed = DataFiles.readData(fileName);
 			} catch(IOException e) {
+				day -= 24 * 60 * 60 * 1000;
+				i--;
 				continue;
 			}
-				
 
 			List<String[]> csvParsed = CsvParser.getAllContent(csvNotParsed);
 
 			for (String[] line : csvParsed) {
-				// grava valor do dia para estado correspondente
 				int[] valuesOfState = values.get(line[1]);
 
 				valuesOfState[i] = Integer.valueOf(line[4]);
@@ -173,85 +173,67 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 				}
 			}
 
-			day -= 24 * 60 * 60 * 1000;
-			
-			// data.addPin(Double.valueOf(line[5]), Double.valueOf(line[6]),
-			// Integer.valueOf(line[8]), line[2]);
+			day -= 7 * 24 * 60 * 60 * 1000;
 		}
-				
-		// obtenção dos dados de mortes diárias
+		
+		// Calculating the last 2 weeks increase 
 		for (int[] valuesByState : values.values()) {
-			for (int i = 0; i < 14; i++) {
-				int actualValue = valuesByState[i];
-				int beforeValue = valuesByState[i + 1];
-
-				valuesByState[i] = actualValue - beforeValue;
-			}
+			valuesByState[0] = valuesByState[0] - valuesByState[1];
+			valuesByState[1] = valuesByState[1] - valuesByState[2];
 		}
 
-		// Fazendo média semanal 1 e 2 e pegando o aumento da semana atual para a semana
-		// anterior
+		// Calculating the average between the 2 weeks
 		for (Map.Entry<String, int[]> valuesAndState : values.entrySet()) {
 			int[] valuesOfState = valuesAndState.getValue();
-			double averageThisWeek = 0;
-			double averageBeforeWeek = 0;
+			double thisWeek = valuesOfState[0];
+			double lastWeek = valuesOfState[1];
 
-			for (int i = 0; i < 7; i++) {
-				averageThisWeek += valuesOfState[i];
-			}
-			averageThisWeek = averageThisWeek / 7.0;
+			double average = thisWeek / lastWeek;
 
-			for (int i = 7; i < 14; i++) {
-				averageBeforeWeek += valuesOfState[i];
-			}
-			averageBeforeWeek = averageBeforeWeek / 7.0;
-
-			double average = averageThisWeek / averageBeforeWeek;
-
-			// System.out.println("Pegando chave: " + valuesAndState.getKey());
 			Pair<Double, Double> latLong = coordinates.get(valuesAndState.getKey());
 
 			if (latLong != null) {
-				// System.out.println("Lat: " + latLong.getKey() + " " + "Long: " +
-				// latLong.getValue());
 				data.addPin(latLong.getKey(), latLong.getValue(), average);
-
 			}
 
 		}
 
+		// Returning the average values
 		return data;
 	}
 
+	/**
+	 * Get the average data between the last 2 weeks new deaths
+	 */
 	@Override
 	public MapChartDataModel getDeathsMapChart() {
+		// Setting default variables
 		SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
 		MapChartDataModel data = new MapChartDataModel();
 
+		// Setting structures for data control
 		Map<String, int[]> values = new HashMap<String, int[]>();
 		Map<String, Pair<Double, Double>> coordinates = new HashMap<String, Pair<Double, Double>>();
-
 		for (String name : BrazilData.getStateNames()) {
-			values.put(name, new int[15]);
+			values.put(name, new int[3]);
 		}
 
+		// Getting the total number for the last 3 weeks
 		long day = System.currentTimeMillis() - 24 * 60 * 60 * 1000;
-		
-		for (int i = 0; i < 15; i++) {
-			// leitura do csv do dia
+		for (int i = 0; i < 3; i++) {
 			String fileName = format.format(new Date(day)) + ".csv";
 			String csvNotParsed = "";
 			try {
 				csvNotParsed = DataFiles.readData(fileName);
 			} catch(IOException e) {
+				day -= 24 * 60 * 60 * 1000;
+				i--;
 				continue;
 			}
-				
 
 			List<String[]> csvParsed = CsvParser.getAllContent(csvNotParsed);
 
 			for (String[] line : csvParsed) {
-				// grava valor do dia para estado correspondente
 				int[] valuesOfState = values.get(line[1]);
 
 				valuesOfState[i] = Integer.valueOf(line[5]);
@@ -261,53 +243,32 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 				}
 			}
 
-			day -= 24 * 60 * 60 * 1000;
-			
-			// data.addPin(Double.valueOf(line[5]), Double.valueOf(line[6]),
-			// Integer.valueOf(line[8]), line[2]);
+			day -= 7 * 24 * 60 * 60 * 1000;
 		}
-				
-		// obtenção dos dados de mortes diárias
+		
+		// Calculating the last 2 weeks increase 
 		for (int[] valuesByState : values.values()) {
-			for (int i = 0; i < 14; i++) {
-				int actualValue = valuesByState[i];
-				int beforeValue = valuesByState[i + 1];
-
-				valuesByState[i] = actualValue - beforeValue;
-			}
+			valuesByState[0] = valuesByState[0] - valuesByState[1];
+			valuesByState[1] = valuesByState[1] - valuesByState[2];
 		}
 
-		// Fazendo média semanal 1 e 2 e pegando o aumento da semana atual para a semana
-		// anterior
+		// Calculating the average between the 2 weeks
 		for (Map.Entry<String, int[]> valuesAndState : values.entrySet()) {
 			int[] valuesOfState = valuesAndState.getValue();
-			double averageThisWeek = 0;
-			double averageBeforeWeek = 0;
+			double thisWeek = valuesOfState[0];
+			double lastWeek = valuesOfState[1];
 
-			for (int i = 0; i < 7; i++) {
-				averageThisWeek += valuesOfState[i];
-			}
-			averageThisWeek = averageThisWeek / 7.0;
+			double average = thisWeek / lastWeek;
 
-			for (int i = 7; i < 14; i++) {
-				averageBeforeWeek += valuesOfState[i];
-			}
-			averageBeforeWeek = averageBeforeWeek / 7.0;
-
-			double average = averageThisWeek / averageBeforeWeek;
-
-			// System.out.println("Pegando chave: " + valuesAndState.getKey());
 			Pair<Double, Double> latLong = coordinates.get(valuesAndState.getKey());
 
 			if (latLong != null) {
-				// System.out.println("Lat: " + latLong.getKey() + " " + "Long: " +
-				// latLong.getValue());
 				data.addPin(latLong.getKey(), latLong.getValue(), average);
-
 			}
 
 		}
 
+		// Returning the average values
 		return data;
 	}
 
