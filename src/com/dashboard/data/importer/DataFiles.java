@@ -9,6 +9,7 @@ import org.kohsuke.github.GitHubBuilder;
 
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.HashMap;
 
 import com.dashboard.data.parser.CsvParser;
@@ -176,11 +177,14 @@ public class DataFiles {
 		File directory = new File("data");
 		String[] fileNames = directory.list();
 		
-		Map<String, List<String[]>> data = new HashMap<String, List<String[]>>();
+		Map<String, List<String[]>> data = new TreeMap<String, List<String[]>>();
 		for (String file : fileNames) {
 			try {
-				List<String[]> content = CsvParser.getAllContent(readData(file));				
-				data.put(file, content);
+				//System.out.println(file);
+				List<String[]> content = CsvParser.getAllContent(readData(file));	
+				
+				String date = file.substring(6, 10) + "-" + file.substring(0, 2) + "-" + file.substring(3, 5);
+				data.put(date, content);
 			} catch (IOException e) {
 				// Not expected to EVER happen
 				e.printStackTrace();

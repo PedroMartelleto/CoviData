@@ -2,6 +2,7 @@ package com.dashboard.data.importer;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -78,25 +79,21 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 	 */
 	@Override
 	public LineChartDataModel getDailyStateCasesLineChart(String stateName) {
+		System.out.println("Pegando casos diarias");
+
 		Map<String, List<String[]>> data = DataFiles.readAllData();
+		
+		System.out.println(data.size());
 		LineChartDataModel chart = new LineChartDataModel();
 
-		Map<String, List<String[]>> dataSorted = new TreeMap<>();
-
-		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
-			String name = file.getKey();
-			String date = name.substring(6, 10) + "-" + name.substring(0, 1) + "-" + name.substring(3, 4);
-			dataSorted.put(date, file.getValue());
-		}
-		
 		boolean allStates = stateName.equals(BrazilData.ALL_STATES);
 		int lastDay = 0;
-		for (Map.Entry<String, List<String[]>> file : dataSorted.entrySet()) {
+		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
 			int totalCasesState = 0;
 			
 			for (String[] line : file.getValue()) {
 				if (allStates || stateName.equals(line[1])) {
-					System.out.println(line);
+					//System.out.println(Arrays.toString(line));
 					totalCasesState += Integer.parseInt(line[4]) - lastDay;
 					lastDay = Integer.parseInt(line[4]);
 				}
@@ -114,25 +111,20 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 	 */
 	@Override
 	public LineChartDataModel getDailyStateDeathsLineChart(String stateName) {
+		
+		System.out.println("Pegando mortes diarias");
 		Map<String, List<String[]>> data = DataFiles.readAllData();
 		LineChartDataModel chart = new LineChartDataModel();
-
-		Map<String, List<String[]>> dataSorted = new TreeMap<>();
-
-		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
-			String name = file.getKey();
-			String date = name.substring(6, 10) + "-" + name.substring(0, 1) + "-" + name.substring(3, 4);
-
-			dataSorted.put(date, file.getValue());
-		}
 
 		int lastDay = 0;
 		boolean allStates = stateName.equals(BrazilData.ALL_STATES);
 		
-		for (Map.Entry<String, List<String[]>> file : dataSorted.entrySet()) {
+		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
 			int totalCasesState = 0;
 			for (String[] line : file.getValue()) {
 				if (allStates || stateName.equals(line[1])) {
+					//System.out.println(Arrays.toString(line));
+
 					try {
 						totalCasesState += Integer.parseInt(line[5]) - lastDay;
 						lastDay = Integer.parseInt(line[5]);
@@ -287,8 +279,11 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 				
 
 			List<String[]> csvParsed = CsvParser.getAllContent(csvNotParsed);
+			
+			System.out.println();
 
 			for (String[] line : csvParsed) {
+				System.out.println(Arrays.toString(line));
 				// grava valor do dia para estado correspondente
 				int[] valuesOfState = values.get(line[1]);
 
