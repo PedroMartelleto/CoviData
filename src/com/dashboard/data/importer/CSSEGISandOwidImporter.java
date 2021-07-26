@@ -1,13 +1,16 @@
 package com.dashboard.data.importer;
 
 import java.io.IOException;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.HashMap;
+
+import javafx.util.Pair;
 
 import com.dashboard.data.common.BrazilData;
 import com.dashboard.data.interfaces.ChartsInterface;
@@ -15,8 +18,6 @@ import com.dashboard.data.model.LineChartDataModel;
 import com.dashboard.data.model.MapChartDataModel;
 import com.dashboard.data.parser.CsvParser;
 
-import javafx.scene.chart.XYChart.Data;
-import javafx.util.Pair;
 
 /**
  * Reads COVID-19 data from CSSEGI and OWID.
@@ -27,6 +28,7 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 	
 	private static ArrayList<String> states = BrazilData.getStateNames();
 	private static String ALLSTATES = states.get(0);
+	
 	/**
 	 * Parses a CSSEGISandData-downloaded csv and returns relevant vaccination information.
 	 */

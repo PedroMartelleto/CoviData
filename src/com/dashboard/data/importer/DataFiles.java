@@ -2,23 +2,22 @@ package com.dashboard.data.importer;
 
 import java.io.IOException;
 
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 import org.kohsuke.github.GHContent;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
 import org.kohsuke.github.GitHubBuilder;
 
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.HashMap;
-
 import com.dashboard.data.parser.CsvParser;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 
 public class DataFiles {
 
@@ -51,6 +50,7 @@ public class DataFiles {
 		bw = new BufferedWriter(fw);
 
 		// Writes the fields in the file
+		Boolean deleteFlag = true;
 		for (String[] line : data) {
 			// We will only use the Brazil data
 			if (line[3].equals("Brazil")) {
@@ -63,6 +63,7 @@ public class DataFiles {
 
 				try {
 					bw.write(country + "," + state + "," + lat + "," + lon + "," + cases + "," + deaths + ",\r\n");
+					deleteFlag = false;
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -71,6 +72,7 @@ public class DataFiles {
 
 		// Closes the opened streams
 		try {
+			if (deleteFlag)	file.delete();
 			bw.close();
 			fw.close();
 		} catch (IOException e) {
