@@ -9,7 +9,7 @@ public class CSSUtils {
 	/**
 	 * Stylesheets common to all scenes.
 	 */
-	private static final String[] globalStylesheets = { "DashboardMenuBar", "Core" };
+	private static final String[] globalStylesheets = { "DashboardMenuBar" };
 	
 	/**
 	 * Loads all required CSS stylesheets to the given parent.
@@ -19,6 +19,5 @@ public class CSSUtils {
 		for (String stylesheet : globalStylesheets) {
 			parent.getStylesheets().add("com/dashboard/styles/" + stylesheet + ".css");
 		}
-		parent.getStylesheets().add("com/dashboard/styles/" + parent.getClass().getSimpleName() + ".css");
 	}
 }
