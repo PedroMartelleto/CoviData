@@ -5,9 +5,10 @@ import java.util.List;
 
 import com.dashboard.components.animations.DisplayNumber;
 import com.dashboard.components.animations.LabelAnimator;
-import com.dashboard.components.graphs.MapDataProvider;
-import com.dashboard.components.graphs.TimeSeriesDataProvider;
-import com.dashboard.data.common.BrazilData;
+import com.dashboard.data.globals.BrazilGlobals;
+import com.dashboard.data.importer.cssegiSandOwid.CSSEGISandOwidImporter;
+import com.dashboard.data.providers.MapDataProvider;
+import com.dashboard.data.providers.TimeSeriesDataProvider;
 import com.dashboard.utils.FXMLUtils;
 import com.sothawo.mapjfx.Configuration;
 import com.sothawo.mapjfx.MapCircle;
@@ -24,8 +25,8 @@ import javafx.scene.layout.AnchorPane;
  * Scene showing the current state of the daily infected/deaths.
  */
 public class InfectedScene extends AnchorPane {
-	// MARK: FXML Components
-
+	// FXML elements
+	
 	@FXML
 	private MapView casesMapView;
 
@@ -62,21 +63,35 @@ public class InfectedScene extends AnchorPane {
 	 */
 	private List<MapCircle> deathsMapCircles;
 	
+	/**
+	 * Provides the data for the charts.
+	 */
+	private TimeSeriesDataProvider timeSeriesDataProvider;
 	
-
+	/**
+	 * Provides the data for the maps.
+	 */
+	private MapDataProvider mapDataProvider;
+	
 	public InfectedScene() {
 		FXMLUtils.loadFXML(this);
 	}
 
 	@FXML
 	private void initialize() {
-		stateChoiceBox.getItems().addAll(BrazilData.getStateNames());
+		// Inits the providers w/ the importers
+		timeSeriesDataProvider = new TimeSeriesDataProvider(new CSSEGISandOwidImporter());
+		mapDataProvider = new MapDataProvider(new CSSEGISandOwidImporter());
+		
+		// Inits choice boxes and animations
+		stateChoiceBox.getItems().addAll(BrazilGlobals.getStateNames());
 		stateChoiceBox.getSelectionModel().selectFirst();
 
 		animator.addLabel(totalCasesLabel, 0, "", (float) 2e-2);
 		animator.addLabel(totalDeathsLabel, 0, "", (float) 2e-2);
 		animator.start();
-
+		
+		// When the state changes, updates the charts and constants displayed
 		stateChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			if (oldValue != null && newValue != null && oldValue.equals(newValue)) {
 				return;
@@ -86,23 +101,29 @@ public class InfectedScene extends AnchorPane {
 
 			onStateNameChange(newValue);
 		});
-
+		
+		// Inits JFX maps
 		initMap();
-
+		
+		// Updates the UI once.
 		onStateNameChange(stateChoiceBox.getSelectionModel().getSelectedItem());
 	}
 
+	/**
+	 * Called whenever the state name choice box changes.
+	 * @param state
+	 */
 	private void onStateNameChange(String state) {
-		TimeSeriesDataProvider.cases(casesChart, 5, state);
-		TimeSeriesDataProvider.deaths(deathsChart, 5, state);
+		timeSeriesDataProvider.cases(casesChart, 5, state);
+		timeSeriesDataProvider.deaths(deathsChart, 5, state);
 		
-		animator.setLabelTarget(totalCasesLabel, new DisplayNumber(TimeSeriesDataProvider.n_cases, 0, ""));
-		animator.setLabelTarget(totalDeathsLabel, new DisplayNumber(TimeSeriesDataProvider.n_deaths, 0, ""));
+		animator.setLabelTarget(totalCasesLabel, new DisplayNumber(timeSeriesDataProvider.totalCases, 0, ""));
+		animator.setLabelTarget(totalDeathsLabel, new DisplayNumber(timeSeriesDataProvider.totalDeaths, 0, ""));
 	}
 
 	public void initMap() {
-		casesMapCircles = MapDataProvider.casesByState();
-		deathsMapCircles = MapDataProvider.deathsByState();
+		casesMapCircles = mapDataProvider.casesByState();
+		deathsMapCircles = mapDataProvider.deathsByState();
 		
 		// Adds events to run after the maps have been initialized
 		casesMapView.initializedProperty().addListener((observable, oldValue, newValue) -> {
@@ -128,7 +149,7 @@ public class InfectedScene extends AnchorPane {
 	 * @param circles
 	 */
 	private void addCirclesToMap(MapView map, List<MapCircle> circles) {
-		map.setCenter(BrazilData.CENTER);
+		map.setCenter(BrazilGlobals.CENTER);
 		map.setZoom(4.4);
 
 		for (MapCircle circle : circles) {

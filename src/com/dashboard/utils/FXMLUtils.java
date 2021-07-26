@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 
 /**
  * Helper class that facilitates loading FXMLs in Controllers.
- * @author Pedro
  */
 public class FXMLUtils {
 	/**

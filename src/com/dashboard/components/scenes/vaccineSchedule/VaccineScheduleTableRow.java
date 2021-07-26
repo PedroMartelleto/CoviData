@@ -1,8 +1,7 @@
 package com.dashboard.components.scenes.vaccineSchedule;
 
 /**
- * Represents a table row in the vaccine schedule csv. This class is (mostly)
- * auto-generated.
+ * Represents a table row in the vaccine schedule csv. This class is (mostly) auto-generated.
  */
 public class VaccineScheduleTableRow {
 	private String anvisaStatus;

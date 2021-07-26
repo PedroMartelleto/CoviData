@@ -1,6 +1,6 @@
 package com.dashboard.components.menuBar;
 
-import com.dashboard.main.Scenes;
+import com.dashboard.main.SceneManager;
 import com.dashboard.utils.FXMLUtils;
 
 import javafx.beans.NamedArg;
@@ -39,6 +39,7 @@ public class DashboardMenuBar extends HBox {
 		FXMLUtils.loadFXML(this);
 		viewSelected = selected;
 		
+		// Highlights the correct item in the menu bar
 		if (viewSelected != null) {
 			switch (viewSelected) {
 			case "vaccinations":
@@ -64,20 +65,21 @@ public class DashboardMenuBar extends HBox {
 	 */
 	@FXML
 	private void initialize() {
+		// Switch scene events
 		vaccinationsButton.setOnMouseClicked(event -> {
-			setWindowScene(Scenes.getVaccinations(), vaccinationsButton);
+			setWindowScene(SceneManager.getVaccinations(), vaccinationsButton);
 		});
 
 		infectedButton.setOnMouseClicked(event -> {
-			setWindowScene(Scenes.getInfected(), infectedButton);
+			setWindowScene(SceneManager.getInfected(), infectedButton);
 		});
 
 		vaccineScheduleButton.setOnMouseClicked(event -> {
-			setWindowScene(Scenes.getVaccineSchedule(), vaccineScheduleButton);
+			setWindowScene(SceneManager.getVaccineSchedule(), vaccineScheduleButton);
 		});
 		
 		newsReportsButton.setOnMouseClicked(event -> {
-			setWindowScene(Scenes.getNewsReport(), newsReportsButton);
+			setWindowScene(SceneManager.getNewsReport(), newsReportsButton);
 		});
 	}
 

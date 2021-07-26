@@ -1,4 +1,4 @@
-package com.dashboard.data.importer;
+package com.dashboard.data.importer.cssegiSandOwid;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -12,9 +12,7 @@ import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
 import org.kohsuke.github.GitHubBuilder;
 
-public class Requests {
-	private static Map<String, String> csvCache = new HashMap<String, String>();
-	
+public class CSSEGISandOwidDownloader {	
 	/**
 	 * Gets the content from a GitGub API file
 	 * 

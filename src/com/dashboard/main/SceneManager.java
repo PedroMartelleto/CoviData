@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 /**
  * Scene manager with a singleton to each scene type.
  */
-public class Scenes {
+public class SceneManager {
 	private static Scene vaccinations = null;
 	private static Scene infected = null;
 	private static Scene newsReport = null;

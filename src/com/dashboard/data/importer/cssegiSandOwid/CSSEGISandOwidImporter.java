@@ -1,4 +1,4 @@
-package com.dashboard.data.importer;
+package com.dashboard.data.importer.cssegiSandOwid;
 
 import java.io.IOException;
 
@@ -12,35 +12,36 @@ import java.util.HashMap;
 
 import javafx.util.Pair;
 
-import com.dashboard.data.common.BrazilData;
-import com.dashboard.data.interfaces.ChartsInterface;
-import com.dashboard.data.model.LineChartDataModel;
-import com.dashboard.data.model.MapChartDataModel;
+import com.dashboard.data.globals.BrazilGlobals;
+import com.dashboard.data.importer.CovidDataImporter;
+import com.dashboard.data.model.XYChartDataModel;
+import com.dashboard.data.model.MapDataModel;
 import com.dashboard.data.parser.CsvParser;
 
-
 /**
- * Reads COVID-19 data from CSSEGI and OWID.
+ * Reads COVID-19 data from CSSEGI and OWID. Requests are done through the
+ * github api.
  */
-public class CSSEGISandOwidImporter implements ChartsInterface {
-	public static int n_deaths = 0;
-	public static int n_cases = 0;
-	
-	private static ArrayList<String> states = BrazilData.getStateNames();
+public class CSSEGISandOwidImporter implements CovidDataImporter {
+	public static int totalDeaths = 0;
+	public static int totalCases = 0;
+
+	private static ArrayList<String> states = BrazilGlobals.getStateNames();
 	private static String ALLSTATES = states.get(0);
-	
+
 	/**
-	 * Parses a CSSEGISandData-downloaded csv and returns relevant vaccination information.
+	 * Parses a CSSEGISandData-downloaded csv and returns relevant vaccination
+	 * information.
 	 */
 	@Override
-	public LineChartDataModel[] getVaccinationsLineChart() {
-		LineChartDataModel[] data = new LineChartDataModel[3];
+	public XYChartDataModel[] getVaccinationsLineChart() {
+		XYChartDataModel[] data = new XYChartDataModel[3];
 
 		for (int i = 0; i < 3; i++) {
-			data[i] = new LineChartDataModel();
+			data[i] = new XYChartDataModel();
 		}
 
-		String csvNotParsed = Requests.getTotalVaccinated();
+		String csvNotParsed = CSSEGISandOwidDownloader.getTotalVaccinated();
 		List<String[]> csvParsed = CsvParser.getAllContent(csvNotParsed);
 
 		for (String[] line : csvParsed) {
@@ -64,36 +65,34 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 	 * @return Map<state, data>
 	 */
 	@Override
-	public LineChartDataModel getDailyCasesLineChart(String stateName) {
-		Map<String, List<String[]>> data = DataFiles.readAllData();
-		LineChartDataModel chart = new LineChartDataModel();
+	public XYChartDataModel getDailyCasesLineChart(String stateName) {
+		Map<String, List<String[]>> data = CSSEGISandOwidLocalCache.readAllData();
+		XYChartDataModel chart = new XYChartDataModel();
 
 		int index = states.indexOf(stateName) - 1;
-		// boolean allStates = stateName.equals(BrazilData.ALL_STATES);
 		int yesterday = 0;
-		int total = 0;;
+		int total = 0;
+		;
 		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
 			total = 0;
-			
-			if(index == -1) {
+
+			if (index == -1) {
 				for (String[] line : file.getValue()) {
 					total += Integer.parseInt(line[4]);
 				}
-			}
-			else {
-				if(file.getValue().size() > 1) {
+			} else {
+				if (file.getValue().size() > 1) {
 					String[] line = file.getValue().get(index);
 					total += Integer.parseInt(line[4]);
 				}
-				
+
 			}
-			
+
 			chart.addPoint(file.getKey(), total - yesterday);
 			yesterday = total;
 		}
 
-		
-		n_cases = total;
+		totalCases = total;
 		return chart;
 	}
 
@@ -103,34 +102,34 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 	 * @return Map<state, data>
 	 */
 	@Override
-	public LineChartDataModel getDailyDeathsLineChart(String stateName) {
-		Map<String, List<String[]>> data = DataFiles.readAllData();
-		LineChartDataModel chart = new LineChartDataModel();
+	public XYChartDataModel getDailyDeathsLineChart(String stateName) {
+		Map<String, List<String[]>> data = CSSEGISandOwidLocalCache.readAllData();
+		XYChartDataModel chart = new XYChartDataModel();
 
 		int index = states.indexOf(stateName) - 1;
-		// boolean allStates = stateName.equals(BrazilData.ALL_STATES);
+
 		int yesterday = 0;
 		int total = 0;
+
 		for (Map.Entry<String, List<String[]>> file : data.entrySet()) {
 			total = 0;
-			if(index == -1) {
+			if (index == -1) {
 				for (String[] line : file.getValue()) {
 					total += Integer.parseInt(line[5]);
 				}
-			}
-			else {
-				if(file.getValue().size() > 1) {
+			} else {
+				if (file.getValue().size() > 1) {
 					String[] line = file.getValue().get(index);
 					total += Integer.parseInt(line[5]);
 				}
-				
+
 			}
-			
+
 			chart.addPoint(file.getKey(), total - yesterday);
 			yesterday = total;
 		}
 
-		n_deaths = total;
+		totalDeaths = total;
 		return chart;
 	}
 
@@ -138,15 +137,15 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 	 * Get the average data between the last 2 weeks new cases
 	 */
 	@Override
-	public MapChartDataModel getCasesMapChart() {
+	public MapDataModel getCasesMapChart() {
 		// Setting default variables
 		SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
-		MapChartDataModel data = new MapChartDataModel();
+		MapDataModel data = new MapDataModel();
 
 		// Setting structures for data control
 		Map<String, int[]> values = new HashMap<String, int[]>();
 		Map<String, Pair<Double, Double>> coordinates = new HashMap<String, Pair<Double, Double>>();
-		for (String name : BrazilData.getStateNames()) {
+		for (String name : BrazilGlobals.getStateNames()) {
 			values.put(name, new int[3]);
 		}
 
@@ -156,8 +155,8 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 			String fileName = format.format(new Date(day)) + ".csv";
 			String csvNotParsed = "";
 			try {
-				csvNotParsed = DataFiles.readData(fileName);
-			} catch(IOException e) {
+				csvNotParsed = CSSEGISandOwidLocalCache.readData(fileName);
+			} catch (IOException e) {
 				day -= 24 * 60 * 60 * 1000;
 				i--;
 				continue;
@@ -171,14 +170,15 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 				valuesOfState[i] = Integer.valueOf(line[4]);
 
 				if (i == 0) {
-					coordinates.put(line[1], new Pair<Double, Double>(Double.valueOf(line[2]), Double.valueOf(line[3])));
+					coordinates.put(line[1],
+							new Pair<Double, Double>(Double.valueOf(line[2]), Double.valueOf(line[3])));
 				}
 			}
 
 			day -= 7 * 24 * 60 * 60 * 1000;
 		}
-		
-		// Calculating the last 2 weeks increase 
+
+		// Calculating the last 2 weeks increase
 		for (int[] valuesByState : values.values()) {
 			valuesByState[0] = valuesByState[0] - valuesByState[1];
 			valuesByState[1] = valuesByState[1] - valuesByState[2];
@@ -208,15 +208,15 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 	 * Get the average data between the last 2 weeks new deaths
 	 */
 	@Override
-	public MapChartDataModel getDeathsMapChart() {
+	public MapDataModel getDeathsMapChart() {
 		// Setting default variables
 		SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
-		MapChartDataModel data = new MapChartDataModel();
+		MapDataModel data = new MapDataModel();
 
 		// Setting structures for data control
 		Map<String, int[]> values = new HashMap<String, int[]>();
 		Map<String, Pair<Double, Double>> coordinates = new HashMap<String, Pair<Double, Double>>();
-		for (String name : BrazilData.getStateNames()) {
+		for (String name : BrazilGlobals.getStateNames()) {
 			values.put(name, new int[3]);
 		}
 
@@ -226,8 +226,8 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 			String fileName = format.format(new Date(day)) + ".csv";
 			String csvNotParsed = "";
 			try {
-				csvNotParsed = DataFiles.readData(fileName);
-			} catch(IOException e) {
+				csvNotParsed = CSSEGISandOwidLocalCache.readData(fileName);
+			} catch (IOException e) {
 				day -= 24 * 60 * 60 * 1000;
 				i--;
 				continue;
@@ -241,14 +241,15 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 				valuesOfState[i] = Integer.valueOf(line[5]);
 
 				if (i == 0) {
-					coordinates.put(line[1], new Pair<Double, Double>(Double.valueOf(line[2]), Double.valueOf(line[3])));
+					coordinates.put(line[1],
+							new Pair<Double, Double>(Double.valueOf(line[2]), Double.valueOf(line[3])));
 				}
 			}
 
 			day -= 7 * 24 * 60 * 60 * 1000;
 		}
-		
-		// Calculating the last 2 weeks increase 
+
+		// Calculating the last 2 weeks increase
 		for (int[] valuesByState : values.values()) {
 			valuesByState[0] = valuesByState[0] - valuesByState[1];
 			valuesByState[1] = valuesByState[1] - valuesByState[2];

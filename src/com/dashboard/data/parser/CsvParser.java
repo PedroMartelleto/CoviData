@@ -6,9 +6,8 @@ import java.util.List;
 import com.opencsv.CSVReader;
 
 public class CsvParser {
-
 	/**
-	 * Separates fields from a CSV string
+	 * Separates fields from a CSV string.
 	 * 
 	 * @param csvContent A string in CSV format
 	 * @return Every field, separated

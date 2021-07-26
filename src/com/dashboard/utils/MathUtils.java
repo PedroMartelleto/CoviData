@@ -1,5 +1,8 @@
 package com.dashboard.utils;
 
+/**
+ * Math utils used during animations.
+ */
 public class MathUtils {
 	/**
 	 * Cubic Hermite interpolation after clamping.

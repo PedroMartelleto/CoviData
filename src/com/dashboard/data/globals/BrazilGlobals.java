@@ -1,4 +1,4 @@
-package com.dashboard.data.common;
+package com.dashboard.data.globals;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,7 +7,10 @@ import java.util.Map;
 
 import com.sothawo.mapjfx.Coordinate;
 
-public class BrazilData {
+/**
+ * Hard-coded values that are (mostly) constant over time.
+ */
+public class BrazilGlobals {
 	public static final String ALL_STATES = "Todos os estados";
 	public static final Coordinate CENTER = new Coordinate(-15.723588679352947, -46.98361582418985);
 	
@@ -64,7 +67,7 @@ public class BrazilData {
 	}
 	
 	/**
-	 * Gets the population of a state by that state's name. Also getting the entire Brazil population.
+	 * Gets the population of a state by that state's name. Also supports getting the population of the entire country.
 	 * @param state
 	 * @return
 	 */

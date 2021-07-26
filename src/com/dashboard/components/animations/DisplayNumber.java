@@ -1,5 +1,8 @@
 package com.dashboard.components.animations;
 
+/**
+ * Display number is a value nicely formatted for displaying in the GUI.
+ */
 public class DisplayNumber implements Cloneable {
 	/**
 	 * Creates a new DisplayNumber with the same properties as the given display number, but with a different value.

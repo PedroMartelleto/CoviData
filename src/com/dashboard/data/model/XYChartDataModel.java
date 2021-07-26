@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import javafx.scene.chart.XYChart.Data;
 
-public class LineChartDataModel {
+/**
+ * Data model for XY charts.
+ */
+public class XYChartDataModel {
 	public ArrayList<Data<String, Number>> points = new ArrayList<Data<String, Number>>();
 	
 	public final void addPoint(String X, Number Y) {

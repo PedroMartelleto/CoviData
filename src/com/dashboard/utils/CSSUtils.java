@@ -2,6 +2,9 @@ package com.dashboard.utils;
 
 import javafx.scene.Parent;
 
+/**
+ * Utils for loadings CSS files.
+ */
 public class CSSUtils {
 	/**
 	 * Stylesheets common to all scenes.

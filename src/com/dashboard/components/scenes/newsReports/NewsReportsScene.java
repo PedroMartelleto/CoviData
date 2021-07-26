@@ -7,7 +7,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebView;
 
 /**
- * Covid-related news.
+ * Covid-related news. Embeds a Globo page w/ covid news.
  */
 public class NewsReportsScene extends AnchorPane {
 	@FXML

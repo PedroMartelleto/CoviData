@@ -1,4 +1,4 @@
-package com.dashboard.data.importer;
+package com.dashboard.data.importer.cssegiSandOwid;
 
 import java.io.IOException;
 
@@ -19,7 +19,10 @@ import org.kohsuke.github.GitHubBuilder;
 
 import com.dashboard.data.parser.CsvParser;
 
-public class DataFiles {
+/**
+ * Locally caches downloaded data to speed up the program by avoiding unnecessary requests.
+ */
+public class CSSEGISandOwidLocalCache {
 
 	/**
 	 * Writes in disk the file with the selected data
@@ -87,11 +90,11 @@ public class DataFiles {
 	 * Read and write in disk every file from the case/death API
 	 */
 	public void writeAllData() {
-		new Requests();
+		new CSSEGISandOwidDownloader();
 		new CsvParser();
 
 		// Requests to the API the contents
-		Map<String, String> contents = Requests.getAllCases();
+		Map<String, String> contents = CSSEGISandOwidDownloader.getAllCases();
 
 		// For each file obtained, parse the content and writes in disk
 		for (Map.Entry<String, String> file : contents.entrySet()) {
@@ -110,7 +113,7 @@ public class DataFiles {
 	 * 
 	 * @throws IOException if the API fails
 	 */
-	public static void writeMissedData() throws IOException {
+	public static void writeMissingData() throws IOException {
 		GitHub github = new GitHubBuilder().withOAuthToken("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").build();
 		GHRepository repo = github.getUser("CSSEGISandData").getRepository("COVID-19");
 		List<GHContent> directory = repo.getDirectoryContent("csse_covid_19_data/csse_covid_19_daily_reports");
@@ -120,10 +123,10 @@ public class DataFiles {
 			if (name.endsWith(".csv")) {
 				File file = new File("data/" + name);
 				
-				// If the file exists just ignore
+				// If the file exists just ignore it
 				if (!file.exists()) {
 					// If not, request the missed files
-					String content = Requests.getContent(gitFile);
+					String content = CSSEGISandOwidDownloader.getContent(gitFile);
 					writeData(name, CsvParser.getAllContent(content));
 					System.out.print("Novo arquivo escrito: " + name + "\n");
 				}
