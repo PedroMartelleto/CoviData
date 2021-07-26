@@ -1,0 +1,14 @@
+com.dashboard.components.animations
+com.dashboard.components.menuBar
+com.dashboard.components.scenes.infected
+com.dashboard.components.scenes.newsReports
+com.dashboard.components.scenes.vaccinations
+com.dashboard.components.scenes.vaccineSchedule
+com.dashboard.data.globals
+com.dashboard.data.importer
+com.dashboard.data.importer.cssegiSandOwid
+com.dashboard.data.model
+com.dashboard.data.parser
+com.dashboard.data.providers
+com.dashboard.main
+com.dashboard.utils
