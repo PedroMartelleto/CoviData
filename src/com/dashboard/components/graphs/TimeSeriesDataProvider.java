@@ -67,7 +67,7 @@ public class TimeSeriesDataProvider {
 	 * @param stateName The state from which to get the data.
 	 */
 	public static void cases(XYChart<String, Number> chart, int stride, String stateName) {
-		LineChartDataModel data = importer.getDailyStateCasesLineChart(stateName);
+		LineChartDataModel data = importer.getDailyCasesLineChart(stateName);
 		chart.setAnimated(true);
 		provideLabels(chart, "Casos acumulados por dia", "Data", "Quantidade");
 		provideSeries(chart, "Casos acumulados por dia", data.getPoints(), stride, 1, true);
@@ -81,7 +81,7 @@ public class TimeSeriesDataProvider {
 	 * @param stateName The state from which to get the data.
 	 */
 	public static void deaths(XYChart<String, Number> chart, int stride, String stateName) {
-		LineChartDataModel data = importer.getDailyStateDeathsLineChart(stateName);
+		LineChartDataModel data = importer.getDailyDeathsLineChart(stateName);
 		chart.setAnimated(true);
 		provideLabels(chart, "Mortes acumuladas por dia", "Data", "Quantidade");
 		provideSeries(chart, "Mortes acumuladas por dia", data.getPoints(), stride, 1, true);
