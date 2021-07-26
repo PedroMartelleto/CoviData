@@ -182,11 +182,12 @@ public class DataFiles {
 				String fileData = readData(file);
 				if (!fileData.isEmpty()) {
 					List<String[]> content = CsvParser.getAllContent(fileData);
-					String date = file.substring(6, 10) + "-" + file.substring(0, 1) + "-" + file.substring(3, 4);
+					String date = file.substring(6, 10) + "-" + file.substring(0, 2) + "-" + file.substring(3, 5);
 					data.put(date, content);
 				}
 			} catch (IOException e) {
 				// Not expected to EVER happen
+				// Would happen if the file does not exist
 				e.printStackTrace();
 			}
 		}

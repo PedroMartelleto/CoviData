@@ -14,6 +14,7 @@ import com.dashboard.data.model.LineChartDataModel;
 import com.dashboard.data.model.MapChartDataModel;
 import com.dashboard.data.parser.CsvParser;
 
+import javafx.scene.chart.XYChart.Data;
 import javafx.util.Pair;
 
 /**
@@ -98,6 +99,10 @@ public class CSSEGISandOwidImporter implements ChartsInterface {
 				total += Integer.parseInt(line[5]);
 			}
 			chart.addPoint(file.getKey(), total - yesterday);
+		}
+		
+		for (Data<String, Number> point : chart.points) {
+			System.out.print(point.getYValue() + " " + point.getXValue().toString() + "\n");
 		}
 
 		return chart;
