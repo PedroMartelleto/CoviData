@@ -156,10 +156,11 @@ public class CSSEGISandOwidImporter implements CovidDataImporter {
 		}
 
 		// Getting the total number for the last 3 weeks
-		long day = System.currentTimeMillis() - 24 * 60 * 60 * 1000;
+		long day = System.currentTimeMillis();
 		for (int i = 0; i < 3; i++) {
 			String fileName = format.format(new Date(day)) + ".csv";
 			String csvNotParsed = "";
+			
 			try {
 				csvNotParsed = CSSEGISandOwidLocalCache.readData(fileName);
 			} catch (IOException e) {

@@ -149,16 +149,14 @@ public class CSSEGISandOwidLocalCache {
 		FileReader fr;
 		BufferedReader br;
 
-		// Ensures that the file will be empty
-		try {
-			file.createNewFile();
-			fr = new FileReader(file);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
+		// Ensures that the file will not be empty
+		if (!file.exists() ) {
+			throw new IOException("");
 		}
-
+		
+		fr = new FileReader(file);
 		br = new BufferedReader(fr);
+		
 		String line = br.readLine();
 		String content = "";
 		
