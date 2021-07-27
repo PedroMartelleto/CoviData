@@ -23,6 +23,7 @@ import com.dashboard.data.parser.CsvParser;
  * Locally caches downloaded data to speed up the program by avoiding unnecessary requests.
  */
 public class CSSEGISandOwidLocalCache {
+	private static String CSV_DATAPATH = "data/cssegiSandOwid";
 
 	/**
 	 * Writes in disk the file with the selected data
@@ -34,7 +35,7 @@ public class CSSEGISandOwidLocalCache {
 	 */
 	public static Boolean writeData(String fileName, List<String[]> data) {
 		// Creates the data full path
-		File file = new File("data/" + fileName);
+		File file = new File(CSV_DATAPATH + "/" + fileName);
 		FileWriter fw;
 		BufferedWriter bw;
 
@@ -121,7 +122,7 @@ public class CSSEGISandOwidLocalCache {
 		for (GHContent gitFile : directory) {
 			String name = gitFile.getName();
 			if (name.endsWith(".csv")) {
-				File file = new File("data/" + name);
+				File file = new File(CSV_DATAPATH + "/" + name);
 				
 				// If the file exists just ignore it
 				if (!file.exists()) {
@@ -144,7 +145,7 @@ public class CSSEGISandOwidLocalCache {
 	 * @throws IOException in case the file does not exist
 	 */
 	public static String readData(String fileName) throws IOException {
-		File file = new File("data/" + fileName);
+		File file = new File(CSV_DATAPATH + "/" + fileName);
 		FileReader fr;
 		BufferedReader br;
 
@@ -178,7 +179,7 @@ public class CSSEGISandOwidLocalCache {
 	 * @return Map<fileName, Lines<Fields[]>>
 	 */
 	public static Map<String, List<String[]>> readAllData() {
-		File directory = new File("data");
+		File directory = new File(CSV_DATAPATH);
 		String[] fileNames = directory.list();
 		
 		Map<String, List<String[]>> data = new TreeMap<String, List<String[]>>();

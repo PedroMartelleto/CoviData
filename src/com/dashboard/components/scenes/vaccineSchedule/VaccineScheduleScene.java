@@ -26,7 +26,7 @@ public class VaccineScheduleScene extends AnchorPane {
 	private void initialize() {
 		try {
 			BufferedReader reader = new BufferedReader(
-					new FileReader(new File("src/com/dashboard/resources/" + VACCINE_SCHEDULE_FILENAME)));
+					new FileReader(new File("data/" + VACCINE_SCHEDULE_FILENAME)));
 			Field[] columnNicknames = VaccineScheduleTableRow.class.getDeclaredFields();
 
 			String line = null;
