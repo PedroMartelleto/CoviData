@@ -151,7 +151,7 @@ public class CSSEGISandOwidLocalCache {
 
 		// Ensures that the file will not be empty
 		if (!file.exists() ) {
-			throw new IOException("");
+			throw new IOException("Passed a file that does not exist in CSSEGISandOwidLocalCache.readData.");
 		}
 		
 		fr = new FileReader(file);
