@@ -1,18 +1,33 @@
 package com.dashboard.data.importer.cssegiSandOwid;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Map;
-import java.util.Date;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.kohsuke.github.GHContent;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
 import org.kohsuke.github.GitHubBuilder;
 
-public class CSSEGISandOwidDownloader {	
+public class CSSEGISandOwidDownloader {
+	private static String apiToken = null;
+	
+	public static String getAPIToken() {
+		if (apiToken == null) {
+			try {
+				apiToken = Files.readAllLines(Paths.get("data/API_TOKEN"), StandardCharsets.UTF_8).get(0).trim();
+			} catch (Exception e) {
+				System.out.println("You must provide an api token at data/API_TOKEN");
+				System.exit(1);
+			}
+		}
+		return apiToken;
+	}
+	
 	/**
 	 * Gets the content from a GitGub API file
 	 * 
@@ -34,7 +49,7 @@ public class CSSEGISandOwidDownloader {
 		Map<String, String> contents = new HashMap<String, String>();
 
 		try {
-			GitHub github = new GitHubBuilder().withOAuthToken("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").build();
+			GitHub github = new GitHubBuilder().withOAuthToken(getAPIToken()).build();
 			GHRepository repo = github.getUser("CSSEGISandData").getRepository("COVID-19");
 			List<GHContent> gitContent = repo.getDirectoryContent("csse_covid_19_data/csse_covid_19_daily_reports");
 
@@ -59,7 +74,7 @@ public class CSSEGISandOwidDownloader {
 	 */
 	public static String getTotalVaccinated() {
 		try {
-			GitHub github = new GitHubBuilder().withOAuthToken("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").build();
+			GitHub github = new GitHubBuilder().withOAuthToken(getAPIToken()).build();
 			GHRepository repo = github.getUser("owid").getRepository("covid-19-data");
 			GHContent content = repo.getFileContent("public/data/vaccinations/country_data/Brazil.csv");
 			return new String(content.read().readAllBytes());

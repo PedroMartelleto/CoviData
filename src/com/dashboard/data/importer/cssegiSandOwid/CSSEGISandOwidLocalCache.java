@@ -115,7 +115,7 @@ public class CSSEGISandOwidLocalCache {
 	 * @throws IOException if the API fails
 	 */
 	public static void writeMissingData() throws IOException {
-		GitHub github = new GitHubBuilder().withOAuthToken("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").build();
+		GitHub github = new GitHubBuilder().withOAuthToken(CSSEGISandOwidDownloader.getAPIToken()).build();
 		GHRepository repo = github.getUser("CSSEGISandData").getRepository("COVID-19");
 		List<GHContent> directory = repo.getDirectoryContent("csse_covid_19_data/csse_covid_19_daily_reports");
 

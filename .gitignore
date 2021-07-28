@@ -1,2 +1,11 @@
 /bin/
 /target
+API_TOKEN
+data/API_TOKEN
+.API_TOKEN
+*.API_TOKEN
+data/.API_TOKEN
+*/bin/*
+*/.git/*
+*/.settings/*
+*/.API_TOKEN
