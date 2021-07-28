@@ -34,7 +34,7 @@ public class CSSEGISandOwidDownloader {
 		Map<String, String> contents = new HashMap<String, String>();
 
 		try {
-			GitHub github = new GitHubBuilder().withOAuthToken("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").build();
+			GitHub github = new GitHubBuilder().withOAuthToken("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").build();
 			GHRepository repo = github.getUser("CSSEGISandData").getRepository("COVID-19");
 			List<GHContent> gitContent = repo.getDirectoryContent("csse_covid_19_data/csse_covid_19_daily_reports");
 
@@ -59,7 +59,7 @@ public class CSSEGISandOwidDownloader {
 	 */
 	public static String getTotalVaccinated() {
 		try {
-			GitHub github = new GitHubBuilder().withOAuthToken("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").build();
+			GitHub github = new GitHubBuilder().withOAuthToken("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").build();
 			GHRepository repo = github.getUser("owid").getRepository("covid-19-data");
 			GHContent content = repo.getFileContent("public/data/vaccinations/country_data/Brazil.csv");
 			return new String(content.read().readAllBytes());
