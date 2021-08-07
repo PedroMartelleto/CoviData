@@ -1,31 +1,8 @@
 # CoviData
 
-<!-- PROJECT LOGO -->
-<br />
-[](https://user-images.githubusercontent.com/35240934/128615158-9dfc24b0-abb2-4f52-9f86-f6b08ae7f731.mp4)
-
-
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#roadmap">Roadmap</a></li>
-  </ol>
-</details>
-
+<p align="center">
+  <video autoplay="true" controls="false" src="https://user-images.githubusercontent.com/35240934/128615158-9dfc24b0-abb2-4f52-9f86-f6b08ae7f731.mp4"/>
+</p>
 
 
 <!-- ABOUT THE PROJECT -->
@@ -60,3 +37,9 @@ This project uses Maven for package management.
    mvn install
    ```
 3. Run with goal javafx:run.
+
+## Authors
+
+@PedroMartelleto
+@cirofalsarella
+@gabriel-vr
