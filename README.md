@@ -2,7 +2,7 @@
 
 <!-- PROJECT LOGO -->
 <br />
-![](https://user-images.githubusercontent.com/35240934/128615158-9dfc24b0-abb2-4f52-9f86-f6b08ae7f731.mp4)
+[](https://user-images.githubusercontent.com/35240934/128615158-9dfc24b0-abb2-4f52-9f86-f6b08ae7f731.mp4)
 
 
 <!-- TABLE OF CONTENTS -->
