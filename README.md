@@ -13,7 +13,6 @@ A dashboard about the evolution of coronavirus in Brazil. Project made as part o
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 * [JavaFX](https://openjfx.io/)
 * [COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19)
 * [COVID-19 Dataset by Our World in Data](https://github.com/owid/covid-19-data/tree/master/)
